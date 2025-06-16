@@ -1,4 +1,4 @@
-import { Logo } from "../Logo"
+import Logo from "../../assets/svg/LogoIcon";
 
 interface HeaderProps {
 
