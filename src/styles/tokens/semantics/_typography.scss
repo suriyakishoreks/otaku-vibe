@@ -1,0 +1,55 @@
+@use "../primitives" as *;
+
+@mixin typo-primary-s-regular {
+  @include font-family-primary;
+  @include font-size-s;
+  @include font-weight-regular;
+}
+
+@mixin typo-primary-s-medium {
+  @include font-family-primary;
+  @include font-size-s;
+  @include font-weight-medium;
+}
+
+@mixin typo-primary-s-semibold {
+  @include font-family-primary;
+  @include font-size-s;
+  @include font-weight-semibold;
+}
+
+@mixin typo-primary-m-regular {
+  @include font-family-primary;
+  @include font-size-m;
+  @include font-weight-regular;
+}
+
+@mixin typo-primary-m-medium {
+  @include font-family-primary;
+  @include font-size-m;
+  @include font-weight-medium;
+}
+
+@mixin typo-primary-m-semibold {
+  @include font-family-primary;
+  @include font-size-m;
+  @include font-weight-semibold;
+}
+
+@mixin typo-primary-l-regular {
+  @include font-family-primary;
+  @include font-size-l;
+  @include font-weight-regular;
+}
+
+@mixin typo-primary-l-medium {
+  @include font-family-primary;
+  @include font-size-l;
+  @include font-weight-medium;
+}
+
+@mixin typo-primary-l-semibold {
+  @include font-family-primary;
+  @include font-size-l;
+  @include font-weight-semibold;
+}

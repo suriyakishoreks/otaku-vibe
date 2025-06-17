@@ -1,4 +1,3 @@
 // Base
-@forward "./base/reset";
-@forward "./base/variables";
-@forward "./base/typography";
+@use "./base/reset";
+@use "./tokens/semantics";

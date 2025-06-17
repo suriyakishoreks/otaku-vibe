@@ -1,0 +1,35 @@
+@font-face {
+  font-family: "outfit";
+  src: url("outfit-variable.woff2") format("woff2-variations");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@mixin font-family-primary {
+  font-family: "outfit", sans-serif;
+}
+
+@mixin font-size-s {
+  font-size: 12px;
+}
+
+@mixin font-size-m {
+  font-size: 16px;
+}
+
+@mixin font-size-l {
+  font-size: 20px;
+}
+
+@mixin font-weight-regular {
+  font-weight: 400;
+}
+
+@mixin font-weight-medium {
+  font-weight: 500;
+}
+
+@mixin font-weight-semibold {
+  font-weight: 600;
+}
