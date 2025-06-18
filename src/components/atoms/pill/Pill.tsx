@@ -1,13 +1,15 @@
-import type { IconProps } from "../atoms/icons/icon.model";
+import type { IconProps } from "../icons/icon.model";
+import { Label } from "../label";
 import styles from "./Pill.module.scss";
 
 interface PillProps {
     icon: React.ComponentType<IconProps>;
+    text: string;
     labelColor?: string;
     fillColor?: string;
 }
 
-function Pill({ icon: Icon, labelColor, fillColor }: PillProps) {
+function Pill({ icon: Icon, labelColor, fillColor, text }: PillProps) {
     return (
         <div
             className={styles.pill}
@@ -21,7 +23,7 @@ function Pill({ icon: Icon, labelColor, fillColor }: PillProps) {
             }}
         >
             <Icon size={24} color={labelColor ?? '#FFFFFF'} />
-            <span style={{ color: labelColor ?? '#FFFFFF' }}>Label</span>
+            <Label as='h2' font='typo-primary-l-semibold' className={styles.pill}>{text}</Label>
         </div>
     );
 }
