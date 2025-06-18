@@ -1,18 +1,18 @@
 import type { RouteObject } from 'react-router';
-
-// Import your feature-specific route definitions
 import { animeRoutes } from './anime.routes';
 import { HomePage } from '../../pages/homePage';
-// Define the root of your route tree
+import { AppLayout } from '../../layouts/appLayout';
+
+
 export const routes: RouteObject[] = [
     {
         path: '/anime-list-app/',
-        element: <HomePage />, // Your main app layout
-        errorElement: <></>, // Global error boundary for routes within MainLayout
+        element: <AppLayout />,
+        errorElement: <></>,
         children: [
             {
-                index: true, // Matches /
-                element: <></>,
+                index: true,
+                element: <HomePage />,
             },
             // Include your feature route objects here
             animeRoutes
