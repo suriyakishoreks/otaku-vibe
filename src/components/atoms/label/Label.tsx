@@ -1,5 +1,6 @@
 import React from 'react';
-import type { Font, LabelRestrictedInlineStyle } from './Label.model';
+import type { LabelRestrictedInlineStyle } from './Label.model';
+import type { Font } from '../../../shared/design-system/model';
 import classNames from 'classnames';
 
 // TODO: Restrict the as prop type even further to valid label elements

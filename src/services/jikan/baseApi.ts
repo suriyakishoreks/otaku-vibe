@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react';
-import { JIKAN_API_BASE_URL } from '../../shared/constants';
+
+const JIKAN_API_BASE_URL = 'https://api.jikan.moe/v4';
 
 const baseQuery = fetchBaseQuery({
     baseUrl: JIKAN_API_BASE_URL

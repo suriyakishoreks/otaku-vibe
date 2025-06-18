@@ -1,0 +1,48 @@
+export type SemanticColors =
+    | 's-color-bg-primary'
+    | 's-color-bg-secondary'
+    | 's-color-bg-success'
+    | 's-color-bg-warning'
+    | 's-color-bg-error'
+    | 's-color-bg-info'
+    | 's-color-fg-primary'
+    | 's-color-fg-secondary'
+    | 's-color-fg-success'
+    | 's-color-fg-warning'
+    | 's-color-fg-error'
+    | 's-color-fg-info';
+
+export type Spacing =
+    | 's-spacing-0'
+    | 's-spacing-1'
+    | 's-spacing-2'
+    | 's-spacing-3'
+    | 's-spacing-4'
+    | 's-spacing-5'
+    | 's-spacing-6'
+    | 's-spacing-7'
+    | 's-spacing-8'
+    | 's-spacing-9'
+    | 's-spacing-10'
+    | 's-neg-spacing-0'
+    | 's-neg-spacing-1'
+    | 's-neg-spacing-2'
+    | 's-neg-spacing-3'
+    | 's-neg-spacing-4'
+    | 's-neg-spacing-5'
+    | 's-neg-spacing-6'
+    | 's-neg-spacing-7'
+    | 's-neg-spacing-8'
+    | 's-neg-spacing-9'
+    | 's-neg-spacing-10';
+
+export type Font =
+    | 'typo-primary-s-regular'
+    | 'typo-primary-s-medium'
+    | 'typo-primary-s-semibold'
+    | 'typo-primary-m-regular'
+    | 'typo-primary-m-medium'
+    | 'typo-primary-m-semibold'
+    | 'typo-primary-l-regular'
+    | 'typo-primary-l-medium'
+    | 'typo-primary-l-semibold';
