@@ -8,7 +8,7 @@ const baseQuery = fetchBaseQuery({
 // A custom baseQuery that retries failed requests
 const baseQueryWithRetry = retry(baseQuery, { maxRetries: 3 });
 
-export const baseApi = createApi({
+export const jikanApi = createApi({
     reducerPath: 'jikanApi',
     baseQuery: baseQueryWithRetry,
     endpoints: () => ({}),
