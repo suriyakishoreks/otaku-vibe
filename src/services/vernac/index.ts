@@ -1,6 +1,5 @@
-import { Locale } from "../../shared/constants";
 import enVernacConfig from "./en";
-import type { VernacConfig } from "./models";
+import type { VernacConfig, Locale } from "./models";
 
 export default class Vernac {
     public static getVernac(locale: Locale, key: keyof VernacConfig): string {
@@ -10,7 +9,7 @@ export default class Vernac {
 
     private static getVernacConfig(locale: Locale): VernacConfig {
         switch (locale) {
-            case Locale.EN:
+            case 'en':
             default:
                 return enVernacConfig;
         }

@@ -4,3 +4,5 @@ export interface VernacConfig {
     ANIME: string;
     MANGA: string;
 }
+
+export type Locale = 'en';
