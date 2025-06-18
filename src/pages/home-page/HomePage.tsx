@@ -2,9 +2,7 @@ import { useEffect } from "react";
 import { useGetAnimeFullByIdQuery } from "../../services/jikan";
 import { Label } from "../../components/atoms/label";
 
-type Props = {};
-
-function HomePage({ }: Props) {
+function HomePage() {
     const { data } = useGetAnimeFullByIdQuery(1);
 
     useEffect(() => {

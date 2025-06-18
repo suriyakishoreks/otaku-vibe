@@ -1,7 +1,7 @@
 import type { RouteObject } from 'react-router';
 import { animeRoutes } from './anime.routes';
-import { HomePage } from '../../pages/homePage';
-import { AppLayout } from '../../layouts/appLayout';
+import { HomePage } from '../../pages/home-page';
+import { AppLayout } from '../../layouts/app-layout';
 
 
 export const routes: RouteObject[] = [
