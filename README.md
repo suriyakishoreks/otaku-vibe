@@ -4,6 +4,7 @@ RTK query for data fetching and caching
 Atom Creation - Label, Box, Image,
 scss autocompletion
 i18n library?
+alias for imports
 
 Milestone 1:
 core setup
