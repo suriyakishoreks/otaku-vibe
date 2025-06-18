@@ -1,5 +1,19 @@
 TODOS
 
+RTK query for data fetching and caching
 Atom Creation - Label, Box, Image,
 scss autocompletion
 i18n library?
+
+Milestone 1:
+core setup
+HP, Anime, manga landing page
+search page - no infinite load
+detail page
+theme
+vernac
+loading
+
+Milestone 2:
+PWA
+infinite feed

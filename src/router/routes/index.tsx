@@ -2,7 +2,7 @@ import type { RouteObject } from 'react-router';
 
 // Import your feature-specific route definitions
 import { animeRoutes } from './anime.routes';
-import { HomePage } from '../../pages/HomePage';
+import { HomePage } from '../../pages/homePage';
 // Define the root of your route tree
 export const routes: RouteObject[] = [
     {
