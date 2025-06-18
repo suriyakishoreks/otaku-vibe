@@ -2,14 +2,15 @@ import React from 'react';
 import type { Font, LabelRestrictedInlineStyle } from './Label.model';
 import classNames from 'classnames';
 
-type LabelProps<T extends React.ElementType> = {
+// TODO: Restrict the as prop type even further to valid label elements
+type LabelProps<T extends React.ElementType = 'span'> = {
     as?: T;
     children: React.ReactNode;
     font: Font;
     style?: LabelRestrictedInlineStyle;
 } & Omit<React.ComponentPropsWithRef<T>, 'style'>;
 
-const Label = <T extends React.ElementType = 'label'>({
+const Label = <T extends React.ElementType = 'span'>({
     as,
     children,
     className,
@@ -17,7 +18,7 @@ const Label = <T extends React.ElementType = 'label'>({
     style,
     ...rest
 }: LabelProps<T>) => {
-    const Component = as ?? 'label';
+    const Component = as ?? 'span';
     return <Component
         {...rest}
         className={classNames({
