@@ -1,0 +1,5 @@
+@use "../tokens/semantics" as *;
+
+body {
+  background-color: var(--s-color-bg-primary);
+}

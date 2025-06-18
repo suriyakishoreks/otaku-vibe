@@ -1,3 +1,4 @@
 // Base
-@use "./base/reset";
 @use "./tokens/semantics";
+@use "./base/reset";
+@use "./base/init";
