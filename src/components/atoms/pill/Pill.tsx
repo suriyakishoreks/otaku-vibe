@@ -1,3 +1,4 @@
+import type { SemanticColors } from "../../../shared/design-system/model";
 import type { IconProps } from "../icons/icon.model";
 import { Label } from "../label";
 import styles from "./Pill.module.scss";
@@ -5,7 +6,7 @@ import styles from "./Pill.module.scss";
 interface PillProps {
     icon: React.ComponentType<IconProps>;
     text: string;
-    labelColor?: string;
+    labelColor?: SemanticColors;
     fillColor?: string;
 }
 
@@ -22,7 +23,7 @@ function Pill({ icon: Icon, labelColor, fillColor, text }: PillProps) {
                 gap: '8px'
             }}
         >
-            <Icon size={24} color={labelColor ?? '#FFFFFF'} />
+            <Icon size={24} color={labelColor ?? 's-color-fg-primary'} />
             <Label as='h2' font='typo-primary-l-semibold' className={styles.pill}>{text}</Label>
         </div>
     );
