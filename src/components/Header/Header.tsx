@@ -1,6 +1,6 @@
-import HomeIcon from "../../assets/svg/HomeIcon";
-import Logo from "../../assets/svg/LogoIcon";
-import { Pill } from "../Pill";
+import HomeIcon from "../atoms/icons/HomeIcon";
+import Logo from "../atoms/icons/LogoIcon";
+import { Pill } from "../pill";
 
 interface HeaderProps {
 
@@ -15,7 +15,7 @@ function Header(_props: HeaderProps) {
                 <Pill icon={HomeIcon} />
             </div>
         </div>
-    )
+    );
 }
 
-export default Header
+export default Header;

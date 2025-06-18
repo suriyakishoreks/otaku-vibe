@@ -1,4 +1,4 @@
-import type { IconProps } from "../../assets/svg/type";
+import type { IconProps } from "../atoms/icons/icon.model";
 import styles from "./Pill.module.scss";
 
 interface PillProps {

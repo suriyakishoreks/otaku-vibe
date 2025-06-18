@@ -1,4 +1,4 @@
-import type { IconProps } from './type';
+import type { IconProps } from './icon.model';
 
 function SettingIcon({ size, color }: IconProps) {
     return (
