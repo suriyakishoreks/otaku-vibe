@@ -2,7 +2,7 @@
 
 :root {
   --s-color-bg-primary: #{$p-color-grey-900};
-  --s-color-bg-secondary: #{$p-color-grey-600};
+  --s-color-bg-secondary: #{$p-color-grey-800};
   --s-color-bg-success: #{$p-color-green-500};
   --s-color-bg-warning: #{$p-color-yellow-500};
   --s-color-bg-error: #{$p-color-red-500};
@@ -17,7 +17,7 @@
 
 .light-theme {
   --s-color-bg-primary: #{$p-color-grey-100};
-  --s-color-bg-secondary: #{$p-color-grey-300};
+  --s-color-bg-secondary: #{$p-color-grey-200};
   --s-color-bg-success: #{$p-color-green-300};
   --s-color-bg-warning: #{$p-color-yellow-300};
   --s-color-bg-error: #{$p-color-red-300};

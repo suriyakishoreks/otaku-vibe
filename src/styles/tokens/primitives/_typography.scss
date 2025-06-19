@@ -23,6 +23,10 @@
   font-size: 20px;
 }
 
+@mixin font-size-xl {
+  font-size: 24px;
+}
+
 @mixin font-weight-regular {
   font-weight: 400;
 }

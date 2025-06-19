@@ -54,3 +54,21 @@
   @include font-size-l;
   @include font-weight-semibold;
 }
+
+.typo-primary-xl-regular {
+  @include font-family-primary;
+  @include font-size-xl;
+  @include font-weight-regular;
+}
+
+.typo-primary-xl-medium {
+  @include font-family-primary;
+  @include font-size-xl;
+  @include font-weight-medium;
+}
+
+.typo-primary-xl-semibold {
+  @include font-family-primary;
+  @include font-size-xl;
+  @include font-weight-semibold;
+}

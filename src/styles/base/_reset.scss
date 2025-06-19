@@ -52,7 +52,6 @@ html {
 }
 
 body {
-  min-height: 100vh; /* Ensures body takes at least full viewport height */
   text-rendering: optimizelegibility; /* Improves font rendering */
   -webkit-font-smoothing: antialiased; /* Smoothes fonts on macOS/iOS */
   -moz-osx-font-smoothing: grayscale; /* Smoothes fonts on macOS (Firefox) */
