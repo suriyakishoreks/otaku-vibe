@@ -1,5 +1,6 @@
 TODOS
 
+animation - react transition group, react transition state, motion, rive
 RTK query for data fetching and caching
 Atom Creation - Label, Box, Image,
 scss autocompletion

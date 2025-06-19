@@ -1,2 +1,29 @@
 .header {
+  margin: var(--s-spacing-6) var(--s-spacing-10);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header__nav {
+  display: flex;
+  gap: var(--s-spacing-5);
+  align-items: center;
+  margin-left: var(--s-spacing-13);
+}
+
+.header__lhs {
+  display: flex;
+  align-items: center;
+}
+
+.header__rhs {
+  display: flex;
+  align-items: center;
+}
+
+.header__brand-name {
+  color: var(--s-color-fg-primary);
+  margin-left: var(--s-spacing-2);
+  margin-top: var(--s-spacing-1);
 }

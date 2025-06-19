@@ -24,6 +24,11 @@ export type Spacing =
     | 's-spacing-8'
     | 's-spacing-9'
     | 's-spacing-10'
+    | 's-spacing-11'
+    | 's-spacing-12'
+    | 's-spacing-13'
+    | 's-spacing-14'
+    | 's-spacing-15'
     | 's-neg-spacing-0'
     | 's-neg-spacing-1'
     | 's-neg-spacing-2'
@@ -34,7 +39,12 @@ export type Spacing =
     | 's-neg-spacing-7'
     | 's-neg-spacing-8'
     | 's-neg-spacing-9'
-    | 's-neg-spacing-10';
+    | 's-neg-spacing-10'
+    | 's-neg-spacing-11'
+    | 's-neg-spacing-12'
+    | 's-neg-spacing-13'
+    | 's-neg-spacing-14'
+    | 's-neg-spacing-15';
 
 export type Font =
     | 'typo-primary-s-regular'
@@ -45,4 +55,7 @@ export type Font =
     | 'typo-primary-m-semibold'
     | 'typo-primary-l-regular'
     | 'typo-primary-l-medium'
-    | 'typo-primary-l-semibold';
+    | 'typo-primary-l-semibold'
+    | 'typo-primary-xl-regular'
+    | 'typo-primary-xl-medium'
+    | 'typo-primary-xl-semibold';
