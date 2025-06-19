@@ -57,19 +57,6 @@ body {
   -moz-osx-font-smoothing: grayscale; /* Smoothes fonts on macOS (Firefox) */
 }
 
-// 5. Improve media defaults
-//    Images, videos, etc., don't overflow their containers.
-//    Images are displayed as block elements to remove extra space below them.
-img,
-picture,
-video,
-canvas,
-svg {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
 // 6. Form element reset for consistency
 //    Removes many default browser styles that make forms inconsistent.
 input,
