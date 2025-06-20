@@ -6,7 +6,7 @@ import { AppLayout } from '../../layouts/app-layout';
 
 export const routes: RouteObject[] = [
     {
-        path: '/anime-list-app/',
+        path: '/',
         element: <AppLayout />,
         errorElement: <></>,
         children: [
@@ -23,7 +23,7 @@ export const routes: RouteObject[] = [
     {
         // Catch-all for any undefined paths, typically a 404 page
         path: '*',
-        element: <></>,
+        element: <AppLayout />,
         errorElement: <></>, // 404 page also uses the global error boundary
     },
 ];
