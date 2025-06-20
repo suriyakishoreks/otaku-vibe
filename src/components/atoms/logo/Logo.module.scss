@@ -1,0 +1,11 @@
+.logo {
+  display: flex;
+  align-items: center;
+
+  &__title {
+    color: var(--s-color-fg-primary);
+    margin-left: var(--s-spacing-2);
+    margin-top: var(--s-spacing-1);
+    text-wrap-mode: nowrap;
+  }
+}
