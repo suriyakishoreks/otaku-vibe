@@ -1,12 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-import Vernac from "../../../services/vernac";
 import AnimeIcon from "../../atoms/icons/AnimeIcon";
 import HomeIcon from "../../atoms/icons/HomeIcon";
-import Logo from "../../atoms/icons/LogoIcon";
+import { Logo } from "../../atoms/logo";
 import MangaIcon from "../../atoms/icons/MangaIcon";
 import SearchIcon from "../../atoms/icons/SearchIcon";
 import SettingIcon from "../../atoms/icons/SettingIcon";
-import { Label } from "../../atoms/label";
 import { Pill } from "../../atoms/pill";
 import styles from "./Header.module.scss";
 import GithubIcon from "../../atoms/icons/GithubIcon";
@@ -32,10 +30,7 @@ function Header() {
     return (
         <header className={styles.header} ref={headerRef}>
             <div className={styles.header__lhs} >
-                <Logo size={48} color={'s-color-fg-primary'} />
-                <Label as='h1' font='typo-primary-xl-medium' className={styles['header__brand-name']} >
-                    {Vernac.getVernac('en', 'APP_NAME')}
-                </Label>
+                <Logo />
                 {!isOverflowing && (
                     <nav className={styles.header__nav}>
                         <Pill icon={HomeIcon} text="Home" />

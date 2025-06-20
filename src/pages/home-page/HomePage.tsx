@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useGetAnimeFullByIdQuery } from "../../services/jikan";
-import { Label } from "../../components/atoms/label";
+import { Carousel } from "../../components/atoms/horizontal-carousel";
 
 function HomePage() {
     const { data } = useGetAnimeFullByIdQuery(1);
@@ -10,7 +10,28 @@ function HomePage() {
     }, [data]);
 
     return (
-        <div style={{ color: 'red' }}> <Label font="typo-primary-l-semibold">HomePage</Label> </div>
+        <div>
+            <Carousel>
+                <div style={{ width: '200px' }}> 1</div>
+                <div style={{ width: '200px' }}>2</div>
+                <div style={{ width: '200px' }}> 3</div>
+                <div style={{ width: '200px' }}> 4</div>
+                <div style={{ width: '200px' }}> 5</div>
+                <div style={{ width: '200px' }}> 6</div>
+                <div style={{ width: '200px' }}> 1</div>
+                <div style={{ width: '200px' }}>2</div>
+                <div style={{ width: '200px' }}> 3</div>
+                <div style={{ width: '200px' }}> 4</div>
+                <div style={{ width: '200px' }}> 5</div>
+                <div style={{ width: '200px' }}> 6</div>
+                <div style={{ width: '200px' }}> 1</div>
+                <div style={{ width: '200px' }}>2</div>
+                <div style={{ width: '200px' }}> 3</div>
+                <div style={{ width: '200px' }}> 4</div>
+                <div style={{ width: '200px' }}> 5</div>
+                <div style={{ width: '200px' }}> 6</div>
+            </Carousel>
+        </div>
     );
 }
 
