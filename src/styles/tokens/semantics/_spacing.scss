@@ -36,4 +36,7 @@
   --s-neg-spacing-13: -#{$p-spacing-13};
   --s-neg-spacing-14: -#{$p-spacing-14};
   --s-neg-spacing-15: -#{$p-spacing-15};
+
+  // semantics
+  --s-spacing-app-horizontal: var(--s-spacing-10);
 }

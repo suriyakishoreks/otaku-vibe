@@ -1,0 +1,9 @@
+@use "../tokens/primitives/typography" as *;
+
+@include font-face-outfit;
+
+html,
+body,
+#root {
+  @include font-family-primary;
+}

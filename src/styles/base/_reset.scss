@@ -1,15 +1,9 @@
-// 1. Universal Box-Sizing
-//    Sets the box model for all elements to border-box.
-//    This is crucial for intuitive sizing and spacing calculations.
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 
-// 2. Remove default margin and padding
-//    Resets default browser margins and paddings on common elements.
-//    You'll add spacing back with your semantic spacing tokens and utilities.
 body,
 h1,
 h2,
@@ -33,22 +27,21 @@ iframe {
   padding: 0;
 }
 
-// 3. Remove default list styles
-//    Removes bullets and default margins/paddings from lists.
+html,
+body,
+#root {
+  height: 100%;
+  min-height: 100vh;
+}
+
 ol,
 ul {
   list-style: none;
 }
 
-// 4. Set base font and line-height for easier typography management
-//    Helps ensure consistent sizing based on your design system's typography tokens.
-//    Body applies your primary font family, size, and line height.
-//    (You'd apply your semantic typography tokens in src/scss/base/_typography.scss)
 html {
   line-height: 1.15; /* Corrects `line-height` in all browsers. */
   text-size-adjust: 100%; /* Prevent font scaling in landscape while in mobile Safari. */
-  /* stylelint-disable-next-line property-disallowed-list */
-  font-family: sans-serif; /* Fallback, overridden by your typography tokens */
 }
 
 body {

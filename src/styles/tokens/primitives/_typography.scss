@@ -1,10 +1,13 @@
 /* stylelint-disable property-disallowed-list */
-@font-face {
-  font-family: outfit;
-  src: url("outfit-variable.woff2") format("woff2-variations");
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
+
+@mixin font-face-outfit {
+  @font-face {
+    font-family: outfit;
+    src: url("outfit-variable.woff2") format("woff2-variations");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+  }
 }
 
 @mixin font-family-primary {

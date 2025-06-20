@@ -44,7 +44,8 @@ export type Spacing =
     | 's-neg-spacing-12'
     | 's-neg-spacing-13'
     | 's-neg-spacing-14'
-    | 's-neg-spacing-15';
+    | 's-neg-spacing-15'
+    | 's-spacing-app-horizontal';
 
 export type Font =
     | 'typo-primary-s-regular'
