@@ -20,6 +20,7 @@ export interface JikanTopParams {
 export interface AnimeTopParams extends JikanTopParams {
 	type?: AnimeType;
 	filter?: TopAnimeFilter;
+	sfw?: boolean;
 }
 
 /**
