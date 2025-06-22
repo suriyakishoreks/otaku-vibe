@@ -3,23 +3,31 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
 
-.header__nav {
-  display: flex;
-  gap: var(--s-spacing-5);
-  align-items: center;
-  margin-left: var(--s-spacing-13);
-}
+  &__nav {
+    display: flex;
+    gap: var(--s-spacing-5);
+    align-items: center;
+  }
 
-.header__lhs {
-  display: flex;
-  align-items: center;
-}
+  &__lhs {
+    display: flex;
+    align-items: center;
+    gap: var(--s-spacing-13);
+  }
 
-.header__rhs {
-  display: flex;
-  align-items: center;
-  margin-left: var(--s-spacing-8);
-  gap: var(--s-spacing-8);
+  &__rhs {
+    display: flex;
+    align-items: center;
+    margin-left: var(--s-spacing-8);
+    gap: var(--s-spacing-8);
+  }
+
+  &__actions {
+    transition: scale 0.2s ease;
+
+    &:hover {
+      scale: 1.1;
+    }
+  }
 }

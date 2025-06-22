@@ -5,8 +5,21 @@
   display: flex;
   align-items: center;
   gap: var(--s-spacing-3);
-}
+  transition: scale 0.2s ease;
 
-.pill__text {
-  color: var(--s-color-fg-primary);
+  &:hover {
+    scale: 1.05;
+  }
+
+  &--active {
+    background-color: var(--s-color-fg-primary);
+  }
+
+  &__text {
+    color: var(--s-color-fg-primary);
+
+    &--active {
+      color: var(--s-color-bg-secondary);
+    }
+  }
 }

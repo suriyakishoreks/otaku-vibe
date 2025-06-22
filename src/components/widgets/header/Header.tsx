@@ -8,18 +8,20 @@ import SettingIcon from "../../atoms/icons/SettingIcon";
 import { Pill } from "../../atoms/pill";
 import styles from "./Header.module.scss";
 import GithubIcon from "../../atoms/icons/GithubIcon";
-import { Link } from "react-router";
+import { Link, useLocation } from "react-router";
 
 function HeaderNav() {
+    const location = useLocation();
+    // TODO: refactor
     return <nav className={styles.header__nav}>
         <Link to='/' >
-            <Pill icon={HomeIcon} text="Home" />
+            <Pill icon={HomeIcon} text="Home" active={location.pathname === '/'} />
         </Link>
         <Link to='/anime'>
-            <Pill icon={AnimeIcon} text='Anime' />
+            <Pill icon={AnimeIcon} text='Anime' active={location.pathname === '/anime'} />
         </Link>
         <Link to='/manga'>
-            <Pill icon={MangaIcon} text="Manga" />
+            <Pill icon={MangaIcon} text="Manga" active={location.pathname === '/manga'} />
         </Link>
     </nav>;
 }
@@ -29,7 +31,6 @@ function Header() {
     const maxHeaderWidth = useRef<number>(0);
     const [isOverflowing, setIsOverflowing] = useState(false);
 
-    // TODO: Implement this properly as custom hook
     useEffect(() => {
         const checkOverflow = () => {
             if (headerRef.current) {
@@ -54,9 +55,11 @@ function Header() {
                 {!isOverflowing && <HeaderNav />}
             </div>
             <div className={styles.header__rhs}>
-                <GithubIcon size={30} color='s-color-fg-primary' />
-                <SearchIcon size={30} color='s-color-fg-primary' />
-                <SettingIcon size={30} color='s-color-fg-primary' />
+                <Link to='https://github.com/suriyakishoreks/anime-list-app' target="_blank" rel="noopener noreferrer" >
+                    <GithubIcon size={26} color='s-color-fg-primary' className={styles.header__actions} />
+                </Link>
+                <SearchIcon size={26} color='s-color-fg-primary' className={styles.header__actions} />
+                <SettingIcon size={26} color='s-color-fg-primary' className={styles.header__actions} />
             </div>
         </header>
     );
