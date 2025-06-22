@@ -3,3 +3,16 @@
 body {
   background-color: var(--s-color-bg-primary);
 }
+
+.no-text-select {
+  -webkit-touch-callout: none; /* iOS Safari */
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-user-select: none; /* Safari */
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -khtml-user-select: none; /* Konqueror HTML */
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -moz-user-select: none; /* Old versions of Firefox */
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Standard syntax */
+}
