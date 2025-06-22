@@ -2,6 +2,7 @@ import type { RouteObject } from 'react-router';
 import { animeRoutes } from './anime.routes';
 import { HomePage } from '../../pages/home-page';
 import { AppLayout } from '../../layouts/app-layout';
+import { mangaRoutes } from './manga.routes';
 
 
 export const routes: RouteObject[] = [
@@ -14,16 +15,13 @@ export const routes: RouteObject[] = [
                 index: true,
                 element: <HomePage />,
             },
-            // Include your feature route objects here
-            animeRoutes
-            // adminRoutes,
-            // ... any other top-level routes that fit within MainLayout
+            animeRoutes,
+            mangaRoutes,
+            // 404 route
+            {
+                path: '*',
+                element: <h1 style={{ color: 'red' }}>ERROR 404</h1>,
+            }
         ],
-    },
-    {
-        // Catch-all for any undefined paths, typically a 404 page
-        path: '*',
-        element: <AppLayout />,
-        errorElement: <></>, // 404 page also uses the global error boundary
-    },
+    }
 ];

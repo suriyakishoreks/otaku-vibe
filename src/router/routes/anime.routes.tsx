@@ -1,28 +1,16 @@
-// src/router/routes/product.routes.ts
-
 import type { RouteObject } from 'react-router';
+import { AnimePage } from '../../pages/anime-page';
 
 export const animeRoutes: RouteObject = {
-    path: 'products',
-    element: <></>, // Layout specific to all product routes
-    errorElement: <></>,
+    path: 'anime',
     children: [
         {
             index: true, // Matches /products
             element: <></>,
-            loader: () => {
-
-            },
         },
         {
-            path: ':productId', // Matches /products/:productId
-            element: <></>,
-            loader: () => {
-
-            },
-            action: () => {
-
-            },
+            path: ':id', // Matches /products/:productId
+            element: <AnimePage />,
         },
         // More nested product routes here
     ],
