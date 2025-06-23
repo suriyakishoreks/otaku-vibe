@@ -1,0 +1,42 @@
+@use "../../../styles/tokens/primitives" as *;
+
+.media-detail-card {
+  width: 600px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: var(--s-color-bg-secondary);
+
+  &__image {
+    width: 200px;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  &__content {
+    color: var(--s-color-fg-primary);
+    display: flex;
+    flex-direction: column;
+    padding: var(--s-spacing-5);
+  }
+
+  &__title {
+    @include number-of-lines(2);
+  }
+
+  &__summary {
+    margin-top: var(--s-spacing-3);
+
+    @include number-of-lines(4);
+  }
+
+  &__clickable {
+    transition: scale 0.2s ease;
+
+    &:hover {
+      scale: 1.02;
+    }
+  }
+}
