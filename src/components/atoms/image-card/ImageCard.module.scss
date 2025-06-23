@@ -1,0 +1,41 @@
+.image-card {
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+  }
+
+  &__bottom-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: var(--s-color-fg-primary);
+    background: linear-gradient(to bottom, #0000, #000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--s-spacing-4);
+  }
+
+  &__title {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    text-overflow: ellipsis;
+  }
+
+  &__clickable {
+    transition: scale 0.2s ease;
+
+    &:hover {
+      scale: 1.05;
+    }
+  }
+}
