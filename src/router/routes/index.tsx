@@ -3,13 +3,14 @@ import { animeRoutes } from './anime.routes';
 import { HomePage } from '../../pages/home-page';
 import { AppLayout } from '../../layouts/app-layout';
 import { mangaRoutes } from './manga.routes';
+import { ErrorPage } from '../../pages/error-page';
 
 
 export const routes: RouteObject[] = [
     {
         path: '/',
         element: <AppLayout />,
-        errorElement: <></>,
+        errorElement: <ErrorPage />,
         children: [
             {
                 index: true,
@@ -20,7 +21,7 @@ export const routes: RouteObject[] = [
             // 404 route
             {
                 path: '*',
-                element: <h1 style={{ color: 'red' }}>ERROR 404</h1>,
+                element: <ErrorPage is404 />,
             }
         ],
     }
