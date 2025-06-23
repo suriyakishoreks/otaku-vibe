@@ -27,21 +27,20 @@ iframe {
   padding: 0;
 }
 
+html {
+  line-height: 1.15; /* Corrects `line-height` in all browsers. */
+  text-size-adjust: 100%; /* Prevent font scaling in landscape while in mobile Safari. */
+}
+
 html,
 body,
 #root {
-  height: 100%;
   min-height: 100vh;
 }
 
 ol,
 ul {
   list-style: none;
-}
-
-html {
-  line-height: 1.15; /* Corrects `line-height` in all browsers. */
-  text-size-adjust: 100%; /* Prevent font scaling in landscape while in mobile Safari. */
 }
 
 body {

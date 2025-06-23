@@ -4,6 +4,12 @@ body {
   background-color: var(--s-color-bg-primary);
 }
 
+#root {
+  min-width: 320px;
+  max-width: 1920px;
+  margin: 0 auto;
+}
+
 .no-text-select {
   -webkit-touch-callout: none; /* iOS Safari */
   /* stylelint-disable-next-line property-no-vendor-prefix */
