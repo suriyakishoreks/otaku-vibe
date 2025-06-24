@@ -16,3 +16,16 @@ createRoot(document.getElementById('root')!).render(
     </ReduxProvider>
   </StrictMode>,
 );
+
+// TODO: SPA, opti
+
+// TODO: Logging Service - tracking, errors, performance
+
+// TODO: SEO
+
+// TODO: Ad integration
+
+
+
+
+
