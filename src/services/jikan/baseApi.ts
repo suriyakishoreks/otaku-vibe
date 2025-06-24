@@ -6,7 +6,7 @@ const baseQuery = fetchBaseQuery({
     baseUrl: JIKAN_API_BASE_URL
 });
 
-// A custom baseQuery that retries failed requests
+// TODO: check for backoff strategy
 const baseQueryWithRetry = retry(baseQuery, { maxRetries: 3 });
 
 export const jikanApi = createApi({

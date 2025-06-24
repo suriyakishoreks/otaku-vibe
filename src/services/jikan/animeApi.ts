@@ -1,5 +1,5 @@
 import { jikanApi } from './baseApi';
-import type { JikanResponse, Anime, AnimeTopParams } from './models';
+import type { JikanResponse, Anime, AnimeTopParams, SeasonNowParams, JikanSeasonsParams } from './models';
 
 const AnimeEndpoints = {
 
@@ -25,6 +25,8 @@ const AnimeEndpoints = {
     // animeSearch: '/anime',
     topAnime: '/top/anime',
     animeFullById: '/anime/{id}/full',
+    animeSeasonsNow: '/seasons/now',
+    animeSeasonsUpcoming: '/seasons/upcoming',
 } as const;
 
 export const animeApi = jikanApi.injectEndpoints({
@@ -47,10 +49,34 @@ export const animeApi = jikanApi.injectEndpoints({
                 url: AnimeEndpoints.animeFullById.replace('{id}', String(id)),
             })
         }),
+
+        getAnimeSeasonsNow: builder.query<JikanResponse<Anime[]>, SeasonNowParams>({
+            query: ({ limit = 10, }) => {
+                return {
+                    url: AnimeEndpoints.animeSeasonsNow,
+                    params: {
+                        limit,
+                    },
+                };
+            }
+        }),
+
+        getAnimeSeasonsUpcoming: builder.query<JikanResponse<Anime[]>, JikanSeasonsParams>({
+            query: ({ limit = 10 }) => {
+                return {
+                    url: AnimeEndpoints.animeSeasonsUpcoming,
+                    params: {
+                        limit
+                    },
+                };
+            }
+        }),
     }),
 });
 
 export const {
     useGetTopAnimeQuery,
     useGetAnimeByIdQuery,
+    useGetAnimeSeasonsNowQuery,
+    useGetAnimeSeasonsUpcomingQuery
 } = animeApi;
