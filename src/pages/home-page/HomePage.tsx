@@ -1,36 +1,59 @@
-import { useEffect } from "react";
-import { useGetAnimeFullByIdQuery } from "../../services/jikan";
-import { Carousel } from "../../components/atoms/horizontal-carousel";
+import { useGetAnimeSeasonsNowQuery, useGetTopAnimeQuery, useGetTopMangaQuery, useGetAnimeSeasonsUpcomingQuery } from "../../services/jikan";
+import { LazyMount } from "../../components/atoms/lazy-mount";
+import { HorizontalCarousel } from "../../components/widgets/horizontal-carousel";
 
 function HomePage() {
-    const { data } = useGetAnimeFullByIdQuery(1);
-
-    useEffect(() => {
-        console.log("Data fetched:", data);
-    }, [data]);
 
     return (
         <div>
-            <Carousel>
-                <div style={{ width: '200px' }}> 1</div>
-                <div style={{ width: '200px' }}>2</div>
-                <div style={{ width: '200px' }}> 3</div>
-                <div style={{ width: '200px' }}> 4</div>
-                <div style={{ width: '200px' }}> 5</div>
-                <div style={{ width: '200px' }}> 6</div>
-                <div style={{ width: '200px' }}> 1</div>
-                <div style={{ width: '200px' }}>2</div>
-                <div style={{ width: '200px' }}> 3</div>
-                <div style={{ width: '200px' }}> 4</div>
-                <div style={{ width: '200px' }}> 5</div>
-                <div style={{ width: '200px' }}> 6</div>
-                <div style={{ width: '200px' }}> 1</div>
-                <div style={{ width: '200px' }}>2</div>
-                <div style={{ width: '200px' }}> 3</div>
-                <div style={{ width: '200px' }}> 4</div>
-                <div style={{ width: '200px' }}> 5</div>
-                <div style={{ width: '200px' }}> 6</div>
-            </Carousel>
+            <LazyMount estimatedHeight={300}>
+                <HorizontalCarousel
+                    useQueryHook={useGetTopAnimeQuery}
+                    options={{}}
+                    adapter={(data) => data?.data.map((anime) => ({
+                        title: anime.title,
+                        imageUrl: anime.images.jpg.image_url,
+                        navigateTo: `/anime/${anime.mal_id}`,
+                        alt: anime.title,
+                    })) ?? []}
+                />
+            </LazyMount>
+            <LazyMount estimatedHeight={300}>
+                <HorizontalCarousel
+                    useQueryHook={useGetTopMangaQuery}
+                    options={{}}
+                    adapter={(data) => data?.data.map((anime) => ({
+                        title: anime.title,
+                        imageUrl: anime.images.jpg.image_url,
+                        navigateTo: `/anime/${anime.mal_id}`,
+                        alt: anime.title,
+                    })) ?? []}
+                />
+            </LazyMount>
+            <LazyMount estimatedHeight={300}>
+                <HorizontalCarousel
+                    useQueryHook={useGetAnimeSeasonsNowQuery}
+                    options={{}}
+                    adapter={(data) => data?.data.map((anime) => ({
+                        title: anime.title,
+                        imageUrl: anime.images.jpg.image_url,
+                        navigateTo: `/anime/${anime.mal_id}`,
+                        alt: anime.title,
+                    })) ?? []}
+                />
+            </LazyMount>
+            <LazyMount estimatedHeight={300}>
+                <HorizontalCarousel
+                    useQueryHook={useGetAnimeSeasonsUpcomingQuery}
+                    options={{}}
+                    adapter={(data) => data?.data.map((anime) => ({
+                        title: anime.title,
+                        imageUrl: anime.images.jpg.image_url,
+                        navigateTo: `/anime/${anime.mal_id}`,
+                        alt: anime.title,
+                    })) ?? []}
+                />
+            </LazyMount>
         </div>
     );
 }
