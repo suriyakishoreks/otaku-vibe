@@ -19,4 +19,8 @@ export const jikanApi = createApi({
     reducerPath: 'jikanApi',
     baseQuery: baseQueryWithRetry,
     endpoints: () => ({}),
+    keepUnusedDataFor: 60 * 10,
+    refetchOnMountOrArgChange: 60 * 5
 });
+
+// TODO: persistence
