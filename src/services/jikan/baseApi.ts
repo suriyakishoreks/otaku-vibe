@@ -6,8 +6,14 @@ const baseQuery = fetchBaseQuery({
     baseUrl: JIKAN_API_BASE_URL
 });
 
-// TODO: check for backoff strategy
-const baseQueryWithRetry = retry(baseQuery, { maxRetries: 3 });
+const baseQueryWithRetry = retry(baseQuery, {
+    maxRetries: 3,
+    backoff: async () => {
+        await new Promise(resolve => {
+            setTimeout(resolve, 1000);
+        });
+    }
+});
 
 export const jikanApi = createApi({
     reducerPath: 'jikanApi',
