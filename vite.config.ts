@@ -5,7 +5,7 @@ import stylelint from 'vite-plugin-stylelint';
 import eslint from 'vite-plugin-eslint';
 
 export default defineConfig({
-  base: '/anime-list-app/',
+  base: '/otaku-vibe/',
   plugins: [
     react(),
     stylelint({
