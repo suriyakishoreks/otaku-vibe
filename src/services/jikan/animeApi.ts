@@ -32,7 +32,7 @@ const AnimeEndpoints = {
 export const animeApi = jikanApi.injectEndpoints({
     endpoints: (builder) => ({
         getTopAnime: builder.query<JikanResponse<Anime[]>, AnimeTopParams>({
-            query: ({ sfw = true, limit = 10, filter = 'airing' }) => {
+            query: ({ sfw = true, limit = 15, filter = 'bypopularity' }) => {
                 return {
                     url: AnimeEndpoints.topAnime,
                     params: {
