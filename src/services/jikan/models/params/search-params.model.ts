@@ -15,7 +15,7 @@ export type SearchOrder =
 	| 'members'
 	| 'favorites';
 
-export type AnimeSearchOrder = 'type' | 'rating' | 'episodes' | SearchOrder;
+export type AnimeSearchOrder = 'type' | 'episodes' | SearchOrder;
 
 export type AnimeSearchStatus = 'airing' | 'complete' | 'upcoming';
 

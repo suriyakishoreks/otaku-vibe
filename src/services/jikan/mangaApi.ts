@@ -9,12 +9,13 @@ const MangaEndpoints = {
 export const mangaApi = jikanApi.injectEndpoints({
     endpoints: (builder) => ({
         getTopManga: builder.query<JikanResponse<Manga[]>, MangaTopParams>({
-            query: ({ limit = 15, filter = 'bypopularity' }) => {
+            query: ({ limit = 15, filter = 'bypopularity', type }) => {
                 return {
                     url: MangaEndpoints.topManga,
                     params: {
                         limit,
-                        filter
+                        filter,
+                        type
                     },
                 };
             }

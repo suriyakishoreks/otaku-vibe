@@ -1,5 +1,5 @@
 import { jikanApi } from './baseApi';
-import type { JikanResponse, Anime, AnimeTopParams, SeasonNowParams, JikanSeasonsParams } from './models';
+import type { JikanResponse, Anime, AnimeTopParams, SeasonNowParams, JikanSeasonsParams, AnimeSearchParams } from './models';
 
 const AnimeEndpoints = {
 
@@ -22,11 +22,12 @@ const AnimeEndpoints = {
     // animeThemes: '/anime/{id}/themes',
     // animeExternal: '/anime/{id}/external',
     // animeStreaming: '/anime/{id}/streaming',
-    // animeSearch: '/anime',
     topAnime: '/top/anime',
     animeFullById: '/anime/{id}/full',
     animeSeasonsNow: '/seasons/now',
     animeSeasonsUpcoming: '/seasons/upcoming',
+    animeSearch: '/anime',
+    recentAnimeRecommendations: '/recommendations/anime'
 } as const;
 
 export const animeApi = jikanApi.injectEndpoints({
@@ -51,7 +52,7 @@ export const animeApi = jikanApi.injectEndpoints({
         }),
 
         getAnimeSeasonsNow: builder.query<JikanResponse<Anime[]>, SeasonNowParams>({
-            query: ({ limit = 10, }) => {
+            query: ({ limit = 15, }) => {
                 return {
                     url: AnimeEndpoints.animeSeasonsNow,
                     params: {
@@ -62,11 +63,35 @@ export const animeApi = jikanApi.injectEndpoints({
         }),
 
         getAnimeSeasonsUpcoming: builder.query<JikanResponse<Anime[]>, JikanSeasonsParams>({
-            query: ({ limit = 10 }) => {
+            query: ({ limit = 15 }) => {
                 return {
                     url: AnimeEndpoints.animeSeasonsUpcoming,
                     params: {
                         limit
+                    },
+                };
+            }
+        }),
+
+        getAnimeSearch: builder.query<JikanResponse<Anime[]>, AnimeSearchParams>({
+            query: ({ limit, order_by, sort }) => {
+                return {
+                    url: AnimeEndpoints.animeSearch,
+                    params: {
+                        limit,
+                        order_by,
+                        sort
+                    },
+                };
+            }
+        }),
+
+        getRecentAnimeRecommendations: builder.query<JikanResponse<Anime[]>, { page?: number; }>({
+            query: ({ page = 1 }) => {
+                return {
+                    url: AnimeEndpoints.recentAnimeRecommendations,
+                    params: {
+                        page
                     },
                 };
             }
@@ -78,5 +103,7 @@ export const {
     useGetTopAnimeQuery,
     useGetAnimeByIdQuery,
     useGetAnimeSeasonsNowQuery,
-    useGetAnimeSeasonsUpcomingQuery
+    useGetAnimeSeasonsUpcomingQuery,
+    useGetAnimeSearchQuery,
+    useGetRecentAnimeRecommendationsQuery
 } = animeApi;
