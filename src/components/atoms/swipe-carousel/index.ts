@@ -1,3 +1,3 @@
-import SwipeCarousel from "./SwipeCarousel";
+import SwipeCarousel, { type SwipeCarouselType } from "./SwipeCarousel";
 
-export { SwipeCarousel };
+export { SwipeCarousel, type SwipeCarouselType };

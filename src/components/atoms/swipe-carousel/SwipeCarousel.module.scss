@@ -1,1 +1,7 @@
+.swiper {
+  padding: var(--s-spacing-8) var(--s-spacing-app-horizontal);
 
+  &__slide {
+    width: auto;
+  }
+}
