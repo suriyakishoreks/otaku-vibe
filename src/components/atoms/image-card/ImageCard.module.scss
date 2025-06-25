@@ -21,6 +21,9 @@
     align-items: center;
     justify-content: center;
     padding: var(--s-spacing-4);
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+    overflow: hidden;
   }
 
   &__title {
