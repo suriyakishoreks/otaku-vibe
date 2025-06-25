@@ -49,7 +49,7 @@ function HorizontalCarousel<TQueryHook extends UseQuery>({
     const swiperRef = React.useRef<SwiperClass>(null);
     const [isBeginning, setIsBeginning] = React.useState(true);
     const [isEnd, setIsEnd] = React.useState(false);
-    const { data, isLoading } = useQueryHook(options);
+    const { data } = useQueryHook(options);
 
     const adaptedData = data ? adapter(data) : [];
 
