@@ -1,18 +1,42 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { useDispatch, useSelector } from 'react-redux';
+import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
+import localforage from 'localforage';
 
 import { jikanApi } from '../services/jikan';
 
 import appContextSlice from './slices/appContextSlice';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
+const rootReducer = combineReducers({
+    [jikanApi.reducerPath]: jikanApi.reducer,
+    appContext: appContextSlice,
+});
+
+const persistConfig = {
+    key: 'root',
+    storage: localforage,
+    whitelist: ['appContext']
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
 export const store = configureStore({
-    reducer: {
-        [jikanApi.reducerPath]: jikanApi.reducer,
-        appContext: appContextSlice,
-    },
+    reducer: persistedReducer,
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(jikanApi.middleware),
+        getDefaultMiddleware({
+            serializableCheck: {
+                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+            },
+        }).concat(jikanApi.middleware),
+});
+
+export const persistor = persistStore(store);
+
+localforage.config({
+    name: 'otakuVibeDB',
+    storeName: 'reduxPersistStore',
+    description: 'Persisted Redux state for OtakuVibe',
 });
 
 setupListeners(store.dispatch);

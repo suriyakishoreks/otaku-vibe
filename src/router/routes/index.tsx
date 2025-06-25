@@ -26,3 +26,5 @@ export const routes: RouteObject[] = [
         ],
     }
 ];
+
+// TODO: lazy loading routes
