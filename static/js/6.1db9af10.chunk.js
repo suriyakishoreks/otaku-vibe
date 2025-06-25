@@ -1,2 +1,0 @@
-(this["webpackJsonpanime-list-app"]=this["webpackJsonpanime-list-app"]||[]).push([[6],{61:function(e,t,n){e.exports={error:"NoMatch_error__ZZDuS"}},66:function(e,t,n){"use strict";n.r(t),n.d(t,"default",(function(){return a}));n(0);var r=n(3),i=n(61),s=n.n(i),c=n(1);function a(){var e=Object(r.f)();return Object(c.jsxs)("div",{className:s.a.error,children:[Object(c.jsx)("h4",{children:"The Page you requested is not available."}),Object(c.jsx)("button",{onClick:function(){e.push("/")},children:"Home"})]})}}}]);
-//# sourceMappingURL=6.1db9af10.chunk.js.map
