@@ -12,7 +12,7 @@ function Logo({ hideName }: LogoProps) {
         <div className={styles.logo}>
             <LogoIcon size={48} color={'s-color-fg-primary'} />
             {!hideName && <Label as='h1' font='typo-primary-xl-medium' className={styles['logo__title']} >
-                {Vernac.getVernac('en', 'APP_NAME')}
+                {Vernac.getVernac('APP_NAME')}
             </Label>}
         </div>
     );

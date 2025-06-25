@@ -2,7 +2,7 @@ import enVernacConfig from "./en";
 import type { VernacConfig, Locale } from "./models";
 
 export default class Vernac {
-    public static getVernac(locale: Locale, key: keyof VernacConfig): string {
+    public static getVernac(key: keyof VernacConfig, locale: Locale = 'en'): string {
         const config = this.getVernacConfig(locale);
         return config[key] !== undefined ? config[key] : '';
     }

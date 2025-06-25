@@ -21,6 +21,8 @@ createRoot(document.getElementById('root')!).render(
   </StrictMode>,
 );
 
+// TODO: relative units for font, spacing
+
 // TODO: SPA, opti
 
 // TODO: Logging Service - tracking, errors, performance
