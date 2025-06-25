@@ -16,6 +16,11 @@
     align-items: center;
   }
 
+  &__description {
+    width: 300px;
+    color: var(--s-color-fg-secondary);
+  }
+
   &__socials {
     display: flex;
     gap: var(--s-spacing-3);

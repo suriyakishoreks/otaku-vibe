@@ -9,19 +9,20 @@ import { Pill } from "../../atoms/pill";
 import styles from "./Header.module.scss";
 import GithubIcon from "../../atoms/icons/GithubIcon";
 import { Link, useLocation } from "react-router";
+import Vernac from "../../../services/vernac";
 
 function HeaderNav() {
     const location = useLocation();
     // TODO: refactor
     return <nav className={styles.header__nav}>
         <Link to='/' >
-            <Pill icon={HomeIcon} text="Home" active={location.pathname === '/'} />
+            <Pill icon={HomeIcon} text={Vernac.getVernac('HOME')} active={location.pathname === '/'} />
         </Link>
         <Link to='/anime'>
-            <Pill icon={AnimeIcon} text='Anime' active={location.pathname === '/anime'} />
+            <Pill icon={AnimeIcon} text={Vernac.getVernac('ANIME')} active={location.pathname === '/anime'} />
         </Link>
         <Link to='/manga'>
-            <Pill icon={MangaIcon} text="Manga" active={location.pathname === '/manga'} />
+            <Pill icon={MangaIcon} text={Vernac.getVernac('MANGA')} active={location.pathname === '/manga'} />
         </Link>
     </nav>;
 }
