@@ -10,6 +10,7 @@ import styles from "./Header.module.scss";
 import GithubIcon from "../../atoms/icons/GithubIcon";
 import { Link, useLocation } from "react-router";
 import Vernac from "../../../services/vernac";
+import classNames from "classnames";
 
 function HeaderNav() {
     const location = useLocation();
@@ -51,8 +52,10 @@ function Header() {
 
     return (
         <header className={styles.header} ref={headerRef}>
-            <div className={styles.header__lhs} >
-                <Logo />
+            <div className={classNames({ [styles.header__lhs]: true, 'no-text-select': true })} >
+                <Link to='/' >
+                    <Logo />
+                </Link>
                 {!isOverflowing && <HeaderNav />}
             </div>
             <div className={styles.header__rhs}>
