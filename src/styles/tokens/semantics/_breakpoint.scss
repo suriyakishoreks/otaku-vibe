@@ -1,0 +1,62 @@
+$minScreenWidth: 320px;
+$maxScreenWidth: 1920px;
+
+@mixin screen-xs {
+  @media (width >= 0) {
+    @content;
+  }
+}
+
+@mixin screen-sm {
+  @media (width >= 576px) {
+    @content;
+  }
+}
+
+@mixin screen-md {
+  @media (width >= 768px) {
+    @content;
+  }
+}
+
+@mixin screen-lg {
+  @media (width >= 992px) {
+    @content;
+  }
+}
+
+@mixin screen-xl {
+  @media (width >= 1200px) {
+    @content;
+  }
+}
+
+@mixin screen-xxl {
+  @media (width >= 1400px) {
+    @content;
+  }
+}
+
+@mixin screen-touch-first {
+  @media (hover: none) and (pointer: coarse) {
+    @content;
+  }
+}
+
+@mixin screen-mouse-first {
+  @media (hover: hover) and (pointer: fine) {
+    @content;
+  }
+}
+
+@mixin screen-orientation-landscape {
+  @media (orientation: landscape) {
+    @content;
+  }
+}
+
+@mixin screen-orientation-portrait {
+  @media (orientation: portrait) {
+    @content;
+  }
+}

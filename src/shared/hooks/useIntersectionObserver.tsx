@@ -4,6 +4,7 @@ const useIntersectionObserver: (options: IntersectionObserverInit) => [RefObject
     const ref = useRef(null);
     const [isIntersecting, setIsIntersecting] = useState(false);
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const observerOptions = useMemo(() => options, [options.root, options.rootMargin, options.threshold]);
 
     useEffect(() => {

@@ -59,8 +59,13 @@ select {
   color: inherit; /* Inherit color from parent */
   padding: 0; /* Reset default padding */
   margin: 0; /* Reset default margin */
-  border: none; /* Remove default border */
+  border-width: 0; /* Remove default border */
+  border-style: solid;
   background-color: transparent; /* Remove default background */
+}
+
+button {
+  cursor: pointer;
 }
 
 // Ensure button and input types are displayed correctly
