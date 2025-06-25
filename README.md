@@ -1,19 +1,28 @@
 TODOS
 
 HP
+Widget 1
 
-- Current Season Anime
-- Latest manga
-- Most popular anime
-- Most popular reads
+- Top 5 Anime - https://api.jikan.moe/v4/top/anime
+- Top 5 Manga - https://api.jikan.moe/v4/top/manga
+  Combined centered hero carousel
+
+Widget 2
+
+- Latest Anime - 15 - anime search with filter
+  Widget 3
+- Latest Manga - 15 - manga search with filter
+  Widget 4
+- Top characters - 15
+  Widget 5
+- Top People - 15
 
 Anime
+Upcoming Anime
+Favorites - search with filter
+Weekly schedule
 
 Manga
-
-Manhwa
-
-Manhua
 
 animation - react transition group, react transition state, motion, rive
 RTK query for data fetching and caching
