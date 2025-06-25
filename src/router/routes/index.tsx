@@ -4,6 +4,7 @@ import { HomePage } from '../../pages/home-page';
 import { AppLayout } from '../../layouts/app-layout';
 import { mangaRoutes } from './manga.routes';
 import { ErrorPage } from '../../pages/error-page';
+import { entityRoutes } from './entity.routes';
 
 
 export const routes: RouteObject[] = [
@@ -18,6 +19,7 @@ export const routes: RouteObject[] = [
             },
             animeRoutes,
             mangaRoutes,
+            entityRoutes,
             // 404 route
             {
                 path: '*',
