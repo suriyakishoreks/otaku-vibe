@@ -39,7 +39,11 @@
   --s-neg-spacing-15: -#{$p-spacing-15};
 
   // semantics
-  --s-spacing-app-horizontal: var(--s-spacing-6);
+  --s-spacing-app-horizontal: var(--s-spacing-5);
+
+  @include screen-sm {
+    --s-spacing-app-horizontal: var(--s-spacing-6);
+  }
 
   @include screen-md {
     --s-spacing-app-horizontal: var(--s-spacing-10);

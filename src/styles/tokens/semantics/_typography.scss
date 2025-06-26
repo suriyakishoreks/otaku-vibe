@@ -72,3 +72,12 @@
   @include font-size-xl;
   @include font-weight-semibold;
 }
+
+@mixin number-of-lines($lines) {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $lines;
+  line-clamp: $lines;
+  text-overflow: ellipsis;
+}

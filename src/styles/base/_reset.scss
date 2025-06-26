@@ -69,6 +69,11 @@ button {
   cursor: pointer;
 }
 
+img,
+svg {
+  display: block;
+}
+
 // Ensure button and input types are displayed correctly
 button,
 input[type="button"],
