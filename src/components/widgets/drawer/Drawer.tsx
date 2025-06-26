@@ -76,12 +76,8 @@ function Drawer() {
                                 </nav>
                             </div>}
                             <div className={styles['drawer__menu-group']}>
-                                <Label className={styles['drawer__menu-heading']} font='typo-primary-l-medium'>Settings</Label>
-                                <div>
-                                    Theme
-
-                                    locale
-                                </div>
+                                <Label className={styles['drawer__menu-heading']} font='typo-primary-l-medium'>Settings - TODO THEME</Label>
+                                <div></div>
                             </div>
                         </motion.aside>
                     </RemoveScroll>

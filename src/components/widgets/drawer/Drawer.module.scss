@@ -1,13 +1,13 @@
 @use "/src/styles/tokens/semantics" as *;
 
 .drawer {
-  position: absolute;
+  position: fixed;
   inset: 0;
   background-color: #000b;
   z-index: 20;
 
   &__content {
-    position: absolute;
+    position: fixed;
     z-index: 30;
     background-color: var(--s-color-bg-primary);
     top: 0;
