@@ -24,6 +24,7 @@
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-redux": "^9.2.0",
+    "react-remove-scroll": "^2.7.1",
     "react-router": "^7.6.2",
     "react-transition-state": "^2.3.1",
     "redux-persist": "^6.0.0",
