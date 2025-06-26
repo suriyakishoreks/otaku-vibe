@@ -30,7 +30,7 @@ function HomePage() {
                     alt: manga.title,
                 })) ?? []}
             />
-            <LazyMount estimatedHeight={300}>
+            <LazyMount estimatedHeight={359}>
                 <HorizontalCarousel
                     heading={Vernac.getVernac('HP_TOP_CHARACTER_TITLE')}
                     useQueryHook={useGetTopCharactersQuery}
@@ -43,7 +43,7 @@ function HomePage() {
                     })) ?? []}
                 />
             </LazyMount>
-            <LazyMount estimatedHeight={300}>
+            <LazyMount estimatedHeight={359}>
                 <HorizontalCarousel
                     heading={Vernac.getVernac('HP_TOP_PEOPLE_TITLE')}
                     useQueryHook={useGetTopPeopleQuery}
