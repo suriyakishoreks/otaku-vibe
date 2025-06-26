@@ -9,6 +9,8 @@ import LeftChevron from "../../atoms/icons/LeftChevron";
 import RightChevron from "../../atoms/icons/RightChevron";
 import classNames from "classnames";
 import { MediaDetailCard } from "../../atoms/media-detail-card";
+import { MediaDetailCardLoading } from "../../atoms/media-detail-card/MediaDetailCard";
+import { ImageCardLoading } from "../../atoms/image-card/ImageCard";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type UseQuery = TypedUseQuery<any, any, any>;
@@ -23,35 +25,48 @@ type ExtractDataTypeFromHook<THook extends UseQuery> =
 type ExtractArgTypeFromHook<THook extends UseQuery> =
     ExtractResultAndArgFromTypedUseQuery<THook>['arg'];
 
-interface HorizontalCarouselData {
+interface MediaDetailCardCarouselData {
     title: string;
     imageUrl: string;
     navigateTo?: string;
-    alt?: string;
+    alt: string;
     summary?: string;
 }
 
-interface HorizontalCarouselProps<TQueryHook extends UseQuery> {
-    heading: string;
-    type?: SwipeCarouselType;
-    useQueryHook: TQueryHook;
-    options: ExtractArgTypeFromHook<TQueryHook> | typeof skipToken;
-    adapter: (data: ExtractDataTypeFromHook<TQueryHook> | undefined) => HorizontalCarouselData[];
+interface ImageCardCarouselData {
+    title: string;
+    imageUrl: string;
+    navigateTo?: string;
+    alt: string;
 }
 
-function HorizontalCarousel<TQueryHook extends UseQuery>({
+type CardType = 'image' | 'media-detail';
+
+interface HorizontalCarouselProps<TQueryHook extends UseQuery, TCardType extends CardType> {
+    heading: string;
+    type?: SwipeCarouselType;
+    cardType?: TCardType;
+    useQueryHook: TQueryHook;
+    options: ExtractArgTypeFromHook<TQueryHook> | typeof skipToken;
+    adapter: (
+        data: ExtractDataTypeFromHook<TQueryHook>
+    ) => TCardType extends 'image' ? ImageCardCarouselData[] : MediaDetailCardCarouselData[];
+}
+
+function HorizontalCarousel<TQueryHook extends UseQuery, TCardType extends CardType = 'image'>({
     heading,
     type,
+    cardType,
     useQueryHook,
     options,
     adapter,
-}: HorizontalCarouselProps<TQueryHook>) {
+}: HorizontalCarouselProps<TQueryHook, TCardType>) {
     const swiperRef = React.useRef<SwiperClass>(null);
     const [isBeginning, setIsBeginning] = React.useState(true);
     const [isEnd, setIsEnd] = React.useState(false);
     const { data } = useQueryHook(options);
 
-    const adaptedData = data ? adapter(data) : [];
+    const adaptedData = data ? adapter(data) : undefined;
 
     const getCarouselInstance = (swiper: SwiperClass) => {
         swiperRef.current = swiper;
@@ -62,9 +77,41 @@ function HorizontalCarousel<TQueryHook extends UseQuery>({
         setIsEnd(swiper.isEnd);
     };
 
-    // if (isLoading) {
-    //     return <div style={{ height: 300 }}>Loading...</div>; // You can replace this with a loading spinner or skeleton
-    // }
+    const getContent = React.useCallback((): React.ReactNode[] => {
+        switch (cardType) {
+            case 'media-detail': {
+                if (!adaptedData) {
+                    return Array.from({ length: 15 }, () => ({})).map((_, idx) => <MediaDetailCardLoading key={idx} />);
+                }
+
+                return (adaptedData as MediaDetailCardCarouselData[]).map((data, idx) => (
+                    <MediaDetailCard
+                        key={data.navigateTo ?? data.title ?? idx}
+                        navigateTo={data.navigateTo}
+                        src={data.imageUrl}
+                        alt={data.title}
+                        title={data.title}
+                    />
+                ));
+            }
+            case 'image':
+            default: {
+                if (!adaptedData) {
+                    return Array.from({ length: 15 }, () => ({})).map((_, idx) => <ImageCardLoading key={idx} />);
+                }
+
+                return (adaptedData as ImageCardCarouselData[]).map((data, idx) => (
+                    <ImageCard
+                        key={data.navigateTo ?? data.title ?? idx}
+                        navigateTo={data.navigateTo}
+                        src={data.imageUrl}
+                        alt={data.title}
+                        title={data.title}
+                    />
+                ));
+            }
+        }
+    }, [cardType, adaptedData]);
 
     return (
         <div className={styles['horizontal-carousel']}>
@@ -88,28 +135,7 @@ function HorizontalCarousel<TQueryHook extends UseQuery>({
                     </button>
                 </div>
             </div>
-            <SwipeCarousel type={type} onSwiper={getCarouselInstance} onSlideChange={handleCarouselMove}>
-                {adaptedData.map((data) => {
-                    return (
-                        type === 'centered' ? (
-                            <MediaDetailCard
-                                navigateTo={data.navigateTo}
-                                src={data.imageUrl}
-                                alt={data.title}
-                                title={data.title}
-                            />
-                        ) : (
-                            <ImageCard
-                                navigateTo={data.navigateTo}
-                                src={data.imageUrl}
-                                alt={data.title}
-                                title={data.title}
-                            />
-                        )
-                    );
-                }
-                )}
-            </SwipeCarousel>
+            <SwipeCarousel type={type} onSwiper={getCarouselInstance} onSlideChange={handleCarouselMove}>{getContent()}</SwipeCarousel>
         </div>
     );
 }
