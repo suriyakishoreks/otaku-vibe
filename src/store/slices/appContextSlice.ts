@@ -2,33 +2,28 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 
 export interface AppContextState {
-    value: number;
+    isHeaderNavHidden: boolean;
+    isDrawerOpen: boolean;
 }
 
 const initialState: AppContextState = {
-    value: 0,
+    isHeaderNavHidden: false,
+    isDrawerOpen: false
 };
 
 export const appContextSlice = createSlice({
     name: 'appContext',
     initialState,
     reducers: {
-        increment: (state) => {
-            // Redux Toolkit allows us to write "mutating" logic in reducers. It
-            // doesn't actually mutate the state because it uses the Immer library,
-            // which detects changes to a "draft state" and produces a brand new
-            // immutable state based off those changes
-            state.value += 1;
+        updateIsHeaderNavHidden: (state, action: PayloadAction<boolean>) => {
+            state.isHeaderNavHidden = action.payload;
         },
-        decrement: (state) => {
-            state.value -= 1;
-        },
-        incrementByAmount: (state, action: PayloadAction<number>) => {
-            state.value += action.payload;
-        },
+        updateIsDrawerOpen: (state, action: PayloadAction<boolean>) => {
+            state.isDrawerOpen = action.payload;
+        }
     },
 });
 
-export const { increment, decrement, incrementByAmount } = appContextSlice.actions;
+export const { updateIsHeaderNavHidden, updateIsDrawerOpen } = appContextSlice.actions;
 
 export default appContextSlice.reducer;

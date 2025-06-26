@@ -16,7 +16,8 @@ const rootReducer = combineReducers({
 const persistConfig = {
     key: 'root',
     storage: localforage,
-    whitelist: ['appContext']
+    // TODO: Persisted App context for theme, locale
+    whitelist: []
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
