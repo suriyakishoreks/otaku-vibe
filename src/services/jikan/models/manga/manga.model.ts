@@ -23,7 +23,7 @@ export interface Manga {
 	status: MangaStatus;
 	publishing: boolean;
 	published: JikanResourcePeriod;
-	score: number;
+	score: number | null;
 	scored_by: number;
 	rank: number;
 	popularity: number;

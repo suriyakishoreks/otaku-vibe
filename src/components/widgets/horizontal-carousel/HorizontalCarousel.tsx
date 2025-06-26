@@ -26,18 +26,26 @@ type ExtractArgTypeFromHook<THook extends UseQuery> =
     ExtractResultAndArgFromTypedUseQuery<THook>['arg'];
 
 interface MediaDetailCardCarouselData {
+    key: string,
     title: string;
     imageUrl: string;
     navigateTo?: string;
     alt: string;
     summary?: string;
+    ratings?: string;
+    favorites?: string;
+    status?: string;
+    genres?: string[];
 }
 
 interface ImageCardCarouselData {
+    key: string,
     title: string;
     imageUrl: string;
     navigateTo?: string;
     alt: string;
+    ratings?: string;
+    favorites?: string;
 }
 
 type CardType = 'image' | 'media-detail';
@@ -84,13 +92,18 @@ function HorizontalCarousel<TQueryHook extends UseQuery, TCardType extends CardT
                     return Array.from({ length: 15 }, () => ({})).map((_, idx) => <MediaDetailCardLoading key={idx} />);
                 }
 
-                return (adaptedData as MediaDetailCardCarouselData[]).map((data, idx) => (
+                return (adaptedData as MediaDetailCardCarouselData[]).map((data) => (
                     <MediaDetailCard
-                        key={data.navigateTo ?? data.title ?? idx}
+                        key={data.key}
                         navigateTo={data.navigateTo}
                         src={data.imageUrl}
                         alt={data.title}
                         title={data.title}
+                        ratings={data.ratings}
+                        favorites={data.favorites}
+                        summary={data.summary}
+                        status={data.status}
+                        genres={data.genres}
                     />
                 ));
             }
@@ -100,13 +113,15 @@ function HorizontalCarousel<TQueryHook extends UseQuery, TCardType extends CardT
                     return Array.from({ length: 15 }, () => ({})).map((_, idx) => <ImageCardLoading key={idx} />);
                 }
 
-                return (adaptedData as ImageCardCarouselData[]).map((data, idx) => (
+                return (adaptedData as ImageCardCarouselData[]).map((data) => (
                     <ImageCard
-                        key={data.navigateTo ?? data.title ?? idx}
+                        key={data.key}
                         navigateTo={data.navigateTo}
                         src={data.imageUrl}
                         alt={data.title}
                         title={data.title}
+                        ratings={data.ratings}
+                        favorites={data.favorites}
                     />
                 ));
             }

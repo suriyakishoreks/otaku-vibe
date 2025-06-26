@@ -7,6 +7,7 @@ import { Provider as ReduxProvider } from 'react-redux';
 import { RouterProvider } from 'react-router';
 import router from './router';
 import { PersistGate } from 'redux-persist/integration/react';
+import ThemeUpdater from './components/atoms/theme-updater/ThemeUpdater';
 
 preload(`${import.meta.env.BASE_URL}font/outfit-variable.woff2`, { as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' });
 
@@ -15,6 +16,7 @@ createRoot(document.getElementById('root')!).render(
     <ReduxProvider store={store}>
       {/* //TODO: properly loading anim */}
       <PersistGate persistor={persistor} loading={<div>Loading...</div>}>
+        <ThemeUpdater />
         <RouterProvider router={router} />
       </PersistGate>
     </ReduxProvider>

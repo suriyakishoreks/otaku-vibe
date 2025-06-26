@@ -11,6 +11,7 @@ import HomeIcon from '../../atoms/icons/HomeIcon';
 import { Link, useLocation } from 'react-router';
 import Vernac from '../../../services/vernac';
 import { Pill } from '../../atoms/pill';
+import { updateTheme } from '../../../store/slices/persistedAppContext';
 
 
 const drawerVariants = {
@@ -27,6 +28,7 @@ const backdropVariants = {
 
 function Drawer() {
     const location = useLocation();
+    const currentTheme = useAppSelector((state) => state.persistedAppContext.theme);
     const isDrawerOpen = useAppSelector((state) => state.appContext.isDrawerOpen);
     const isHeaderNavHidden = useAppSelector((state) => state.appContext.isHeaderNavHidden);
     const dispatch = useAppDispatch();
@@ -76,8 +78,19 @@ function Drawer() {
                                 </nav>
                             </div>}
                             <div className={styles['drawer__menu-group']}>
-                                <Label className={styles['drawer__menu-heading']} font='typo-primary-l-medium'>Settings - TODO THEME</Label>
-                                <div></div>
+                                <Label className={styles['drawer__menu-heading']} font='typo-primary-l-medium'>Settings</Label>
+                                <div>
+                                    <button onClick={() => {
+                                        if (currentTheme === 'dark') {
+                                            dispatch(updateTheme('light'));
+                                        } else {
+                                            dispatch(updateTheme('dark'));
+                                        }
+                                        handleDrawerClose();
+                                    }}>
+                                        Toggle theme
+                                    </button>
+                                </div>
                             </div>
                         </motion.aside>
                     </RemoveScroll>

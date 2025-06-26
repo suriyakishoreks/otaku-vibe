@@ -27,7 +27,7 @@ export interface Anime {
 	aired: JikanResourcePeriod;
 	duration: string;
 	rating: AnimeRating;
-	score: number;
+	score: number | null;
 	scored_by: number;
 	rank: number;
 	popularity: number;

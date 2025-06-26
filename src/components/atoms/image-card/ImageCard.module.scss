@@ -16,6 +16,32 @@
     overflow: hidden;
   }
 
+  &__top-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--s-color-bg-secondary);
+    padding: var(--s-spacing-3);
+    border-bottom-left-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-spacing-3);
+  }
+
+  &__rating {
+    color: var(--s-color-fg-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--s-spacing-3);
+  }
+
+  &__favorite {
+    color: var(--s-color-fg-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--s-spacing-3);
+  }
+
   &__bottom-overlay {
     position: absolute;
     bottom: 0;
