@@ -6,18 +6,20 @@ import localforage from 'localforage';
 import { jikanApi } from '../services/jikan';
 
 import appContextSlice from './slices/appContextSlice';
+import persistedAppContextSlice from './slices/persistedAppContext';
+
 import { setupListeners } from '@reduxjs/toolkit/query';
 
 const rootReducer = combineReducers({
     [jikanApi.reducerPath]: jikanApi.reducer,
     appContext: appContextSlice,
+    persistedAppContext: persistedAppContextSlice
 });
 
 const persistConfig = {
     key: 'root',
     storage: localforage,
-    // TODO: Persisted App context for theme, locale
-    whitelist: []
+    whitelist: ['persistedAppContext']
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
