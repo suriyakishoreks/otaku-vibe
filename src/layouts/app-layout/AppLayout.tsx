@@ -2,6 +2,7 @@ import { useLocation, useOutlet } from "react-router";
 import { Header } from "../../components/widgets/header";
 import styles from './AppLayout.module.scss';
 import { Footer } from "../../components/widgets/footer";
+import { Drawer } from "../../components/widgets/drawer";
 import { AnimatePresence, motion, type Variants } from "motion/react";
 
 const pageVariants: Variants = {
@@ -35,6 +36,7 @@ function AppLayout() {
 
     return (
         <div className={styles['app-layout']}>
+            <Drawer />
             <div>
                 <Header />
                 <main>

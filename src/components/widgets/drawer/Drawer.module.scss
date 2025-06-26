@@ -1,0 +1,61 @@
+@use "/src/styles/tokens/semantics" as *;
+
+.drawer {
+  position: absolute;
+  inset: 0;
+  background-color: #000b;
+  z-index: 20;
+
+  &__content {
+    position: absolute;
+    z-index: 30;
+    background-color: var(--s-color-bg-primary);
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 250px;
+    padding: var(--s-spacing-5);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__close {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: var(--s-spacing-5);
+  }
+
+  &__close-button {
+    transition: scale 0.2s ease;
+
+    @include screen-mouse-first {
+      &:hover {
+        scale: 1.05;
+      }
+    }
+
+    @include screen-touch-first {
+      &:active {
+        scale: 1.05;
+      }
+    }
+  }
+
+  &__nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-spacing-5);
+  }
+
+  &__menu-group {
+    margin-bottom: var(--s-spacing-7);
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__menu-heading {
+    color: var(--s-color-fg-primary);
+    margin-bottom: var(--s-spacing-5);
+  }
+}
