@@ -14,6 +14,8 @@
   --s-color-fg-error: #{$p-color-red-100};
   --s-color-fg-info: #{$p-color-blue-100};
   --s-color-bg-placeholder: #{$p-color-grey-600};
+  --s-color-bg-base: #{$p-color-common-black};
+  --s-color-fg-base: #{$p-color-common-white};
 }
 
 .light-theme {
@@ -29,4 +31,7 @@
   --s-color-fg-warning: #{$p-color-yellow-700};
   --s-color-fg-error: #{$p-color-red-700};
   --s-color-fg-info: #{$p-color-blue-700};
+  --s-color-bg-placeholder: #{$p-color-grey-400};
+  --s-color-bg-base: #{$p-color-common-white};
+  --s-color-fg-base: #{$p-color-common-black};
 }

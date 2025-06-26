@@ -48,7 +48,7 @@
     left: 0;
     right: 0;
     color: var(--s-color-fg-primary);
-    background: linear-gradient(to bottom, #0000, #000);
+    background: linear-gradient(to top, var(--s-color-bg-base) 2%, #0000);
     display: flex;
     align-items: center;
     justify-content: center;

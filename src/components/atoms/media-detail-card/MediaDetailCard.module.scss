@@ -28,13 +28,13 @@
     left: 0;
     right: 0;
     bottom: -1px;
-    height: 30px;
+    height: 50px;
     background: linear-gradient(to top, var(--s-color-bg-secondary) 2%, #0000);
 
     @include screen-sm {
       inset: 0 auto 0 -1px;
       height: auto;
-      width: 30px;
+      width: 50px;
       background: linear-gradient(
         to right,
         var(--s-color-bg-secondary) 2%,

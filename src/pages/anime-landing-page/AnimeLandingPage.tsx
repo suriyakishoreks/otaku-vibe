@@ -35,7 +35,7 @@ function AnimeLandingPage() {
                     key: anime.mal_id.toString(),
                     title: anime.title,
                     imageUrl: anime.images.jpg.image_url,
-                    navigateTo: `/manga/${anime.mal_id}`,
+                    navigateTo: `/anime/${anime.mal_id}`,
                     alt: anime.title,
                     ratings: anime.score?.toString(),
                     favorites: formatThresholdNumber(anime.favorites)
