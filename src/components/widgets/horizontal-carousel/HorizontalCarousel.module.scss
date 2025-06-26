@@ -38,8 +38,16 @@
       opacity: 0.5;
     }
 
-    &:hover {
-      scale: 1.05;
+    @include screen-mouse-first {
+      &:hover {
+        scale: 1.05;
+      }
+    }
+
+    @include screen-touch-first {
+      &:active {
+        scale: 1.05;
+      }
     }
 
     &:active {

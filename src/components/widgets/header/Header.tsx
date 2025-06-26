@@ -11,6 +11,9 @@ import GithubIcon from "../../atoms/icons/GithubIcon";
 import { Link, useLocation } from "react-router";
 import Vernac from "../../../services/vernac";
 import classNames from "classnames";
+import MenuIcon from "../../atoms/icons/MenuIcon";
+import { useAppDispatch } from "../../../store";
+import { updateIsDrawerOpen, updateIsHeaderNavHidden } from "../../../store/slices/appContextSlice";
 
 function HeaderNav() {
     const location = useLocation();
@@ -32,6 +35,7 @@ function Header() {
     const headerRef = useRef<HTMLHeadElement>(null);
     const maxHeaderWidth = useRef<number>(0);
     const [isOverflowing, setIsOverflowing] = useState(false);
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         const checkOverflow = () => {
@@ -50,6 +54,16 @@ function Header() {
         return () => window.removeEventListener("resize", checkOverflow);
     }, []);
 
+    useEffect(() => {
+        dispatch(updateIsHeaderNavHidden(isOverflowing));
+    }, [dispatch, isOverflowing]);
+
+    const DrawerIcon = isOverflowing ? MenuIcon : SettingIcon;
+
+    const onDrawerClick = () => {
+        dispatch(updateIsDrawerOpen(true));
+    };
+
     return (
         <header className={styles.header} ref={headerRef}>
             <div className={classNames({ [styles.header__lhs]: true, 'no-text-select': true })} >
@@ -60,10 +74,12 @@ function Header() {
             </div>
             <div className={styles.header__rhs}>
                 <Link to='https://github.com/suriyakishoreks/anime-list-app' target="_blank" rel="noopener noreferrer" >
-                    <GithubIcon size={26} color='s-color-fg-primary' className={styles.header__actions} />
+                    <GithubIcon size={22} color='s-color-fg-primary' className={styles.header__actions} />
                 </Link>
-                <SearchIcon size={26} color='s-color-fg-primary' className={styles.header__actions} />
-                <SettingIcon size={26} color='s-color-fg-primary' className={styles.header__actions} />
+                <SearchIcon size={22} color='s-color-fg-primary' className={styles.header__actions} />
+                <button onClick={onDrawerClick}>
+                    <DrawerIcon size={22} color='s-color-fg-primary' className={styles.header__actions} />
+                </button>
             </div>
         </header>
     );

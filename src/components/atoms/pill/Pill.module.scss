@@ -1,14 +1,24 @@
+@use "/src/styles/tokens/semantics" as *;
+
 .pill {
   background-color: var(--s-color-bg-secondary);
   padding: var(--s-spacing-4) var(--s-spacing-5);
   border-radius: 16px;
   display: flex;
   align-items: center;
-  gap: var(--s-spacing-3);
+  gap: var(--s-spacing-4);
   transition: scale 0.2s ease;
 
-  &:hover {
-    scale: 1.05;
+  @include screen-mouse-first {
+    &:hover {
+      scale: 1.05;
+    }
+  }
+
+  @include screen-touch-first {
+    &:active {
+      scale: 1.05;
+    }
   }
 
   &--active {

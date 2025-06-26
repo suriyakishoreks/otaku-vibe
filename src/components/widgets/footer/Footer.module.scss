@@ -1,10 +1,10 @@
 .footer {
   background: var(--s-color-bg-secondary);
-  padding: var(--s-spacing-4) var(--s-spacing-app-horizontal) var(--s-spacing-3);
+  padding: var(--s-spacing-4) var(--s-spacing-app-horizontal);
   width: 100%;
 
   &__copy-right {
-    margin-top: var(--s-spacing-3);
+    margin-top: var(--s-spacing-4);
     text-align: center;
     color: var(--s-color-fg-secondary);
   }
@@ -23,6 +23,6 @@
 
   &__socials {
     display: flex;
-    gap: var(--s-spacing-3);
+    gap: var(--s-spacing-4);
   }
 }

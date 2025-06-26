@@ -14,12 +14,15 @@ interface MediaDetailCardProps {
 
 function MediaDetailCard({ src, alt, navigateTo, title, summary }: MediaDetailCardProps) {
     const content = (
-        <div className={classNames({ [styles['media-detail-card']]: true, [styles['media-detail-card__clickable']]: navigateTo, 'no-text-select': true })}>
+        <div className={classNames(styles['media-detail-card'], 'no-text-select', { [styles['media-detail-card__clickable']]: navigateTo })}>
+            <div className={styles['media-detail-card__image-container']}>
+                <div className={styles['media-detail-card__image-gradient']} />
+                <Image src={src} alt={alt} className={styles['media-detail-card__image']} />
+            </div>
             <div className={styles['media-detail-card__content']}>
                 <Label as='h4' font='typo-primary-l-medium' className={styles['media-detail-card__title']} >{title}</Label>
                 <Label as='p' font='typo-primary-m-regular' className={styles['media-detail-card__summary']}>{summary}</Label>
             </div>
-            <Image src={src} alt={alt} className={styles['media-detail-card__image']} />
         </div>
     );
 
@@ -27,6 +30,18 @@ function MediaDetailCard({ src, alt, navigateTo, title, summary }: MediaDetailCa
         <Link to={navigateTo}>{content}</Link>
     ) : (
         content
+    );
+}
+
+export function MediaDetailCardLoading() {
+    return (
+        <div className={classNames(styles['media-detail-card'])}>
+            <div className={styles['media-detail-card__image-container']}>
+                <div className={classNames(styles['media-detail-card__image'])} />
+            </div>
+            <div className={styles['media-detail-card__content']}>
+            </div>
+        </div>
     );
 }
 

@@ -1,6 +1,21 @@
+@use "/src/styles/tokens/semantics" as *;
+
 .logo {
   display: flex;
   align-items: center;
+  transition: scale 0.2s ease;
+
+  @include screen-mouse-first {
+    &:hover {
+      scale: 1.02;
+    }
+  }
+
+  @include screen-touch-first {
+    &:active {
+      scale: 1.02;
+    }
+  }
 
   &__title {
     color: var(--s-color-fg-primary);

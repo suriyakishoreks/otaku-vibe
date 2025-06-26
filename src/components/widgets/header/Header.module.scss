@@ -1,5 +1,7 @@
+@use "/src/styles/tokens/semantics" as *;
+
 .header {
-  padding: var(--s-spacing-6) var(--s-spacing-app-horizontal);
+  padding: var(--s-spacing-4) var(--s-spacing-app-horizontal);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -7,6 +9,10 @@
   top: 0;
   background-color: var(--s-color-bg-primary);
   z-index: 10;
+
+  @include screen-sm {
+    padding: var(--s-spacing-6) var(--s-spacing-app-horizontal);
+  }
 
   &__nav {
     display: flex;
@@ -23,15 +29,33 @@
   &__rhs {
     display: flex;
     align-items: center;
-    margin-left: var(--s-spacing-8);
-    gap: var(--s-spacing-8);
+    margin-left: var(--s-spacing-6);
+    gap: var(--s-spacing-6);
+
+    @include screen-sm {
+      margin-left: var(--s-spacing-8);
+      gap: var(--s-spacing-8);
+    }
   }
 
   &__actions {
     transition: scale 0.2s ease;
 
-    &:hover {
-      scale: 1.1;
+    @include screen-sm {
+      height: 24px;
+      width: 24px;
+    }
+
+    @include screen-mouse-first {
+      &:hover {
+        scale: 1.1;
+      }
+    }
+
+    @include screen-touch-first {
+      &:active {
+        scale: 1.1;
+      }
     }
   }
 }

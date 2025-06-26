@@ -28,4 +28,12 @@ function ImageCard({ src, alt, navigateTo, title }: ImageCardProps) {
     );
 }
 
+export function ImageCardLoading() {
+    return (
+        <div className={classNames(styles['image-card'], styles['image-card--loading'])}>
+            <div className={styles['image-card__image']} />
+        </div>
+    );
+}
+
 export default ImageCard;

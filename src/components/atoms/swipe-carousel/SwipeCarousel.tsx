@@ -32,7 +32,7 @@ function SwipeCarousel({ onSwiper, onSlideChange, type = 'scroll', children }: S
             freeMode={type === 'scroll'}
             centeredSlides={type === 'centered'}
             loop={type === 'centered'}
-            spaceBetween={30}
+            spaceBetween={24}
             autoplay={type === 'centered' ? {
                 pauseOnMouseEnter: true,
                 delay: 3000,

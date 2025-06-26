@@ -9,6 +9,7 @@ function HomePage() {
             <HorizontalCarousel
                 heading={Vernac.getVernac('HP_TOP_ANIME_TITLE')}
                 type="centered"
+                cardType="media-detail"
                 useQueryHook={useGetTopAnimeQuery}
                 options={{}}
                 adapter={(data) => data?.data.map((anime) => ({
