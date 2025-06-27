@@ -25,7 +25,7 @@ function AnimePage() {
                                 popularity: data.data.popularity ? `Popularity #${data.data.popularity}` : undefined,
                                 favorite: data.data.favorites ? `${formatThresholdNumber(data.data.favorites)} Favorites` : undefined,
                                 rating: data.data.score ? `${data.data.score} | ${formatThresholdNumber(data.data.scored_by)} Ratings` : undefined,
-                                listed: data.data.members ? `${formatThresholdNumber(data.data.members)} Read Lists` : undefined
+                                listed: data.data.members ? `${formatThresholdNumber(data.data.members)} Watch Lists` : undefined
                             },
                             summary: data.data.synopsis ?? 'NA',
                             genres: data.data.genres.map((genre) => genre.name),
