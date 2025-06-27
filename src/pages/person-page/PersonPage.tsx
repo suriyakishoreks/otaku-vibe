@@ -1,15 +1,15 @@
 import { useParams } from "react-router";
-import { useGetCharacterByIdQuery } from "../../services/jikan";
+import { useGetPersonByIdQuery } from "../../services/jikan";
 import { MediaContent } from "../../components/widgets/media-content";
 import { formatThresholdNumber } from "../../shared/util";
 
-function CharacterPage() {
+function PersonPage() {
     const { id } = useParams();
 
     return (
         <div>
             <MediaContent
-                useQueryHook={useGetCharacterByIdQuery}
+                useQueryHook={useGetPersonByIdQuery}
                 options={{ id: Number(id) }}
                 adapter={(data) => {
                     return (
@@ -17,13 +17,9 @@ function CharacterPage() {
                             imageAlt: data.data.mal_id.toString(),
                             imageSrc: data.data.images.webp?.large_image_url ?? data.data.images.jpg.large_image_url ?? data.data.images.jpg.image_url,
                             title: data.data.name,
-                            // TODO: add jap title
-                            titleEnglish: data.data.nicknames?.[0],
                             mediaStats: {
                                 favorite: data.data.favorites ? `${formatThresholdNumber(data.data.favorites)} Favorites` : undefined,
-
                             },
-                            summary: data.data.about ?? 'NA',
                         }
                     );
                 }}
@@ -33,4 +29,4 @@ function CharacterPage() {
 
 }
 
-export default CharacterPage;
+export default PersonPage;

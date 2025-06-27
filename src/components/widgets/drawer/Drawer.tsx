@@ -49,7 +49,7 @@ function Drawer() {
                         variants={backdropVariants}
                     >
                     </motion.div>
-                    <RemoveScroll enabled={isDrawerOpen}>
+                    <RemoveScroll enabled={isDrawerOpen} style={{ position: 'absolute' }}>
                         <motion.aside
                             className={styles['drawer__content']}
                             initial="hidden"

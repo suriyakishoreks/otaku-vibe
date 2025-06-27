@@ -15,6 +15,7 @@ function HomePage() {
                 options={{}}
                 adapter={(data) => data.data.map((anime) => ({
                     key: anime.mal_id.toString(),
+                    // TODO: Change title lookup
                     title: anime.title,
                     imageUrl: anime.images.webp?.image_url ?? anime.images.jpg.image_url,
                     navigateTo: `/anime/${anime.mal_id}`,

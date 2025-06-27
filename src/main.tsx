@@ -35,6 +35,7 @@ createRoot(document.getElementById('root')!).render(
 
 // TODO: check opera mobile favicon issue
 
+// TODO: CSS class name refactoring
 
 // TODO: scroll pos retention
 

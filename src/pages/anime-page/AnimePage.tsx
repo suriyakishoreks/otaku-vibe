@@ -1,92 +1,41 @@
 import { useParams } from "react-router";
 import { useGetAnimeByIdQuery } from "../../services/jikan";
-import styles from './AnimePage.module.scss';
-import { Label } from "../../components/atoms/label";
-import { Image } from "../../components/atoms/image";
-
+import { MediaContent } from "../../components/widgets/media-content";
+import { formatThresholdNumber } from "../../shared/util";
 
 function AnimePage() {
     const { id } = useParams();
-    const { data, isLoading } = useGetAnimeByIdQuery({ id: Number(id) });
-
-    console.log("Anime data:", data);
-
-    if (isLoading || !data) {
-        return <div>Loading...</div>;
-    }
 
     return (
-        <div className={styles['anime-page']}>
-            <div style={{ display: 'flex', gap: '24px' }}>
-                <div>
-                    <Image
-                        // TODO: use webp
-                        src={data.data.images.jpg.image_url}
-                        alt={data.data.title}
-                        style={{ width: '200px', height: '300px', objectFit: 'cover' }}
-                    />
-                    <p>Score: {data.data.score}</p>
-                    <Label as='p' font="typo-primary-m-regular" style={{ marginBottom: 12 }}>scored_by {data.data.scored_by}</Label>
-                    <p>Episodes: {data.data.episodes}</p>
-                    <Label as='p' font="typo-primary-m-regular" style={{ marginBottom: 12 }}>{data.data.duration}</Label>
-                    <Label as='p' font="typo-primary-m-regular" style={{ marginBottom: 12 }}>{data.data.aired.string}</Label>
-                    <Label as='p' font="typo-primary-m-regular" style={{ marginBottom: 12 }}>favorites {data.data.favorites}</Label>
-                    <Label as='p' font="typo-primary-m-regular" style={{ marginBottom: 12 }}>members {data.data.members}</Label>
-                    <Label as='p' font="typo-primary-m-regular" style={{ marginBottom: 12 }}>popularity {data.data.popularity}</Label>
-                    <Label as='p' font="typo-primary-m-regular" style={{ marginBottom: 12 }}>rank {data.data.rank}</Label>
-                </div>
-                <div>
-                    <Label as='h3' font="typo-primary-xl-medium" style={{ marginBottom: 12 }}>{data.data.titles.find(item => item.type === 'Default')?.title}</Label>
-                    <Label as='p' font="typo-primary-m-regular" style={{ marginBottom: 12 }}>{data.data.synopsis}</Label>
-                    <Label as='p' font="typo-primary-m-regular" style={{ marginBottom: 12 }}>{`${data.data.broadcast.string} ${data.data.broadcast.timezone}`}</Label>
-                    <Label as='p' font="typo-primary-m-regular" style={{ marginBottom: 12 }}>rating {data.data.rating}</Label>
-
-
-                </div>
-            </div>
-
-            <div style={{ height: 1, backgroundColor: 'red' }}></div>
-
-            <div style={{ display: 'flex', marginBottom: 12 }}>
-                Externals----
-                {data.data.external?.map((item) => {
-                    return <p>{item.name}_____</p>;
-                })}
-            </div>
-
-            <div style={{ display: 'flex', marginBottom: 12 }}>
-                Genres----
-                {data.data.genres?.map((item) => {
-                    return <p>{item.name}_____</p>;
-                })}
-            </div>
-
-            <div style={{ display: 'flex', marginBottom: 12 }}>
-                Producers----
-                {data.data.producers?.map((item) => {
-                    return <p>{item.name}_____</p>;
-                })}
-            </div>
-
-            <div style={{ display: 'flex', marginBottom: 12 }}>
-                relations----
-                {data.data.relations?.map((item) => {
-                    return <p>{item.relation}_____</p>;
-                })}
-            </div>
-
-
-            <iframe
-                width={560}
-                height={315}
-                src={data.data.trailer.embed_url}
-                title="YouTube video player"
-                allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerPolicy="strict-origin-when-cross-origin"
-                allowFullScreen
-            ></iframe>
+        <div>
+            <MediaContent
+                useQueryHook={useGetAnimeByIdQuery}
+                options={{ id: Number(id) }}
+                adapter={(data) => {
+                    return (
+                        {
+                            imageAlt: data.data.mal_id.toString(),
+                            imageSrc: data.data.images.webp?.large_image_url ?? data.data.images.jpg.large_image_url ?? data.data.images.jpg.image_url,
+                            title: data.data.titles.find((title) => title.type === 'Default')?.title ?? data.data.title,
+                            // TODO: add jap title
+                            titleEnglish: data.data.titles.find((title) => title.type === 'English')?.title ?? data.data.title_english,
+                            contentType: data.data.type,
+                            mediaStats: {
+                                rank: data.data.rank ? `Rank #${data.data.rank}` : undefined,
+                                popularity: data.data.popularity ? `Popularity #${data.data.popularity}` : undefined,
+                                favorite: data.data.favorites ? `${formatThresholdNumber(data.data.favorites)} Favorites` : undefined,
+                                rating: data.data.score ? `${data.data.score} | ${formatThresholdNumber(data.data.scored_by)} Ratings` : undefined,
+                                listed: data.data.members ? `${formatThresholdNumber(data.data.members)} Read Lists` : undefined
+                            },
+                            summary: data.data.synopsis ?? 'NA',
+                            genres: data.data.genres.map((genre) => genre.name),
+                        }
+                    );
+                }}
+            />
         </div>
     );
+
 }
 
 export default AnimePage;

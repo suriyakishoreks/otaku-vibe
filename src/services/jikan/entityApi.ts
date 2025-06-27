@@ -3,7 +3,9 @@ import type { Character, JikanPerson, JikanResponse } from './models';
 
 const EntityEndpoints = {
     topPeople: '/top/people',
-    topCharacters: '/top/characters'
+    topCharacters: '/top/characters',
+    characterFullById: 'characters/{id}/full',
+    personFullById: '/people/{id}/full'
 } as const;
 
 export const entityApi = jikanApi.injectEndpoints({
@@ -29,10 +31,25 @@ export const entityApi = jikanApi.injectEndpoints({
                 };
             }
         }),
+
+        getCharacterById: builder.query<JikanResponse<Character>, { id: number; }>({
+            query: ({ id }) => ({
+                url: EntityEndpoints.characterFullById.replace('{id}', String(id)),
+            })
+        }),
+
+
+        getPersonById: builder.query<JikanResponse<JikanPerson>, { id: number; }>({
+            query: ({ id }) => ({
+                url: EntityEndpoints.personFullById.replace('{id}', String(id)),
+            })
+        }),
     }),
 });
 
 export const {
     useGetTopCharactersQuery,
-    useGetTopPeopleQuery
+    useGetTopPeopleQuery,
+    useGetCharacterByIdQuery,
+    useGetPersonByIdQuery
 } = entityApi;
