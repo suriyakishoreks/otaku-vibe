@@ -2,6 +2,7 @@ import type { VernacConfig } from "./models";
 
 const enVernacConfig: VernacConfig = {
     APP_NAME: 'Otaku Vibe',
+    APP_DESC: 'A unified platform to explore the world of anime, manga, manhwa and manhua. Powered by Jikan API.',
     HOME: 'Home',
     ANIME: 'Anime',
     MANGA: 'Manga',

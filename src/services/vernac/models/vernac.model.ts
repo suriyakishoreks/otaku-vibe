@@ -1,5 +1,6 @@
 export interface VernacConfig {
     APP_NAME: string;
+    APP_DESC: string;
     HOME: string;
     ANIME: string;
     MANGA: string;

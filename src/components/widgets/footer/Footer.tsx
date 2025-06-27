@@ -1,25 +1,27 @@
-import { Logo } from '../../atoms/logo';
 import styles from './Footer.module.scss';
 import { Label } from '../../atoms/label';
 import Vernac from '../../../services/vernac';
+import GithubIcon from '../../atoms/icons/GithubIcon';
+import { Link } from 'react-router';
+import MailIcon from '../../atoms/icons/MailIcon';
 
 function Footer() {
     return (
         <footer className={styles.footer}>
             <div className={styles.footer__content}>
-                <div>
-                    <Logo />
-                    <div className={styles.footer__description}>
-                        <Label as="p" font="typo-primary-m-regular">
-                            A unified platform to explore the world of anime, manga, manhwa and manhua. Powered by Jikan API.
-                        </Label>
-                    </div>
+                <div className={styles.footer__description}>
+                    <Label as="p" font="typo-primary-m-regular">
+                        {Vernac.getVernac('APP_DESC')}
+                    </Label>
                 </div>
-
-                <div className={styles.footer__socials}>
-                    <a href="https://twitter.com" aria-label="Twitter" target="_blank" rel="noopener noreferrer">🐦</a>
-                    <a href="https://github.com" aria-label="GitHub" target="_blank" rel="noopener noreferrer">💻</a>
-                </div>
+                <nav className={styles.footer__socials}>
+                    <Link to='https://github.com/suriyakishoreks' target="_blank" rel="noopener noreferrer" >
+                        <GithubIcon size={24} color='s-color-fg-primary' className={styles['footer__actions']} />
+                    </Link>
+                    <Link to='mailto:kssuriyakishore16@gmail.com' target="_blank" rel="noopener noreferrer" >
+                        <MailIcon size={24} color='s-color-fg-primary' className={styles['footer__actions']} />
+                    </Link>
+                </nav>
             </div>
             <Label as='p' font='typo-primary-s-medium' className={styles['footer__copy-right']}>
                 &copy; {new Date().getFullYear()} {Vernac.getVernac('COPY_RIGHT')}

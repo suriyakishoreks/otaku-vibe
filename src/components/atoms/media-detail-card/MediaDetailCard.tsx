@@ -40,7 +40,7 @@ function MediaDetailCard({ src, alt, navigateTo, title, summary, ratings, favori
                 {!!summary && <Label as='p' font='typo-primary-m-regular' className={styles['media-detail-card__summary']}>{summary}</Label>}
                 {!!status && <Label as='p' font='typo-primary-m-regular' className={styles['media-detail-card__status']}>{status}</Label>}
                 {!!genres && genres.length > 0 && <div className={styles['media-detail-card__genre']}>
-                    {genres.map((value) => <Label as='p' font='typo-primary-m-regular' className={styles['media-detail-card__genre-item']}>{value}</Label>)}
+                    {genres.map((value) => <Label key={value} as='p' font='typo-primary-m-regular' className={styles['media-detail-card__genre-item']}>{value}</Label>)}
                 </div>}
             </div>
         </div>
