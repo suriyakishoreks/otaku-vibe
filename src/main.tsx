@@ -33,6 +33,9 @@ createRoot(document.getElementById('root')!).render(
 
 // TODO: Ad integration
 
+// TODO: check opera mobile favicon issue
+
+
 // TODO: scroll pos retention
 
 
