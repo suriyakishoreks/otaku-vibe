@@ -37,7 +37,7 @@ function AppLayout() {
             <Drawer />
             <div>
                 <Header />
-                <main>
+                <main className={styles['app-layout__content']}>
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={location.pathname} // Use location.pathname or location.key

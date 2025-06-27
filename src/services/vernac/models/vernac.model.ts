@@ -17,7 +17,11 @@ export interface VernacConfig {
     MLP_TRENDING_MANHWA_TITLE: string;
     MLP_TRENDING_MANHUA_TITLE: string;
     MLP_RECOMMENDATION_TITLE: string;
-
+    EP_ERROR_TITLE: string;
+    EP_ERROR_DESC: string;
+    EP_404_TITLE: string;
+    EP_404_DESC: string;
+    EP_REDIRECT_TEXT: string;
 }
 
 export type Locale = 'en' | 'jp';
