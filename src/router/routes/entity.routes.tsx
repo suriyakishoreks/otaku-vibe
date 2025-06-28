@@ -12,7 +12,7 @@ export const entityRoutes: RouteObject = {
             element: <CharacterPage />,
         },
         {
-            path: 'person/:id',
+            path: 'people/:id',
             element: <PersonPage />
         },
     ],

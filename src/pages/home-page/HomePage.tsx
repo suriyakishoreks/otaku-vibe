@@ -65,7 +65,7 @@ function HomePage() {
                         key: person.mal_id.toString(),
                         title: person.name,
                         imageUrl: person.images.webp?.image_url ?? person.images.jpg.image_url,
-                        navigateTo: `/person/${person.mal_id}`,
+                        navigateTo: `/people/${person.mal_id}`,
                         alt: person.name,
                         favorites: formatThresholdNumber(person.favorites)
                     }))}

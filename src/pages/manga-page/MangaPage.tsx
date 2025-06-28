@@ -28,7 +28,31 @@ function MangaPage() {
                                 listed: data.data.members ? `${formatThresholdNumber(data.data.members)} Read Lists` : undefined
                             },
                             summary: data.data.synopsis,
-                            genres: data.data.genres.map((genre) => genre.name),
+                            primaryStringGroup: {
+                                title: 'Genre',
+                                group: data.data.genres.map((genre) => { return { text: genre.name }; }),
+                            },
+                            infoGroup: {
+                                title: 'Info',
+                                group: [
+                                    { title: 'Status', text: data.data.status },
+                                    { title: 'Volume', text: data.data.volumes != null ? String(data.data.volumes) : 'Unknown' },
+                                    { title: 'Chapters', text: data.data.chapters != null ? String(data.data.chapters) : 'Unknown' },
+                                    { title: 'Published', text: data.data.published.string }
+                                ]
+                            },
+                            secondaryStringGroup: data.data.external ? {
+                                title: 'External',
+                                group: data.data.external.map((data) => { return { text: data.name, link: data.url, external: true }; }),
+                            } : undefined,
+                            tertiaryStringGroup: data.data.authors ? {
+                                title: 'Authors',
+                                group: data.data.authors.map((data) => { return { text: data.name, link: `/${data.type}/${data.mal_id}` }; })
+                            } : undefined,
+                            primaryContentGroup: data.data.relations ? {
+                                title: 'Related',
+                                group: data.data.relations.flatMap((relation) => relation.entry.map((entry) => { return { title: entry.name, desc: `${relation.relation} (${entry.type})`, link: `/${entry.type}/${entry.mal_id}` }; }))
+                            } : undefined,
                         }
                     );
                 }}

@@ -47,6 +47,7 @@ export interface MediaContentData {
     infoGroup?: StringGroupData;
     primaryStringGroup?: StringGroupData;
     secondaryStringGroup?: StringGroupData;
+    tertiaryStringGroup?: StringGroupData;
     youtubeEmbed?: { title?: string, link: string; };
     primaryContentGroup?: ContentGroupData;
     secondaryContentGroup?: ContentGroupData;
@@ -114,18 +115,21 @@ function MediaContent<TQueryHook extends UseQuery, TContentType extends ContentT
                 <StringGroup data={data.infoGroup} type='info' />
                 <StringGroup data={data.primaryStringGroup} type='primary' />
                 <StringGroup data={data.secondaryStringGroup} type='secondary' />
+                <StringGroup data={data.tertiaryStringGroup} type='tertiary' />
                 {!!data.youtubeEmbed && !!data.youtubeEmbed.link && <iframe className={styles.youtube} src={data.youtubeEmbed.link}
                     title="YouTube" frameBorder="0"
                     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerPolicy="strict-origin-when-cross-origin" allowFullScreen>
                 </iframe>}
                 <ContentGroup data={data.primaryContentGroup} type='primary' />
+                <ContentGroup data={data.secondaryContentGroup} type='secondary' />
+                <ContentGroup data={data.tertiaryContentGroup} type='tertiary' />
             </div>
         </article>
     );
 }
 
-function StringGroup({ data, type }: { data?: StringGroupData, type: 'info' | 'primary' | 'secondary'; }) {
+function StringGroup({ data, type }: { data?: StringGroupData, type: 'info' | 'primary' | 'secondary' | 'tertiary'; }) {
     return (
         !!data && data.group.length > 0 && <div className={styles['string-group']}>
             <Label as='h4' font='typo-primary-l-semibold'>{data.title}</Label>
@@ -152,15 +156,24 @@ function ContentGroup({ data, type }: { data?: ContentGroupData, type: 'tertiary
                     const itemClass = classNames(styles['content-group__item'], styles[`content-group__item--${type}`], { [styles['content-group__item--clickable']]: data.link });
 
                     const content = (
-                        <div key={data.title} className={!data.link ? itemClass : undefined}>
-                            <Label as='p' font='typo-primary-m-medium' className={styles['content-group__title']} >{data.title}</Label>
-                            <Label as='p' font='typo-primary-m-medium' className={styles['content-group__desc']} >{data.desc}</Label>
+                        <>
+                            {!!data.imgSrc && <Image src={data.imgSrc} className={styles['content-group__image']} />}
+                            <div className={styles['content-group__text']}>
+                                <Label as='p' font='typo-primary-m-medium' className={styles['content-group__title']} >{data.title}</Label>
+                                <Label as='p' font='typo-primary-m-medium' className={styles['content-group__desc']} >{data.desc}</Label>
+                            </div>
+                        </>
+                    );
+
+                    if (data.link) {
+                        return <Link className={itemClass} key={data.link} to={data.link} target={data.external ? "_blank" : undefined} rel={data.external ? "noopener noreferrer" : undefined} >{content}</Link>;
+                    }
+
+                    return (
+                        <div key={data.title} className={itemClass}>
+                            {content}
                         </div>
                     );
-                    if (data.link) {
-                        return <Link className={data.link ? itemClass : undefined} key={data.link} to={data.link} target={data.external ? "_blank" : undefined} rel={data.external ? "noopener noreferrer" : undefined} >{content}</Link>;
-                    }
-                    return content;
                 })}
             </div>
         </div>

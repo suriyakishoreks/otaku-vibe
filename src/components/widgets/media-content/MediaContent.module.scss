@@ -184,6 +184,10 @@
       background-color: var(--s-color-bg-info);
     }
 
+    &--tertiary {
+      background-color: var(--s-color-bg-success);
+    }
+
     &--info {
       background-color: var(--s-color-bg-secondary);
     }
@@ -214,13 +218,13 @@
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     margin-top: var(--s-spacing-3);
     gap: var(--s-spacing-5);
-    max-height: 240px;
-    overflow-y: scroll;
-    // TODO: SHOW MORE + ANIMATE
-    @include screen-md {
-      max-height: auto;
-      overflow-y: auto;
-    }
+    // max-height: 240px;
+    // overflow-y: scroll;
+    // // TODO: SHOW MORE + ANIMATE
+    // @include screen-md {
+    //   max-height: auto;
+    //   overflow-y: auto;
+    // }
   }
 
   &__title {
@@ -233,17 +237,28 @@
     color: var(--s-color-fg-secondary);
   }
 
-  &__item {
+  &__image {
+    height: 50px;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+  }
+
+  &__text {
     padding: var(--s-spacing-3) var(--s-spacing-4);
+  }
+
+  &__item {
+    display: flex;
     border-radius: 8px;
     max-width: 440px;
+    height: 50px;
 
     &--primary {
       background-color: var(--s-color-bg-secondary);
     }
 
     &--secondary {
-      background-color: var(--s-color-bg-info);
+      background-color: var(--s-color-bg-secondary);
     }
 
     &--tertiary {
