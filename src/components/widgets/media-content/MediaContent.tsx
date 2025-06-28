@@ -52,14 +52,7 @@ export interface MediaContentData {
     primaryContentGroup?: ContentGroupData;
     secondaryContentGroup?: ContentGroupData;
     tertiaryContentGroup?: ContentGroupData;
-
-    // Creater?
 }
-
-// Anime - producers, studio, theme, demographic, 
-// manga - authors, 
-// character - anime, manga, voices
-// person - anime, manga, voices
 
 type ContentType = 'anime' | 'manga' | 'person' | 'character';
 
@@ -83,7 +76,7 @@ function MediaContent<TQueryHook extends UseQuery, TContentType extends ContentT
     const data = queryData ? adapter(queryData) : undefined;
 
     if (!data) {
-        return null;
+        return <MediaContentLoading />;
     }
 
     return (
@@ -124,6 +117,26 @@ function MediaContent<TQueryHook extends UseQuery, TContentType extends ContentT
                 <ContentGroup data={data.primaryContentGroup} />
                 <ContentGroup data={data.secondaryContentGroup} />
                 <ContentGroup data={data.tertiaryContentGroup} />
+            </div>
+        </article>
+    );
+}
+
+export function MediaContentLoading() {
+    return (
+        <article className={styles['media-content']} >
+            <div className={styles['media-content__primary-content']}>
+                <div className={classNames(styles['image-card'], styles['loading__image'])}>
+                    <div className={classNames(styles['image-card__image'], styles['loading__image'])} />
+                </div>
+                <div className={classNames(styles['media-stats'], styles['loading__media-stats'])} />
+            </div>
+            <div className={styles['media-content__secondary-content']}>
+                <div className={classNames(styles['title'], styles['loading__title'])} />
+                <div className={styles.loading__summary} />
+                <div className={styles['loading__text-group']} />
+                <div className={classNames(styles.youtube, styles['loading__youtube'])} />
+                <div className={styles['loading__content-group']} />
             </div>
         </article>
     );

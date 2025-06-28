@@ -275,3 +275,56 @@
     }
   }
 }
+
+.loading {
+  @mixin common {
+    background-color: var(--s-color-bg-secondary);
+    border-radius: 16px;
+  }
+
+  &__image {
+    @include common();
+  }
+
+  &__media-stats {
+    height: 150px;
+    margin-top: var(--s-spacing-6);
+
+    @include common();
+  }
+
+  &__title {
+    width: 75%;
+    height: 50px;
+
+    @include common();
+  }
+
+  &__summary {
+    height: 250px;
+    margin-top: var(--s-spacing-6);
+
+    @include common();
+  }
+
+  &__text-group {
+    height: 100px;
+    margin-top: var(--s-spacing-6);
+    width: 80%;
+
+    @include common();
+  }
+
+  &__youtube {
+    margin-top: var(--s-spacing-6);
+
+    @include common();
+  }
+
+  &__content-group {
+    height: 250px;
+    margin-top: var(--s-spacing-6);
+
+    @include common();
+  }
+}

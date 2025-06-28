@@ -6,6 +6,8 @@ import { formatThresholdNumber } from "../../shared/util";
 function AnimePage() {
     const { id } = useParams();
 
+    // Characters, stats, reco, reviews
+
     return (
         <div>
             <MediaContent
