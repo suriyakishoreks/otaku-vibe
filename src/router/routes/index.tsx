@@ -11,11 +11,12 @@ export const routes: RouteObject[] = [
     {
         path: '/',
         element: <AppLayout />,
-        errorElement: <ErrorPage />,
+        errorElement: <ErrorPage isRoot />,
         children: [
             {
                 index: true,
                 element: <HomePage />,
+                errorElement: <ErrorPage />,
             },
             animeRoutes,
             mangaRoutes,

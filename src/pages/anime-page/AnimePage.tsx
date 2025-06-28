@@ -1,6 +1,6 @@
 import { useParams } from "react-router";
 import { useGetAnimeByIdQuery } from "../../services/jikan";
-import { MediaContent } from "../../components/widgets/media-content";
+import { MediaContent, type MediaContentData } from "../../components/widgets/media-content";
 import { formatThresholdNumber } from "../../shared/util";
 
 function AnimePage() {
@@ -28,8 +28,33 @@ function AnimePage() {
                                 listed: data.data.members ? `${formatThresholdNumber(data.data.members)} Watch Lists` : undefined
                             },
                             summary: data.data.synopsis ?? 'NA',
-                            genres: data.data.genres.map((genre) => genre.name),
-                        }
+                            primaryStringGroup: {
+                                title: 'Genre',
+                                group: data.data.genres.map((genre) => { return { text: genre.name }; }),
+                            },
+                            youtubeEmbed: data.data.trailer ? { link: data.data.trailer.embed_url } : undefined,
+                            infoGroup: {
+                                title: 'Info',
+                                group: [
+                                    { title: 'Status', text: data.data.status },
+                                    { title: 'Source', text: data.data.source },
+                                    { title: 'Episodes', text: data.data.episodes },
+                                    { title: 'Duration', text: data.data.duration },
+                                    { title: 'Rating', text: data.data.rating },
+                                    { title: 'Season', text: `${data.data.season} ${data.data.year}` },
+                                    { title: 'Aired', text: data.data.aired.string },
+                                    { title: 'Broadcast', text: data.data.broadcast.string }
+                                ]
+                            },
+                            secondaryStringGroup: data.data.external ? {
+                                title: 'External',
+                                group: data.data.external.map((data) => { return { text: data.name, link: data.url, external: true }; }),
+                            } : undefined,
+                            primaryContentGroup: data.data.relations ? {
+                                title: 'Related',
+                                group: data.data.relations.flatMap((relation) => relation.entry.map((entry) => { return { title: entry.name, desc: `${relation.relation} (${entry.type})`, link: `/${entry.type}/${entry.mal_id}` }; }))
+                            } : undefined
+                        } as MediaContentData
                     );
                 }}
             />

@@ -1,3 +1,3 @@
-import MediaContent from "./MediaContent";
+import MediaContent, { type MediaContentData, type ContentGroupData, type MediaStats, type StringGroupData } from "./MediaContent";
 
-export { MediaContent };
+export { MediaContent, type MediaContentData, type ContentGroupData, type MediaStats, type StringGroupData };

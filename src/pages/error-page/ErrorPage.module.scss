@@ -1,7 +1,7 @@
 @use "/src/styles/tokens/semantics" as *;
 
 .error {
-  margin-top: var(--s-spacing-6);
+  padding-top: var(--s-spacing-6);
   justify-self: center;
   width: clamp(288px, calc(100vw - 32px), 400px);
   color: var(--s-color-fg-primary);
@@ -9,6 +9,10 @@
   flex-direction: column;
   gap: var(--s-spacing-4);
   align-items: center;
+
+  &--root {
+    padding-top: var(--s-spacing-12);
+  }
 
   img {
     width: 100%;

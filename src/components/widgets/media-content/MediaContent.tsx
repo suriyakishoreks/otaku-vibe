@@ -3,6 +3,7 @@ import { Image } from '../../atoms/image';
 import { Label } from '../../atoms/label';
 import classNames from 'classnames';
 import { type TypedUseQuery } from "@reduxjs/toolkit/query/react";
+import { Link } from 'react-router';
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type UseQuery = TypedUseQuery<any, any, any>;
@@ -17,7 +18,7 @@ type ExtractDataTypeFromHook<THook extends UseQuery> =
 type ExtractArgTypeFromHook<THook extends UseQuery> =
     ExtractResultAndArgFromTypedUseQuery<THook>['arg'];
 
-interface MediaStats {
+export interface MediaStats {
     rating?: string;
     favorite?: string;
     rank?: string;
@@ -25,11 +26,17 @@ interface MediaStats {
     listed?: string;
 }
 
-// interface MediaInfo {
-//     episodes?:
-// }
+export interface StringGroupData {
+    title: string;
+    group: { title?: string, text: string, link?: string, external?: boolean; }[];
+}
 
-interface MediaContentData {
+export interface ContentGroupData {
+    title: string;
+    group: { imgSrc?: string, title: string, desc?: string, link?: string, external?: boolean; }[];
+}
+
+export interface MediaContentData {
     imageSrc: string;
     imageAlt: string;
     title: string;
@@ -37,8 +44,21 @@ interface MediaContentData {
     titleEnglish?: string;
     mediaStats?: MediaStats;
     summary?: string;
-    genres?: string[];
+    infoGroup?: StringGroupData;
+    primaryStringGroup?: StringGroupData;
+    secondaryStringGroup?: StringGroupData;
+    youtubeEmbed?: { title?: string, link: string; };
+    primaryContentGroup?: ContentGroupData;
+    secondaryContentGroup?: ContentGroupData;
+    tertiaryContentGroup?: ContentGroupData;
+
+    // Creater?
 }
+
+// Anime - producers, studio, theme, demographic, 
+// manga - authors, 
+// character - anime, manga, voices
+// person - anime, manga, voices
 
 type ContentType = 'anime' | 'manga' | 'person' | 'character';
 
@@ -91,38 +111,59 @@ function MediaContent<TQueryHook extends UseQuery, TContentType extends ContentT
                     {!!data.titleEnglish && (data.titleEnglish !== data.title) && <Label as='h2' font='typo-primary-m-semibold' className={styles['title--english']}>{data.titleEnglish}</Label>}
                 </div>
                 {!!data.summary && <Label as='p' font='typo-primary-m-regular' className={styles['summary']}>{data.summary}</Label>}
-
-                {/* <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginBottom: 12 }}>
-                    <Label as="span" font="typo-primary-m-regular" style={{ color: "#475569" }}>
-                        <b>Episodes:</b> {'anime.episodes' ?? "?"}
-                    </Label>
-                    <Label as="span" font="typo-primary-m-regular" style={{ color: "#475569" }}>
-                        <b>Duration:</b> {'anime.duration'}
-                    </Label>
-                    <Label as="span" font="typo-primary-m-regular" style={{ color: "#475569" }}>
-                        <b>Status:</b> {'anime.status'}
-                    </Label>
-                    <Label as="span" font="typo-primary-m-regular" style={{ color: "#475569" }}>
-                        <b>Rating:</b> {'anime.rating'}
-                    </Label>
-                </div>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 16, marginBottom: 12 }}>
-                    <Label as="span" font="typo-primary-m-regular" style={{ color: "#475569" }}>
-                        <b>Aired:</b> {'anime.aired?.string'}
-                    </Label>
-                    <Label as="span" font="typo-primary-m-regular" style={{ color: "#475569" }}>
-                        <b>Broadcast:</b> {'anime.broadcast?.string'} {'anime.broadcast?.timezone'}
-                    </Label>
-                </div> */}
-
-                {!!data.genres && data.genres.length > 0 && <div className={styles.genre}>
-                    <Label as='h4' font='typo-primary-l-medium'>Genre</Label>
-                    <div className={styles['genre__group']}>
-                        {data.genres.map((genre) => <Label key={genre} as='span' font='typo-primary-m-medium' className={styles['genre__item']}>{genre}</Label>)}
-                    </div>
-                </div>}
+                <StringGroup data={data.infoGroup} type='info' />
+                <StringGroup data={data.primaryStringGroup} type='primary' />
+                <StringGroup data={data.secondaryStringGroup} type='secondary' />
+                {!!data.youtubeEmbed && !!data.youtubeEmbed.link && <iframe className={styles.youtube} src={data.youtubeEmbed.link}
+                    title="YouTube" frameBorder="0"
+                    allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerPolicy="strict-origin-when-cross-origin" allowFullScreen>
+                </iframe>}
+                <ContentGroup data={data.primaryContentGroup} type='primary' />
             </div>
         </article>
+    );
+}
+
+function StringGroup({ data, type }: { data?: StringGroupData, type: 'info' | 'primary' | 'secondary'; }) {
+    return (
+        !!data && data.group.length > 0 && <div className={styles['string-group']}>
+            <Label as='h4' font='typo-primary-l-semibold'>{data.title}</Label>
+            <div className={styles['string-group__group']}>
+                {data.group.map((data) => {
+                    const content = <Label key={data.text} as='p' font='typo-primary-m-medium' className={classNames(styles['string-group__item'], styles[`string-group__item--${type}`], { [styles['string-group__item--clickable']]: data.link })}>{!!data.title && <b>{data.title}:&nbsp;&nbsp;</b>}{`${data.text}`}</Label>;
+                    if (data.link) {
+                        return <Link key={data.link} to={data.link} target={data.external ? "_blank" : undefined} rel={data.external ? "noopener noreferrer" : undefined} >{content}</Link>;
+                    }
+                    return content;
+                })}
+            </div>
+        </div>
+    );
+}
+
+function ContentGroup({ data, type }: { data?: ContentGroupData, type: 'tertiary' | 'primary' | 'secondary'; }) {
+    return (
+        !!data && data.group.length > 0 && <div className={styles['content-group']}>
+            <Label as='h4' font='typo-primary-l-semibold'>{data.title}</Label>
+            <div className={styles['content-group__group']}>
+                {data.group.map((data) => {
+
+                    const itemClass = classNames(styles['content-group__item'], styles[`content-group__item--${type}`], { [styles['content-group__item--clickable']]: data.link });
+
+                    const content = (
+                        <div key={data.title} className={!data.link ? itemClass : undefined}>
+                            <Label as='p' font='typo-primary-m-medium' className={styles['content-group__title']} >{data.title}</Label>
+                            <Label as='p' font='typo-primary-m-medium' className={styles['content-group__desc']} >{data.desc}</Label>
+                        </div>
+                    );
+                    if (data.link) {
+                        return <Link className={data.link ? itemClass : undefined} key={data.link} to={data.link} target={data.external ? "_blank" : undefined} rel={data.external ? "noopener noreferrer" : undefined} >{content}</Link>;
+                    }
+                    return content;
+                })}
+            </div>
+        </div>
     );
 }
 

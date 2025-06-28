@@ -9,6 +9,7 @@
   top: 0;
   background-color: var(--s-color-bg-primary);
   z-index: 10;
+  height: var(--s-header-height);
 
   @include screen-sm {
     padding: var(--s-spacing-6) var(--s-spacing-app-horizontal);

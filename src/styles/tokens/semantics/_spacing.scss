@@ -40,9 +40,11 @@
 
   // semantics
   --s-spacing-app-horizontal: var(--s-spacing-5);
+  --s-header-height: 64px;
 
   @include screen-sm {
     --s-spacing-app-horizontal: var(--s-spacing-6);
+    --s-header-height: 80px;
   }
 
   @include screen-md {

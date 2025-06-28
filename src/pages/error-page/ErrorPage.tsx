@@ -4,12 +4,14 @@ import shocked from "../../assets/image/shocked-min.webp";
 import styles from './ErrorPage.module.scss';
 import { Label } from "../../components/atoms/label";
 import Vernac from "../../services/vernac";
+import classNames from "classnames";
 
 interface ErrorPageProps {
     is404?: boolean;
+    isRoot?: boolean;
 };
 
-function ErrorPage({ is404 = false }: ErrorPageProps) {
+function ErrorPage({ is404, isRoot }: ErrorPageProps) {
     const navigate = useNavigate();
 
     const handleGoHome = () => {
@@ -17,7 +19,7 @@ function ErrorPage({ is404 = false }: ErrorPageProps) {
     };
 
     return (
-        <div className={styles.error}>
+        <div className={classNames(styles.error, { [styles['error--root']]: isRoot })}>
             <Image src={shocked} />
             <Label as='h2' font="typo-primary-xl-semibold">{is404 ? Vernac.getVernac('EP_404_TITLE') : Vernac.getVernac('EP_ERROR_TITLE')}</Label>
             <Label as='p' font="typo-primary-m-medium"> {is404 ? Vernac.getVernac('EP_404_DESC') : Vernac.getVernac('EP_ERROR_DESC')}</Label>
