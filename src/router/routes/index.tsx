@@ -5,6 +5,7 @@ import { AppLayout } from '../../layouts/app-layout';
 import { mangaRoutes } from './manga.routes';
 import { ErrorPage } from '../../pages/error-page';
 import { entityRoutes } from './entity.routes';
+import { searchRoutes } from './search.routes';
 
 
 export const routes: RouteObject[] = [
@@ -21,6 +22,7 @@ export const routes: RouteObject[] = [
             animeRoutes,
             mangaRoutes,
             entityRoutes,
+            searchRoutes,
             // 404 route
             {
                 path: '*',
