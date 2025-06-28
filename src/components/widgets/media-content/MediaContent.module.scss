@@ -142,16 +142,6 @@
     }
   }
 
-  .summary {
-    max-height: 180px;
-    overflow-y: auto;
-
-    @include screen-md {
-      max-height: fit-content;
-      overflow-y: visible;
-    }
-  }
-
   .youtube {
     padding-top: var(--s-spacing-7);
     aspect-ratio: 16 / 9;

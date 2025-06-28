@@ -111,7 +111,7 @@ function MediaContent<TQueryHook extends UseQuery, TContentType extends ContentT
                     <Label as='h2' font='typo-primary-xl-semibold'>{data.title}</Label>
                     {!!data.titleEnglish && (data.titleEnglish !== data.title) && <Label as='h2' font='typo-primary-m-semibold' className={styles['title--english']}>{data.titleEnglish}</Label>}
                 </div>
-                {!!data.summary && <Label as='p' font='typo-primary-m-regular' className={styles['summary']}>{data.summary}</Label>}
+                {!!data.summary && <Label as='p' font='typo-primary-m-regular'>{data.summary}</Label>}
                 <StringGroup data={data.infoGroup} type='info' />
                 <StringGroup data={data.primaryStringGroup} type='primary' />
                 <StringGroup data={data.secondaryStringGroup} type='secondary' />

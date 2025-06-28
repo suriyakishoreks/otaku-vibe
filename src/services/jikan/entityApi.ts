@@ -1,5 +1,5 @@
 import { jikanApi } from './baseApi';
-import type { Character, CharacterFull, JikanPerson, JikanResponse } from './models';
+import type { Character, CharacterFull, JikanPerson, JikanPersonFull, JikanResponse } from './models';
 
 const EntityEndpoints = {
     topPeople: '/top/people',
@@ -39,7 +39,7 @@ export const entityApi = jikanApi.injectEndpoints({
         }),
 
 
-        getPersonById: builder.query<JikanResponse<JikanPerson>, { id: number; }>({
+        getPersonById: builder.query<JikanResponse<JikanPersonFull>, { id: number; }>({
             query: ({ id }) => ({
                 url: EntityEndpoints.personFullById.replace('{id}', String(id)),
             })

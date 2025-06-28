@@ -19,16 +19,36 @@ export interface JikanPersonFull extends JikanPerson {
 
 export interface PersonAnime {
 	position: string;
-	anime: object;
+	anime: {
+		mal_id: number;
+		url: string;
+		images: JikanImages;
+		title: string;
+	};
 }
 
 export interface PersonManga {
-	role: object;
-	manga: object;
+	position: string;
+	manga: {
+		mal_id: number;
+		url: string;
+		images: JikanImages;
+		title: string;
+	};
 }
 
 export interface PersonVoiceActor {
-	anime: object;
-	character: object;
+	anime: {
+		mal_id: number;
+		url: string;
+		images: JikanImages;
+		title: string;
+	};
+	character: {
+		mal_id: number;
+		url: string;
+		images: JikanImages;
+		name: string;
+	};
 	role: string;
 }
