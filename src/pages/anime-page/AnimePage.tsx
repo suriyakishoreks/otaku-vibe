@@ -20,7 +20,6 @@ function AnimePage() {
                             imageAlt: data.data.mal_id.toString(),
                             imageSrc: data.data.images.webp?.large_image_url ?? data.data.images.jpg.large_image_url ?? data.data.images.jpg.image_url,
                             title: data.data.titles.find((title) => title.type === 'Default')?.title ?? data.data.title,
-                            // TODO: add jap title
                             titleEnglish: data.data.titles.find((title) => title.type === 'English')?.title ?? data.data.title_english,
                             contentType: data.data.type,
                             mediaStats: {

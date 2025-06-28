@@ -17,7 +17,7 @@ import { updateIsDrawerOpen, updateIsHeaderNavHidden } from "../../../store/slic
 
 function HeaderNav() {
     const location = useLocation();
-    // TODO: refactor
+
     return <nav className={styles.header__nav}>
         <Link to='/' >
             <Pill icon={HomeIcon} text={Vernac.getVernac('HOME')} active={location.pathname === '/'} />

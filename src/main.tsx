@@ -25,21 +25,12 @@ createRoot(document.getElementById('root')!).render(
   </StrictMode>,
 );
 
-// TODO: relative units for font, spacing
-
-// TODO: SPA, opti
-
-// TODO: Logging Service - tracking, errors, performance
-
-// TODO: SEO
 
 // TODO: Ad integration
 
 // TODO: check opera mobile favicon issue
 
 // TODO: CSS class name refactoring
-
-// TODO: scroll pos retention
 
 
 

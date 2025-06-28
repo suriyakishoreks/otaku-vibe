@@ -16,7 +16,7 @@ function MangaLandingPage() {
                 options={{ type: 'Manga' }}
                 adapter={(data) => data.data.map((manga) => ({
                     key: manga.mal_id.toString(),
-                    title: manga.title,
+                    title: manga.titles.find((title) => title.type === 'Default')?.title ?? manga.title,
                     imageUrl: manga.images.jpg.image_url,
                     navigateTo: `/manga/${manga.mal_id}`,
                     alt: manga.title,
@@ -33,7 +33,7 @@ function MangaLandingPage() {
                 options={{ type: 'Manhwa' }}
                 adapter={(data) => data.data.map((manga) => ({
                     key: manga.mal_id.toString(),
-                    title: manga.title,
+                    title: manga.titles.find((title) => title.type === 'Default')?.title ?? manga.title,
                     imageUrl: manga.images.jpg.image_url,
                     navigateTo: `/manga/${manga.mal_id}`,
                     alt: manga.title,
@@ -48,7 +48,7 @@ function MangaLandingPage() {
                     options={{ type: 'Manhua' }}
                     adapter={(data) => data.data.map((manga) => ({
                         key: manga.mal_id.toString(),
-                        title: manga.title,
+                        title: manga.titles.find((title) => title.type === 'Default')?.title ?? manga.title,
                         imageUrl: manga.images.jpg.image_url,
                         navigateTo: `/manga/${manga.mal_id}`,
                         alt: manga.title,
@@ -57,22 +57,8 @@ function MangaLandingPage() {
                     }))}
                 />
             </LazyMount>
-            {/* <LazyMount estimatedHeight={300}>
-                <HorizontalCarousel
-                    useQueryHook={useGetAnimeSeasonsUpcomingQuery}
-                    options={{}}
-                    adapter={(data) => data?.data.map((anime) => ({
-                        title: anime.title,
-                        imageUrl: anime.images.jpg.image_url,
-                        navigateTo: `/anime/${anime.mal_id}`,
-                        alt: anime.title,
-                    })) ?? []}
-                />
-            </LazyMount> */}
         </div>
     );
-
-    // TODO: Manga reco
 }
 
 export default MangaLandingPage;

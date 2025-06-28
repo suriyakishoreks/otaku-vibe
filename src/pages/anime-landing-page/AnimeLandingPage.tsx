@@ -5,7 +5,6 @@ import Vernac from "../../services/vernac";
 import { filterDuplicates, formatThresholdNumber } from "../../shared/util";
 
 function AnimeLandingPage() {
-    // TODO: Add duplicate filter in adapter
     return (
         <div>
             <HorizontalCarousel
@@ -16,7 +15,7 @@ function AnimeLandingPage() {
                 options={{}}
                 adapter={(data) => filterDuplicates(data.data.map((anime) => ({
                     key: anime.mal_id.toString(),
-                    title: anime.title,
+                    title: anime.titles.find((title) => title.type === 'Default')?.title ?? anime.title,
                     imageUrl: anime.images.jpg.image_url,
                     navigateTo: `/anime/${anime.mal_id}`,
                     alt: anime.title,
@@ -33,7 +32,7 @@ function AnimeLandingPage() {
                 options={{}}
                 adapter={(data) => filterDuplicates(data.data.map((anime) => ({
                     key: anime.mal_id.toString(),
-                    title: anime.title,
+                    title: anime.titles.find((title) => title.type === 'Default')?.title ?? anime.title,
                     imageUrl: anime.images.jpg.image_url,
                     navigateTo: `/anime/${anime.mal_id}`,
                     alt: anime.title,
@@ -48,7 +47,7 @@ function AnimeLandingPage() {
                     options={{ limit: 15, order_by: 'score', sort: 'desc' }}
                     adapter={(data) => filterDuplicates(data.data.map((anime) => ({
                         key: anime.mal_id.toString(),
-                        title: anime.title,
+                        title: anime.titles.find((title) => title.type === 'Default')?.title ?? anime.title,
                         imageUrl: anime.images.jpg.image_url,
                         navigateTo: `/anime/${anime.mal_id}`,
                         alt: anime.title,
@@ -57,22 +56,8 @@ function AnimeLandingPage() {
                     })), 'key')}
                 />
             </LazyMount>
-            {/* <LazyMount estimatedHeight={300}>
-                <HorizontalCarousel
-                    heading={Vernac.getVernac('ALP_RECOMMENDATION_TITLE')}
-                    useQueryHook={useGetAnimeSeasonsUpcomingQuery}
-                    options={{}}
-                    adapter={(data) => data?.data.map((anime) => ({
-                        title: anime.title,
-                        imageUrl: anime.images.jpg.image_url,
-                        navigateTo: `/anime/${anime.mal_id}`,
-                        alt: anime.title,
-                    })) ?? []}
-                />
-            </LazyMount> */}
         </div>
     );
-    // TODO: Add recommendation and Add weekly schedule here
 }
 
 export default AnimeLandingPage;

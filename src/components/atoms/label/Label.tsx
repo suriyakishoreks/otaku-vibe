@@ -3,7 +3,6 @@ import type { LabelRestrictedInlineStyle } from './Label.model';
 import type { Font } from '../../../shared/design-system/model';
 import classNames from 'classnames';
 
-// TODO: Restrict the as prop type even further to valid label elements
 type LabelProps<T extends React.ElementType = 'span'> = {
     as?: T;
     children: React.ReactNode;

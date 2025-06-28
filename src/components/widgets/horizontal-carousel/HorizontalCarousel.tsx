@@ -12,7 +12,6 @@ import { MediaDetailCard } from "../../atoms/media-detail-card";
 import { MediaDetailCardLoading } from "../../atoms/media-detail-card/MediaDetailCard";
 import { ImageCardLoading } from "../../atoms/image-card/ImageCard";
 
-//TODO: move to type file
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type UseQuery = TypedUseQuery<any, any, any>;
 
