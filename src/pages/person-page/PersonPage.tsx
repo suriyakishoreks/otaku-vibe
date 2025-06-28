@@ -10,6 +10,7 @@ function PersonPage() {
         <div>
             <MediaContent
                 useQueryHook={useGetPersonByIdQuery}
+                contentType="person"
                 options={{ id: Number(id) }}
                 adapter={(data) => {
                     return (

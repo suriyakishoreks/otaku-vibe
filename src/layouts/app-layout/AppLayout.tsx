@@ -38,7 +38,10 @@ function AppLayout() {
             <div>
                 <Header />
                 <main className={styles['app-layout__content']}>
-                    <AnimatePresence mode="wait">
+                    <AnimatePresence mode="wait" onExitComplete={() => {
+                        // TODO: proper scroll restoration impl
+                        window.scrollTo(0, 0);
+                    }}>
                         <motion.div
                             key={location.pathname} // Use location.pathname or location.key
                             variants={pageVariants}

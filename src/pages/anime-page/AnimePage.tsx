@@ -12,6 +12,7 @@ function AnimePage() {
         <div>
             <MediaContent
                 useQueryHook={useGetAnimeByIdQuery}
+                contentType="anime"
                 options={{ id: Number(id) }}
                 adapter={(data) => {
                     return (

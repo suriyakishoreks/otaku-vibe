@@ -57,7 +57,7 @@ export interface MediaContentData {
 type ContentType = 'anime' | 'manga' | 'person' | 'character';
 
 interface MediaContentProps<TQueryHook extends UseQuery, TContentType extends ContentType> {
-    cardType?: TContentType;
+    contentType: TContentType;
     useQueryHook: TQueryHook;
     options: ExtractArgTypeFromHook<TQueryHook>;
     adapter: (
@@ -67,6 +67,7 @@ interface MediaContentProps<TQueryHook extends UseQuery, TContentType extends Co
 
 function MediaContent<TQueryHook extends UseQuery, TContentType extends ContentType = 'anime'>({
     useQueryHook,
+    contentType,
     options,
     adapter
 }: MediaContentProps<TQueryHook, TContentType>) {
@@ -76,7 +77,7 @@ function MediaContent<TQueryHook extends UseQuery, TContentType extends ContentT
     const data = queryData ? adapter(queryData) : undefined;
 
     if (!data) {
-        return <MediaContentLoading />;
+        return <MediaContentLoading contentType={contentType} />;
     }
 
     return (
@@ -122,7 +123,7 @@ function MediaContent<TQueryHook extends UseQuery, TContentType extends ContentT
     );
 }
 
-export function MediaContentLoading() {
+export function MediaContentLoading({ contentType }: { contentType: ContentType; }) {
     return (
         <article className={styles['media-content']} >
             <div className={styles['media-content__primary-content']}>
@@ -135,7 +136,7 @@ export function MediaContentLoading() {
                 <div className={classNames(styles['title'], styles['loading__title'])} />
                 <div className={styles.loading__summary} />
                 <div className={styles['loading__text-group']} />
-                <div className={classNames(styles.youtube, styles['loading__youtube'])} />
+                {contentType === 'anime' && <div className={classNames(styles.youtube, styles['loading__youtube'])} />}
                 <div className={styles['loading__content-group']} />
             </div>
         </article>

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useAppSelector } from '../../../store';
+import { useAppSelector } from '../../store';
 
 function ThemeUpdater() {
     const currentTheme = useAppSelector((state) => state.persistedAppContext.theme);

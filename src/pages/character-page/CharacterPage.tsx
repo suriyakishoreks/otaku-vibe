@@ -10,6 +10,7 @@ function CharacterPage() {
         <div>
             <MediaContent
                 useQueryHook={useGetCharacterByIdQuery}
+                contentType="character"
                 options={{ id: Number(id) }}
                 adapter={(data) => {
                     return (

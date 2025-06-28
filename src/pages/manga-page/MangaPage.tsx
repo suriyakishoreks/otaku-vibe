@@ -10,6 +10,7 @@ function MangaPage() {
         <div>
             <MediaContent
                 useQueryHook={useGetMangaByIdQuery}
+                contentType="manga"
                 options={{ id: Number(id) }}
                 adapter={(data) => {
                     return (
