@@ -121,9 +121,9 @@ function MediaContent<TQueryHook extends UseQuery, TContentType extends ContentT
                     allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerPolicy="strict-origin-when-cross-origin" allowFullScreen>
                 </iframe>}
-                <ContentGroup data={data.primaryContentGroup} type='primary' />
-                <ContentGroup data={data.secondaryContentGroup} type='secondary' />
-                <ContentGroup data={data.tertiaryContentGroup} type='tertiary' />
+                <ContentGroup data={data.primaryContentGroup} />
+                <ContentGroup data={data.secondaryContentGroup} />
+                <ContentGroup data={data.tertiaryContentGroup} />
             </div>
         </article>
     );
@@ -146,35 +146,37 @@ function StringGroup({ data, type }: { data?: StringGroupData, type: 'info' | 'p
     );
 }
 
-function ContentGroup({ data, type }: { data?: ContentGroupData, type: 'tertiary' | 'primary' | 'secondary'; }) {
+function ContentGroup({ data }: { data?: ContentGroupData; }) {
     return (
         !!data && data.group.length > 0 && <div className={styles['content-group']}>
             <Label as='h4' font='typo-primary-l-semibold'>{data.title}</Label>
-            <div className={styles['content-group__group']}>
-                {data.group.map((data) => {
+            <div className={styles['content-group__scroll']}>
+                <div className={styles['content-group__group']}>
+                    {data.group.map((data) => {
 
-                    const itemClass = classNames(styles['content-group__item'], styles[`content-group__item--${type}`], { [styles['content-group__item--clickable']]: data.link });
+                        const itemClass = classNames(styles['content-group__item'], { [styles['content-group__item--clickable']]: data.link, [styles['content-group__item--with-image']]: data.imgSrc });
 
-                    const content = (
-                        <>
-                            {!!data.imgSrc && <Image src={data.imgSrc} className={styles['content-group__image']} />}
-                            <div className={styles['content-group__text']}>
-                                <Label as='p' font='typo-primary-m-medium' className={styles['content-group__title']} >{data.title}</Label>
-                                <Label as='p' font='typo-primary-m-medium' className={styles['content-group__desc']} >{data.desc}</Label>
+                        const content = (
+                            <>
+                                {!!data.imgSrc && <Image src={data.imgSrc} className={styles['content-group__image']} />}
+                                <div className={styles['content-group__text']}>
+                                    <Label as='p' font='typo-primary-m-medium' className={styles['content-group__title']} >{data.title}</Label>
+                                    <Label as='p' font='typo-primary-m-medium' className={styles['content-group__desc']} >{data.desc}</Label>
+                                </div>
+                            </>
+                        );
+
+                        if (data.link) {
+                            return <Link className={itemClass} key={data.link} to={data.link} target={data.external ? "_blank" : undefined} rel={data.external ? "noopener noreferrer" : undefined} >{content}</Link>;
+                        }
+
+                        return (
+                            <div key={data.title} className={itemClass}>
+                                {content}
                             </div>
-                        </>
-                    );
-
-                    if (data.link) {
-                        return <Link className={itemClass} key={data.link} to={data.link} target={data.external ? "_blank" : undefined} rel={data.external ? "noopener noreferrer" : undefined} >{content}</Link>;
-                    }
-
-                    return (
-                        <div key={data.title} className={itemClass}>
-                            {content}
-                        </div>
-                    );
-                })}
+                        );
+                    })}
+                </div>
             </div>
         </div>
     );

@@ -119,9 +119,11 @@
     display: flex;
     flex-direction: column;
     padding: 0 var(--s-spacing-app-horizontal);
+    width: 100%;
 
     @include screen-sm {
       padding: 0;
+      min-width: 0;
     }
   }
 
@@ -215,55 +217,56 @@
 
   &__group {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-rows: auto auto;
+    grid-auto-columns: max-content;
+    grid-auto-flow: column;
     margin-top: var(--s-spacing-3);
     gap: var(--s-spacing-5);
-    // max-height: 240px;
-    // overflow-y: scroll;
-    // // TODO: SHOW MORE + ANIMATE
-    // @include screen-md {
-    //   max-height: auto;
-    //   overflow-y: auto;
-    // }
   }
 
   &__title {
-    @include number-of-lines(1);
+    @include number-of-lines(2);
   }
 
   &__desc {
     @include number-of-lines(1);
 
+    padding-top: var(--s-spacing-2);
     color: var(--s-color-fg-secondary);
   }
 
   &__image {
-    height: 50px;
-    aspect-ratio: 1/1;
+    height: 100px;
+    aspect-ratio: 3/4;
     overflow: hidden;
+    flex-shrink: 0;
   }
 
   &__text {
     padding: var(--s-spacing-3) var(--s-spacing-4);
   }
 
+  &__scroll {
+    overflow-x: scroll;
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+
+    /* --- For Internet Explorer and Edge (older versions) --- */
+    -ms-overflow-style: none; /* Hide scrollbar in IE and old Edge */
+
+    /* --- For Webkit browsers (Chrome, Safari, new Edge, Opera) --- */
+    &::-webkit-scrollbar {
+      display: none; /* Hide scrollbar in Webkit browsers */
+      width: 0; /* Optional: explicitly set width to 0 for a cleaner hide */
+      height: 0; /* Optional: for horizontal scrollbar */
+    }
+  }
+
   &__item {
     display: flex;
     border-radius: 8px;
-    max-width: 440px;
-    height: 50px;
-
-    &--primary {
-      background-color: var(--s-color-bg-secondary);
-    }
-
-    &--secondary {
-      background-color: var(--s-color-bg-secondary);
-    }
-
-    &--tertiary {
-      background-color: var(--s-color-bg-secondary);
-    }
+    width: 250px;
+    overflow: hidden;
+    background-color: var(--s-color-bg-secondary);
 
     &--clickable {
       transition: scale 0.2s ease;
