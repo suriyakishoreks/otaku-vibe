@@ -19,13 +19,13 @@ function HeaderNav() {
     const location = useLocation();
 
     return <nav className={styles.header__nav}>
-        <Link to='/' >
+        <Link to={{ pathname: '/', search: '' }} >
             <Pill icon={HomeIcon} text={Vernac.getVernac('HOME')} active={location.pathname === '/'} />
         </Link>
-        <Link to='/anime'>
+        <Link to={{ pathname: '/anime', search: '' }}>
             <Pill icon={AnimeIcon} text={Vernac.getVernac('ANIME')} active={location.pathname === '/anime'} />
         </Link>
-        <Link to='/manga'>
+        <Link to={{ pathname: '/manga', search: '' }}>
             <Pill icon={MangaIcon} text={Vernac.getVernac('MANGA')} active={location.pathname === '/manga'} />
         </Link>
     </nav>;
@@ -67,7 +67,7 @@ function Header() {
     return (
         <header className={styles.header} ref={headerRef}>
             <div className={classNames({ [styles.header__lhs]: true, 'no-text-select': true })} >
-                <Link to='/' >
+                <Link to={{ pathname: '/', search: '' }} >
                     <Logo />
                 </Link>
                 {!isOverflowing && <HeaderNav />}
@@ -76,7 +76,7 @@ function Header() {
                 <Link to='https://github.com/suriyakishoreks/anime-list-app' target="_blank" rel="noopener noreferrer" >
                     <GithubIcon size={22} color='s-color-fg-primary' className={styles.header__actions} />
                 </Link>
-                <Link to='/search' >
+                <Link to={{ pathname: '/search', search: '' }} >
                     <SearchIcon size={22} color='s-color-fg-primary' className={styles.header__actions} />
                 </Link>
                 <button onClick={onDrawerClick}>

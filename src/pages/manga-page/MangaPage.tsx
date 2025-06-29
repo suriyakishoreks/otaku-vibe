@@ -47,11 +47,11 @@ function MangaPage() {
                             } : undefined,
                             tertiaryStringGroup: data.data.authors ? {
                                 title: 'Authors',
-                                group: data.data.authors.map((data) => { return { text: data.name, link: `/${data.type}/${data.mal_id}` }; })
+                                group: data.data.authors.map((data) => { return { text: data.name, link: `/${data.type}/${data.mal_id}?` }; })
                             } : undefined,
                             primaryContentGroup: data.data.relations ? {
                                 title: 'Related',
-                                group: data.data.relations.flatMap((relation) => relation.entry.map((entry) => { return { title: entry.name, desc: `${relation.relation} (${entry.type})`, link: `/${entry.type}/${entry.mal_id}` }; }))
+                                group: data.data.relations.flatMap((relation) => relation.entry.map((entry) => { return { title: entry.name, desc: `${relation.relation} (${entry.type})`, link: `/${entry.type}/${entry.mal_id}?` }; }))
                             } : undefined,
                         }
                     );

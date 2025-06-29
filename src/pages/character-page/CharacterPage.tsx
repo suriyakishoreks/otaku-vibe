@@ -30,15 +30,15 @@ function CharacterPage() {
                             },
                             primaryContentGroup: data.data.anime ? {
                                 title: 'Anime',
-                                group: data.data.anime.map((entry) => { return { title: entry.anime.title, desc: entry.role, link: `/anime/${entry.anime.mal_id}`, imgSrc: entry.anime.images.webp?.image_url ?? entry.anime.images.jpg.image_url }; })
+                                group: data.data.anime.map((entry) => { return { title: entry.anime.title, desc: entry.role, link: `/anime/${entry.anime.mal_id}?`, imgSrc: entry.anime.images.webp?.image_url ?? entry.anime.images.jpg.image_url }; })
                             } : undefined,
                             secondaryContentGroup: data.data.manga ? {
                                 title: 'Manga',
-                                group: data.data.manga.map((entry) => { return { title: entry.manga.title, desc: entry.role, link: `/manga/${entry.manga.mal_id}`, imgSrc: entry.manga.images.webp?.image_url ?? entry.manga.images.jpg.image_url }; })
+                                group: data.data.manga.map((entry) => { return { title: entry.manga.title, desc: entry.role, link: `/manga/${entry.manga.mal_id}?`, imgSrc: entry.manga.images.webp?.image_url ?? entry.manga.images.jpg.image_url }; })
                             } : undefined,
                             tertiaryContentGroup: data.data.voices ? {
                                 title: 'People',
-                                group: data.data.voices.map((entry) => { return { title: entry.person.name, desc: entry.language, link: `/people/${entry.person.mal_id}`, imgSrc: entry.person.images.webp?.image_url ?? entry.person.images.jpg.image_url }; })
+                                group: data.data.voices.map((entry) => { return { title: entry.person.name, desc: entry.language, link: `/people/${entry.person.mal_id}?`, imgSrc: entry.person.images.webp?.image_url ?? entry.person.images.jpg.image_url }; })
                             } : undefined,
                         }
                     );

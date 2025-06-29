@@ -18,7 +18,7 @@ function MangaLandingPage() {
                     key: manga.mal_id.toString(),
                     title: manga.titles.find((title) => title.type === 'Default')?.title ?? manga.title,
                     imageUrl: manga.images.jpg.image_url,
-                    navigateTo: `/manga/${manga.mal_id}`,
+                    navigateTo: `/manga/${manga.mal_id}?`,
                     alt: manga.title,
                     ratings: manga.score?.toString(),
                     favorites: formatThresholdNumber(manga.favorites),
@@ -35,7 +35,7 @@ function MangaLandingPage() {
                     key: manga.mal_id.toString(),
                     title: manga.titles.find((title) => title.type === 'Default')?.title ?? manga.title,
                     imageUrl: manga.images.jpg.image_url,
-                    navigateTo: `/manga/${manga.mal_id}`,
+                    navigateTo: `/manga/${manga.mal_id}?`,
                     alt: manga.title,
                     ratings: manga.score?.toString(),
                     favorites: formatThresholdNumber(manga.favorites)
@@ -50,7 +50,7 @@ function MangaLandingPage() {
                         key: manga.mal_id.toString(),
                         title: manga.titles.find((title) => title.type === 'Default')?.title ?? manga.title,
                         imageUrl: manga.images.jpg.image_url,
-                        navigateTo: `/manga/${manga.mal_id}`,
+                        navigateTo: `/manga/${manga.mal_id}?`,
                         alt: manga.title,
                         ratings: manga.score?.toString(),
                         favorites: formatThresholdNumber(manga.favorites)

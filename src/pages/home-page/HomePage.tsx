@@ -17,7 +17,7 @@ function HomePage() {
                     key: anime.mal_id.toString(),
                     title: anime.titles.find((title) => title.type === 'Default')?.title ?? anime.title,
                     imageUrl: anime.images.webp?.image_url ?? anime.images.jpg.image_url,
-                    navigateTo: `/anime/${anime.mal_id}`,
+                    navigateTo: `/anime/${anime.mal_id}?`,
                     alt: anime.title,
                     ratings: anime.score?.toString(),
                     favorites: formatThresholdNumber(anime.favorites),
@@ -34,7 +34,7 @@ function HomePage() {
                     key: manga.mal_id.toString(),
                     title: manga.titles.find((title) => title.type === 'Default')?.title ?? manga.title,
                     imageUrl: manga.images.webp?.image_url ?? manga.images.jpg.image_url,
-                    navigateTo: `/manga/${manga.mal_id}`,
+                    navigateTo: `/manga/${manga.mal_id}?`,
                     alt: manga.title,
                     ratings: manga.score?.toString(),
                     favorites: formatThresholdNumber(manga.favorites)
@@ -49,7 +49,7 @@ function HomePage() {
                         key: character.mal_id.toString(),
                         title: character.name,
                         imageUrl: character.images.webp?.image_url ?? character.images.jpg.image_url,
-                        navigateTo: `/character/${character.mal_id}`,
+                        navigateTo: `/character/${character.mal_id}?`,
                         alt: character.name,
                         favorites: formatThresholdNumber(character.favorites)
                     }))}
@@ -64,7 +64,7 @@ function HomePage() {
                         key: person.mal_id.toString(),
                         title: person.name,
                         imageUrl: person.images.webp?.image_url ?? person.images.jpg.image_url,
-                        navigateTo: `/people/${person.mal_id}`,
+                        navigateTo: `/people/${person.mal_id}?`,
                         alt: person.name,
                         favorites: formatThresholdNumber(person.favorites)
                     }))}

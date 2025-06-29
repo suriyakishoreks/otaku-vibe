@@ -36,7 +36,7 @@ function ImageCard({ src, alt, navigateTo, title, ratings, favorites }: ImageCar
     );
 
     return navigateTo ? (
-        <Link to={navigateTo}>{content}</Link>
+        <Link to={navigateTo} >{content}</Link>
     ) : (
         content
     );

@@ -65,13 +65,13 @@ function Drawer() {
                             {isHeaderNavHidden && <div className={styles['drawer__menu-group']}>
                                 <Label className={styles['drawer__menu-heading']} font='typo-primary-l-medium'>Explore</Label>
                                 <nav className={styles.drawer__nav}>
-                                    <Link onClick={handleDrawerClose} to='/' >
+                                    <Link onClick={handleDrawerClose} to={{ pathname: '/', search: '' }} >
                                         <Pill icon={HomeIcon} text={Vernac.getVernac('HOME')} active={location.pathname === '/'} />
                                     </Link>
-                                    <Link onClick={handleDrawerClose} to='/anime'>
+                                    <Link onClick={handleDrawerClose} to={{ pathname: '/anime', search: '' }}>
                                         <Pill icon={AnimeIcon} text={Vernac.getVernac('ANIME')} active={location.pathname === '/anime'} />
                                     </Link>
-                                    <Link onClick={handleDrawerClose} to='/manga'>
+                                    <Link onClick={handleDrawerClose} to={{ pathname: '/manga', search: '' }}>
                                         <Pill icon={MangaIcon} text={Vernac.getVernac('MANGA')} active={location.pathname === '/manga'} />
                                     </Link>
                                 </nav>
