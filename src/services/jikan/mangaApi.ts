@@ -38,14 +38,10 @@ export const mangaApi = jikanApi.injectEndpoints({
         }),
 
         getMangaSearch: builder.query<JikanResponse<Manga[]>, MangaSearchParams>({
-            query: ({ limit, order_by, sort }) => {
+            query: (data) => {
                 return {
                     url: MangaEndpoints.mangaSearch,
-                    params: {
-                        limit,
-                        order_by,
-                        sort
-                    },
+                    params: data,
                 };
             }
         }),

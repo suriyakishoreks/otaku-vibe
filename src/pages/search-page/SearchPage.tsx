@@ -1,215 +1,142 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router';
-import { useGetSearchQuery, type SearchCategory } from '../../services/jikan/searchApi';
-import { useGetGenresQuery } from '../../services/jikan/genreApi';
-import ImageCard from '../../components/atoms/image-card/ImageCard';
 import styles from './SearchPage.module.scss';
-import type { Anime } from '../../services/jikan/models/anime/anime.model';
-import type { Manga } from '../../services/jikan/models/manga/manga.model';
-import type { Person } from '../../services/jikan/models/person/person.model';
-import type { Character } from '../../services/jikan/models/character/character.model';
+import { useGetAnimeSearchQuery, useGetCharacterSearchQuery, useGetMangaSearchQuery, useGetPeopleSearchQuery } from '../../services/jikan';
+import { SearchOptions, type SearchOption } from '../../components/widgets/search-options';
+import { animeGenres, animeOrder, animeRating, animeStatus, animeType, characterOrder, mangaGenres, mangaOrder, mangaStatus, mangaType, peopleOrder, sortOption } from '../../services/jikan/constants';
+import { SearchResult } from '../../components/widgets/search-result';
+import { formatThresholdNumber } from '../../shared/util';
 
-type SearchResultItem = Anime | Manga | Person | Character;
+type SearchCategory = 'anime' | 'manga' | 'people' | 'characters';
+
+function getSearchOptions(category: SearchCategory): SearchOption[] {
+    switch (category) {
+        case 'anime':
+            return [
+                { queryKey: 'type', options: animeType },
+                { queryKey: 'rating', options: animeRating },
+                { queryKey: 'status', options: animeStatus },
+                { queryKey: 'genres', options: animeGenres },
+                { queryKey: 'order_by', options: animeOrder },
+                { queryKey: 'sort', options: sortOption }
+            ];
+        case 'manga':
+            return [
+                { queryKey: 'type', options: mangaType },
+                { queryKey: 'status', options: mangaStatus },
+                { queryKey: 'genres', options: mangaGenres },
+                { queryKey: 'order_by', options: mangaOrder },
+                { queryKey: 'sort', options: sortOption }
+            ];
+        case 'characters':
+            return [
+                { queryKey: 'order_by', options: characterOrder },
+                { queryKey: 'sort', options: sortOption }
+            ];
+        case 'people':
+            return [
+                { queryKey: 'order_by', options: peopleOrder },
+                { queryKey: 'sort', options: sortOption }
+            ];
+        default:
+            return [];
+    }
+}
+
+function getSearchResults(category: SearchCategory) {
+    switch (category) {
+        case 'anime':
+            return (
+                <SearchResult
+                    useQueryHook={useGetAnimeSearchQuery}
+                    options={{}}
+                    adapter={(data) => data.data.map((anime) => ({
+                        key: anime.mal_id.toString(),
+                        title: anime.titles.find((title) => title.type === 'Default')?.title ?? anime.title,
+                        imageUrl: anime.images.jpg.image_url,
+                        navigateTo: `/anime/${anime.mal_id}?`,
+                        alt: anime.title,
+                        ratings: anime.score?.toString(),
+                        favorites: formatThresholdNumber(anime.favorites)
+                    }))}
+                />
+            );
+        case 'manga':
+            return (
+                <SearchResult
+                    useQueryHook={useGetMangaSearchQuery}
+                    options={{}}
+                    adapter={(data) => data.data.map((manga) => ({
+                        key: manga.mal_id.toString(),
+                        title: manga.titles.find((title) => title.type === 'Default')?.title ?? manga.title,
+                        imageUrl: manga.images.jpg.image_url,
+                        navigateTo: `/manga/${manga.mal_id}?`,
+                        alt: manga.title,
+                        ratings: manga.score?.toString(),
+                        favorites: formatThresholdNumber(manga.favorites)
+                    }))}
+                />
+            );
+        case 'characters':
+            return (
+                <SearchResult
+                    useQueryHook={useGetCharacterSearchQuery}
+                    options={{}}
+                    adapter={(data) => data.data.map((character) => ({
+                        key: character.mal_id.toString(),
+                        title: character.name,
+                        imageUrl: character.images.webp?.image_url ?? character.images.jpg.image_url,
+                        navigateTo: `/character/${character.mal_id}?`,
+                        alt: character.name,
+                        favorites: formatThresholdNumber(character.favorites)
+                    }))}
+                />
+            );
+        case 'people':
+            return (
+                <SearchResult
+                    useQueryHook={useGetPeopleSearchQuery}
+                    options={{}}
+                    adapter={(data) => data.data.map((person) => ({
+                        key: person.mal_id.toString(),
+                        title: person.name,
+                        imageUrl: person.images.webp?.image_url ?? person.images.jpg.image_url,
+                        navigateTo: `/people/${person.mal_id}?`,
+                        alt: person.name,
+                        favorites: formatThresholdNumber(person.favorites)
+                    }))}
+                />
+            );
+        default:
+            return null;
+    }
+}
+
 
 function SearchPage() {
     const [searchParams, setSearchParams] = useSearchParams();
-    const [category, setCategory] = useState<SearchCategory>((searchParams.get('category') as SearchCategory) || 'anime');
-    const [page, setPage] = useState(Number(searchParams.get('page')) || 1);
-    const [query, setQuery] = useState(searchParams.get('q') || '');
-    const [type, setType] = useState(searchParams.get('type') || '');
-    const [status, setStatus] = useState(searchParams.get('status') || '');
-    const [rating, setRating] = useState(searchParams.get('rating') || '');
-    const [orderBy, setOrderBy] = useState(searchParams.get('order_by') || 'mal_id');
-    const [sort, setSort] = useState(searchParams.get('sort') || 'asc');
-    const [genres, setGenres] = useState<number[]>(searchParams.getAll('genres').map(Number));
-    const [genresExclude, setGenresExclude] = useState<number[]>(searchParams.getAll('genres_exclude').map(Number));
 
-    const { data: genresData } = useGetGenresQuery({ category: category === 'manga' ? 'manga' : 'anime' });
-
-    const { data, isLoading, isError } = useGetSearchQuery({
-        category,
-        params: { q: query, page, type, status, rating, order_by: orderBy, sort, genres: genres.join(','), genres_exclude: genresExclude.join(',') },
-    });
+    const [category, setCategory] = useState<SearchCategory>((searchParams.get('category') as SearchCategory) ?? 'anime');
 
     useEffect(() => {
-        setSearchParams({ category, q: query, page: page.toString(), type, status, rating, order_by: orderBy, sort, genres: genres.map(String), genres_exclude: genresExclude.map(String) });
-    }, [category, query, page, type, status, rating, orderBy, sort, genres, genresExclude, setSearchParams]);
+        setSearchParams(prevSearchParams => {
+            const newSearchParams = new URLSearchParams(prevSearchParams);
+            newSearchParams.set('category', category);
+            return newSearchParams;
+        }, { replace: true });
 
-    const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-        setCategory(e.target.value as SearchCategory);
-        setPage(1);
-    };
-
-    const handleQueryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setQuery(e.target.value);
-    };
-
-    const handleSearch = () => {
-        setPage(1);
-        // Trigger re-fetch by updating searchParams
-        setSearchParams({ category, q: query, page: '1', type, status, rating, order_by: orderBy, sort, genres: genres.map(String), genres_exclude: genresExclude.map(String) });
-    };
-
-    const handlePageChange = (newPage: number) => {
-        setPage(newPage);
-    };
-
-    const renderFilters = () => {
-        if (category === 'anime') {
-            return (
-                <>
-                    <select value={type} onChange={(e) => setType(e.target.value)}>
-                        <option value="">All Types</option>
-                        <option value="tv">TV</option>
-                        <option value="movie">Movie</option>
-                        <option value="ova">OVA</option>
-                        <option value="special">Special</option>
-                        <option value="ona">ONA</option>
-                        <option value="music">Music</option>
-                    </select>
-                    <select value={status} onChange={(e) => setStatus(e.target.value)}>
-                        <option value="">All Statuses</option>
-                        <option value="airing">Airing</option>
-                        <option value="complete">Complete</option>
-                        <option value="upcoming">Upcoming</option>
-                    </select>
-                    <select value={rating} onChange={(e) => setRating(e.target.value)}>
-                        <option value="">All Ratings</option>
-                        <option value="g">G - All Ages</option>
-                        <option value="pg">PG - Children</option>
-                        <option value="pg13">PG-13 - Teens 13 or older</option>
-                        <option value="r17">R - 17+ (violence & profanity)</option>
-                        <option value="r">R+ - Mild Nudity</option>
-                        <option value="rx">Rx - Hentai</option>
-                    </select>
-                    {/* React-select for genres */}
-                    <select
-                        multiple
-                        value={genres.map(String)}
-                        onChange={(e) => setGenres(Array.from(e.target.selectedOptions, option => Number(option.value)))}
-                    >
-                        {genresData?.data.map(g => (
-                            <option key={g.mal_id} value={g.mal_id}>{g.name}</option>
-                        ))}
-                    </select>
-                    <select
-                        multiple
-                        value={genresExclude.map(String)}
-                        onChange={(e) => setGenresExclude(Array.from(e.target.selectedOptions, option => Number(option.value)))}
-                    >
-                        {genresData?.data.map(g => (
-                            <option key={g.mal_id} value={g.mal_id}>{g.name}</option>
-                        ))}
-                    </select>
-                </>
-            );
-        } else if (category === 'manga') {
-            return (
-                <>
-                    <select value={type} onChange={(e) => setType(e.target.value)}>
-                        <option value="">All Types</option>
-                        <option value="manga">Manga</option>
-                        <option value="novel">Novel</option>
-                        <option value="lightnovel">Light Novel</option>
-                        <option value="oneshot">One-shot</option>
-                        <option value="doujin">Doujinshi</option>
-                        <option value="manhwa">Manhwa</option>
-                        <option value="manhua">Manhua</option>
-                    </select>
-                    <select value={status} onChange={(e) => setStatus(e.target.value)}>
-                        <option value="">All Statuses</option>
-                        <option value="publishing">Publishing</option>
-                        <option value="complete">Complete</option>
-                        <option value="hiatus">Hiatus</option>
-                        <option value="discontinued">Discontinued</option>
-                        <option value="upcoming">Upcoming</option>
-                    </select>
-                    {/* React-select for genres */}
-                    <select
-                        multiple
-                        value={genres.map(String)}
-                        onChange={(e) => setGenres(Array.from(e.target.selectedOptions, option => Number(option.value)))}
-                    >
-                        {genresData?.data.map(g => (
-                            <option key={g.mal_id} value={g.mal_id}>{g.name}</option>
-                        ))}
-                    </select>
-                    <select
-                        multiple
-                        value={genresExclude.map(String)}
-                        onChange={(e) => setGenresExclude(Array.from(e.target.selectedOptions, option => Number(option.value)))}
-                    >
-                        {genresData?.data.map(g => (
-                            <option key={g.mal_id} value={g.mal_id}>{g.name}</option>
-                        ))}
-                    </select>
-                </>
-            );
-        }
-        return null;
-    };
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [category]);
 
     return (
         <div className={styles.searchPage}>
-            <h1>Search</h1>
-            <div className={styles.filters}>
-                <input type="text" value={query} onChange={handleQueryChange} placeholder="Search..." />
-                <select value={category} onChange={handleCategoryChange}>
-                    <option value="anime">Anime</option>
-                    <option value="manga">Manga</option>
-                    <option value="people">People</option>
-                    <option value="characters">Characters</option>
-                </select>
-                {renderFilters()}
-                <select value={orderBy} onChange={(e) => setOrderBy(e.target.value)}>
-                    <option value="mal_id">ID</option>
-                    <option value="title">Title</option>
-                    <option value="score">Score</option>
-                    <option value="popularity">Popularity</option>
-                    <option value="favorites">Favorites</option>
-                </select>
-                <select value={sort} onChange={(e) => setSort(e.target.value)}>
-                    <option value="asc">Ascending</option>
-                    <option value="desc">Descending</option>
-                </select>
-                <button onClick={handleSearch}>Search</button>
-            </div>
+            <SearchOptions
+                options={getSearchOptions(category)}
+                searchQueryKey={'q'}
+            />
 
-            {isLoading && <div>Loading...</div>}
-            {isError && <div>Error fetching results.</div>}
+            {getSearchResults(category)}
 
-            {data && (
-                <>
-                    <div className={styles.results}>
-                        {data.data.map((item: SearchResultItem) => (
-                            <ImageCard
-                                key={item.mal_id}
-                                src={item.images.webp?.large_image_url || item.images.jpg.large_image_url}
-                                alt={'title' in item ? item.title : item.name}
-                                navigateTo={`/${category}/${item.mal_id}`}
-                                title={'title' in item ? item.title : item.name}
-                                ratings={'score' in item ? item.score : undefined}
-                                favorites={item.favorites}
-                            />
-                        ))}
-                    </div>
-                    <div className={styles.pagination}>
-                        <button
-                            onClick={() => handlePageChange(page - 1)}
-                            disabled={page === 1}
-                        >
-                            Previous
-                        </button>
-                        <span>Page {page} of {data.pagination.last_visible_page}</span>
-                        <button
-                            onClick={() => handlePageChange(page + 1)}
-                            disabled={!data.pagination.has_next_page}
-                        >
-                            Next
-                        </button>
-                    </div>
-                </>
-            )}
         </div>
     );
 }

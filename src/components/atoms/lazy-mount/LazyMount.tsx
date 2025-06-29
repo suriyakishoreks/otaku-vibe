@@ -31,7 +31,7 @@ const LazyMount = ({
     }, [isIntersecting, hasMounted]);
 
     return (
-        <div ref={wrapperRef} style={!hasMounted ? { height: estimatedHeight } : {}} className={wrapperClassName}>
+        <div ref={wrapperRef} style={!hasMounted ? { height: estimatedHeight } : undefined} className={wrapperClassName}>
             {hasMounted ? children : null}
         </div>
     );

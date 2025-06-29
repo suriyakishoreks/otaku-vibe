@@ -48,27 +48,19 @@ export const entityApi = jikanApi.injectEndpoints({
         }),
 
         getCharacterSearch: builder.query<JikanResponse<Character[]>, CharactersSearchParams>({
-            query: ({ limit, order_by, sort }) => {
+            query: (params) => {
                 return {
                     url: EntityEndpoints.characterSearch,
-                    params: {
-                        limit,
-                        order_by,
-                        sort
-                    },
+                    params
                 };
             }
         }),
 
         getPeopleSearch: builder.query<JikanResponse<JikanPerson[]>, PeopleSearchParams>({
-            query: ({ limit, order_by, sort }) => {
+            query: (params) => {
                 return {
                     url: EntityEndpoints.peopleSearch,
-                    params: {
-                        limit,
-                        order_by,
-                        sort
-                    },
+                    params
                 };
             }
         }),

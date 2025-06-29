@@ -1,6 +1,6 @@
 import { skipToken, type TypedUseQuery } from "@reduxjs/toolkit/query/react";
 import { SwipeCarousel, type SwipeCarouselType } from "../../atoms/swipe-carousel";
-import { ImageCard } from "../../atoms/image-card";
+import { ImageCard, ImageCardLoading } from "../../atoms/image-card";
 import { Label } from "../../atoms/label";
 import styles from "./HorizontalCarousel.module.scss";
 import React from "react";
@@ -8,9 +8,7 @@ import { type SwiperClass } from "swiper/react";
 import LeftChevron from "../../atoms/icons/LeftChevron";
 import RightChevron from "../../atoms/icons/RightChevron";
 import classNames from "classnames";
-import { MediaDetailCard } from "../../atoms/media-detail-card";
-import { MediaDetailCardLoading } from "../../atoms/media-detail-card/MediaDetailCard";
-import { ImageCardLoading } from "../../atoms/image-card/ImageCard";
+import { MediaDetailCard, MediaDetailCardLoading } from "../../atoms/media-detail-card";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type UseQuery = TypedUseQuery<any, any, any>;

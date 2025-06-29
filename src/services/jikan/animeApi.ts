@@ -63,14 +63,10 @@ export const animeApi = jikanApi.injectEndpoints({
         }),
 
         getAnimeSearch: builder.query<JikanResponse<Anime[]>, AnimeSearchParams>({
-            query: ({ limit, order_by, sort }) => {
+            query: (data) => {
                 return {
                     url: AnimeEndpoints.animeSearch,
-                    params: {
-                        limit,
-                        order_by,
-                        sort
-                    },
+                    params: data,
                 };
             }
         }),
@@ -86,6 +82,7 @@ export const animeApi = jikanApi.injectEndpoints({
             }
         }),
 
+        // TODO: remove
         getAnimeGenres: builder.query<JikanResponse<Genre[]>, void>({
             query: () => {
                 return {
