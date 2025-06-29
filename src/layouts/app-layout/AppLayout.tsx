@@ -1,4 +1,4 @@
-import { useLocation, useOutlet } from "react-router";
+import { ScrollRestoration, useLocation, useOutlet } from "react-router";
 import { Header } from "../../components/widgets/header";
 import styles from './AppLayout.module.scss';
 import { Footer } from "../../components/widgets/footer";
@@ -20,10 +20,8 @@ const pageVariants: Variants = {
     },
     out: {
         opacity: 0,
-        x: 20,
         transition: {
-            duration: 0.3,
-            ease: "easeIn",
+            duration: 0, ease: "easeIn"
         },
     },
 };
@@ -38,18 +36,15 @@ function AppLayout() {
             <div>
                 <Header />
                 <main className={styles['app-layout__content']}>
-                    <AnimatePresence mode="wait" onExitComplete={() => {
-                        // TODO: proper scroll restoration impl
-                        window.scrollTo(0, 0);
-                    }}>
+                    <AnimatePresence mode="popLayout">
                         <motion.div
-                            key={location.pathname} // Use location.pathname or location.key
+                            key={location.pathname}
                             variants={pageVariants}
                             initial="initial"
                             animate="in"
                             exit="out"
-                        // style={{ position: 'absolute', width: '100%' }} // Helps with overlapping for transitions
                         >
+                            <ScrollRestoration />
                             {outlet}
                         </motion.div>
                     </AnimatePresence>
