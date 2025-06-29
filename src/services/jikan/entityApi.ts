@@ -1,11 +1,13 @@
 import { jikanApi } from './baseApi';
-import type { Character, CharacterFull, JikanPerson, JikanPersonFull, JikanResponse } from './models';
+import type { Character, CharacterFull, CharactersSearchParams, JikanPerson, JikanPersonFull, JikanResponse, PeopleSearchParams } from './models';
 
 const EntityEndpoints = {
     topPeople: '/top/people',
     topCharacters: '/top/characters',
     characterFullById: 'characters/{id}/full',
-    personFullById: '/people/{id}/full'
+    personFullById: '/people/{id}/full',
+    characterSearch: '/characters',
+    peopleSearch: '/people'
 } as const;
 
 export const entityApi = jikanApi.injectEndpoints({
@@ -44,6 +46,32 @@ export const entityApi = jikanApi.injectEndpoints({
                 url: EntityEndpoints.personFullById.replace('{id}', String(id)),
             })
         }),
+
+        getCharacterSearch: builder.query<JikanResponse<Character[]>, CharactersSearchParams>({
+            query: ({ limit, order_by, sort }) => {
+                return {
+                    url: EntityEndpoints.characterSearch,
+                    params: {
+                        limit,
+                        order_by,
+                        sort
+                    },
+                };
+            }
+        }),
+
+        getPeopleSearch: builder.query<JikanResponse<JikanPerson[]>, PeopleSearchParams>({
+            query: ({ limit, order_by, sort }) => {
+                return {
+                    url: EntityEndpoints.peopleSearch,
+                    params: {
+                        limit,
+                        order_by,
+                        sort
+                    },
+                };
+            }
+        }),
     }),
 });
 
@@ -51,5 +79,7 @@ export const {
     useGetTopCharactersQuery,
     useGetTopPeopleQuery,
     useGetCharacterByIdQuery,
-    useGetPersonByIdQuery
+    useGetPersonByIdQuery,
+    useGetCharacterSearchQuery,
+    useGetPeopleSearchQuery
 } = entityApi;

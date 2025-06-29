@@ -36,7 +36,7 @@ function AppLayout() {
             <div>
                 <Header />
                 <main className={styles['app-layout__content']}>
-                    <AnimatePresence mode="popLayout">
+                    <AnimatePresence mode="sync">
                         <motion.div
                             key={location.pathname}
                             variants={pageVariants}

@@ -1,5 +1,5 @@
 import { jikanApi } from './baseApi';
-import type { JikanResponse, Anime, AnimeTopParams, SeasonNowParams, JikanSeasonsParams, AnimeSearchParams } from './models';
+import type { JikanResponse, Anime, AnimeTopParams, SeasonNowParams, JikanSeasonsParams, AnimeSearchParams, Genre } from './models';
 
 const AnimeEndpoints = {
     // animeEpisodes: '/anime/{id}/episodes',
@@ -16,6 +16,7 @@ const AnimeEndpoints = {
     animeStatistics: '/anime/{id}/statistics',
     animeReviews: '/anime/{id}/reviews',
     animeCharacters: '/anime/{id}/characters',
+    animeGenres: '/genres/anime'
 } as const;
 
 export const animeApi = jikanApi.injectEndpoints({
@@ -84,6 +85,14 @@ export const animeApi = jikanApi.injectEndpoints({
                 };
             }
         }),
+
+        getAnimeGenres: builder.query<JikanResponse<Genre[]>, void>({
+            query: () => {
+                return {
+                    url: AnimeEndpoints.animeGenres
+                };
+            }
+        })
     }),
 });
 
@@ -93,5 +102,6 @@ export const {
     useGetAnimeSeasonsNowQuery,
     useGetAnimeSeasonsUpcomingQuery,
     useGetAnimeSearchQuery,
-    useGetRecentAnimeRecommendationsQuery
+    useGetRecentAnimeRecommendationsQuery,
+    useGetAnimeGenresQuery
 } = animeApi;

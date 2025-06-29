@@ -76,7 +76,9 @@ function Header() {
                 <Link to='https://github.com/suriyakishoreks/anime-list-app' target="_blank" rel="noopener noreferrer" >
                     <GithubIcon size={22} color='s-color-fg-primary' className={styles.header__actions} />
                 </Link>
-                <SearchIcon size={22} color='s-color-fg-primary' className={styles.header__actions} />
+                <Link to='/search' >
+                    <SearchIcon size={22} color='s-color-fg-primary' className={styles.header__actions} />
+                </Link>
                 <button onClick={onDrawerClick}>
                     <DrawerIcon size={22} color='s-color-fg-primary' className={styles.header__actions} />
                 </button>
