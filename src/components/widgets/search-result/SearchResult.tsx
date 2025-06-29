@@ -1,8 +1,9 @@
 import { skipToken, type TypedUseQuery } from "@reduxjs/toolkit/query/react";
 import { ImageCard } from "../../atoms/image-card";
 import styles from "./SearchResult.module.scss";
-import React from "react";
+import React, { useState } from "react";
 import { ImageCardLoading } from "../../atoms/image-card/ImageCard";
+import type { JikanPagination } from "../../../services/jikan/models";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type UseQuery = TypedUseQuery<any, any, any>;
@@ -27,12 +28,17 @@ interface ImageCardData {
     favorites?: string;
 }
 
+interface SearchResultData {
+    data: ImageCardData[];
+    pagination?: JikanPagination;
+}
+
 interface SearchResultProps<TQueryHook extends UseQuery> {
     useQueryHook: TQueryHook;
     options: ExtractArgTypeFromHook<TQueryHook> | typeof skipToken;
     adapter: (
         data: ExtractDataTypeFromHook<TQueryHook>
-    ) => ImageCardData[];
+    ) => SearchResultData;
 }
 
 function SearchResult<TQueryHook extends UseQuery>({
@@ -43,14 +49,20 @@ function SearchResult<TQueryHook extends UseQuery>({
 
     const { data } = useQueryHook(options);
 
+    const [page, setPage] = useState(1);
+
     const adaptedData = data ? adapter(data) : undefined;
 
+    const handlePageChange = (newPage: number) => {
+        setPage(newPage);
+    };
+
     const getContent = React.useCallback((): React.ReactNode[] => {
-        if (!adaptedData) {
-            return Array.from({ length: 15 }, () => ({})).map((_, idx) => <ImageCardLoading key={idx} />);
+        if (!adaptedData || !adaptedData.data) {
+            return Array.from({ length: 25 }, () => ({})).map((_, idx) => <ImageCardLoading key={idx} />);
         }
 
-        return (adaptedData as ImageCardData[]).map((data) => (
+        return (adaptedData.data).map((data) => (
             <ImageCard
                 key={data.key}
                 navigateTo={data.navigateTo}
@@ -66,6 +78,21 @@ function SearchResult<TQueryHook extends UseQuery>({
     return (
         <div className={styles.results}>
             {getContent()}
+            <div className={styles.pagination}>
+                <button
+                    onClick={() => handlePageChange(page - 1)}
+                    disabled={page === 1}
+                >
+                    Previous
+                </button>
+                <span>Page {page} of {data.pagination.last_visible_page}</span>
+                <button
+                    onClick={() => handlePageChange(page + 1)}
+                    disabled={!data.pagination.has_next_page}
+                >
+                    Next
+                </button>
+            </div>
         </div>
     );
 }

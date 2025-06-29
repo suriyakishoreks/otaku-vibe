@@ -50,15 +50,20 @@ function getSearchResults(category: SearchCategory) {
                 <SearchResult
                     useQueryHook={useGetAnimeSearchQuery}
                     options={{}}
-                    adapter={(data) => data.data.map((anime) => ({
-                        key: anime.mal_id.toString(),
-                        title: anime.titles.find((title) => title.type === 'Default')?.title ?? anime.title,
-                        imageUrl: anime.images.jpg.image_url,
-                        navigateTo: `/anime/${anime.mal_id}?`,
-                        alt: anime.title,
-                        ratings: anime.score?.toString(),
-                        favorites: formatThresholdNumber(anime.favorites)
-                    }))}
+                    adapter={(data) => {
+                        return {
+                            pagination: data.pagination,
+                            data: data.data.map((anime) => ({
+                                key: anime.mal_id.toString(),
+                                title: anime.titles.find((title) => title.type === 'Default')?.title ?? anime.title,
+                                imageUrl: anime.images.jpg.image_url,
+                                navigateTo: `/anime/${anime.mal_id}?`,
+                                alt: anime.title,
+                                ratings: anime.score?.toString(),
+                                favorites: formatThresholdNumber(anime.favorites)
+                            }))
+                        };
+                    }}
                 />
             );
         case 'manga':
@@ -66,15 +71,20 @@ function getSearchResults(category: SearchCategory) {
                 <SearchResult
                     useQueryHook={useGetMangaSearchQuery}
                     options={{}}
-                    adapter={(data) => data.data.map((manga) => ({
-                        key: manga.mal_id.toString(),
-                        title: manga.titles.find((title) => title.type === 'Default')?.title ?? manga.title,
-                        imageUrl: manga.images.jpg.image_url,
-                        navigateTo: `/manga/${manga.mal_id}?`,
-                        alt: manga.title,
-                        ratings: manga.score?.toString(),
-                        favorites: formatThresholdNumber(manga.favorites)
-                    }))}
+                    adapter={(data) => {
+                        return {
+                            pagination: data.pagination,
+                            data: data.data.map((manga) => ({
+                                key: manga.mal_id.toString(),
+                                title: manga.titles.find((title) => title.type === 'Default')?.title ?? manga.title,
+                                imageUrl: manga.images.jpg.image_url,
+                                navigateTo: `/manga/${manga.mal_id}?`,
+                                alt: manga.title,
+                                ratings: manga.score?.toString(),
+                                favorites: formatThresholdNumber(manga.favorites)
+                            }))
+                        };
+                    }}
                 />
             );
         case 'characters':
@@ -82,14 +92,19 @@ function getSearchResults(category: SearchCategory) {
                 <SearchResult
                     useQueryHook={useGetCharacterSearchQuery}
                     options={{}}
-                    adapter={(data) => data.data.map((character) => ({
-                        key: character.mal_id.toString(),
-                        title: character.name,
-                        imageUrl: character.images.webp?.image_url ?? character.images.jpg.image_url,
-                        navigateTo: `/character/${character.mal_id}?`,
-                        alt: character.name,
-                        favorites: formatThresholdNumber(character.favorites)
-                    }))}
+                    adapter={(data) => {
+                        return {
+                            pagination: data.pagination,
+                            data: data.data.map((character) => ({
+                                key: character.mal_id.toString(),
+                                title: character.name,
+                                imageUrl: character.images.webp?.image_url ?? character.images.jpg.image_url,
+                                navigateTo: `/character/${character.mal_id}?`,
+                                alt: character.name,
+                                favorites: formatThresholdNumber(character.favorites)
+                            }))
+                        };
+                    }}
                 />
             );
         case 'people':
@@ -97,14 +112,19 @@ function getSearchResults(category: SearchCategory) {
                 <SearchResult
                     useQueryHook={useGetPeopleSearchQuery}
                     options={{}}
-                    adapter={(data) => data.data.map((person) => ({
-                        key: person.mal_id.toString(),
-                        title: person.name,
-                        imageUrl: person.images.webp?.image_url ?? person.images.jpg.image_url,
-                        navigateTo: `/people/${person.mal_id}?`,
-                        alt: person.name,
-                        favorites: formatThresholdNumber(person.favorites)
-                    }))}
+                    adapter={(data) => {
+                        return {
+                            pagination: data.pagination,
+                            data: data.data.map((person) => ({
+                                key: person.mal_id.toString(),
+                                title: person.name,
+                                imageUrl: person.images.webp?.image_url ?? person.images.jpg.image_url,
+                                navigateTo: `/people/${person.mal_id}?`,
+                                alt: person.name,
+                                favorites: formatThresholdNumber(person.favorites)
+                            }))
+                        };
+                    }}
                 />
             );
         default:
