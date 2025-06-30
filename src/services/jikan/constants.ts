@@ -327,9 +327,11 @@ export const characterOrder = [
     { "id": "favorites", "title": "Favorites" }
 ];
 
-export const SearchCategory = [
+export const SearchCategoryOptions = [
     { "id": "anime", "title": "Anime" },
     { "id": "manga", "title": "Manga" },
     { "id": "people", "title": "People" },
     { "id": "characters", "title": "Characters" }
 ];
+
+export type SearchCategory = 'anime' | 'manga' | 'people' | 'characters';

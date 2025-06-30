@@ -61,7 +61,7 @@ function SearchResult<TQueryHook extends UseQuery>({
         }, { replace: true });
     };
 
-    const getContent = React.useCallback((): React.ReactNode[] => {
+    const getContent = (): React.ReactNode[] => {
         if (!adaptedData || !adaptedData.data) {
             return Array.from({ length: 25 }, (_, idx) => <ImageCardLoading key={idx} grid />);
         }
@@ -78,7 +78,7 @@ function SearchResult<TQueryHook extends UseQuery>({
                 grid
             />
         ));
-    }, [adaptedData]);
+    };
 
     const page = Number(searchParams.get('page') ?? '1');
 

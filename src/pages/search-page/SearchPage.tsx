@@ -76,7 +76,7 @@ function getSearchResults(category: SearchCategory, params: URLSearchParams) {
                         return {
                             pagination: data.pagination,
                             data: data.data.map((anime) => ({
-                                key: anime.mal_id.toString(),
+                                key: `anime_${anime.mal_id}`,
                                 title: anime.titles.find((title) => title.type === 'Default')?.title ?? anime.title,
                                 imageUrl: anime.images.jpg.image_url,
                                 navigateTo: `/anime/${anime.mal_id}`,
@@ -97,7 +97,7 @@ function getSearchResults(category: SearchCategory, params: URLSearchParams) {
                         return {
                             pagination: data.pagination,
                             data: data.data.map((manga) => ({
-                                key: manga.mal_id.toString(),
+                                key: `manga_${manga.mal_id}`,
                                 title: manga.titles.find((title) => title.type === 'Default')?.title ?? manga.title,
                                 imageUrl: manga.images.jpg.image_url,
                                 navigateTo: `/manga/${manga.mal_id}`,
@@ -118,7 +118,7 @@ function getSearchResults(category: SearchCategory, params: URLSearchParams) {
                         return {
                             pagination: data.pagination,
                             data: data.data.map((character) => ({
-                                key: character.mal_id.toString(),
+                                key: `character_${character.mal_id}`,
                                 title: character.name,
                                 imageUrl: character.images.webp?.image_url ?? character.images.jpg.image_url,
                                 navigateTo: `/character/${character.mal_id}`,
@@ -138,7 +138,7 @@ function getSearchResults(category: SearchCategory, params: URLSearchParams) {
                         return {
                             pagination: data.pagination,
                             data: data.data.map((person) => ({
-                                key: person.mal_id.toString(),
+                                key: `person_${person.mal_id}`,
                                 title: person.name,
                                 imageUrl: person.images.webp?.image_url ?? person.images.jpg.image_url,
                                 navigateTo: `/people/${person.mal_id}`,
