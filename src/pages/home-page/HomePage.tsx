@@ -1,5 +1,4 @@
 import { useGetTopAnimeQuery, useGetTopMangaQuery, useGetTopCharactersQuery, useGetTopPeopleQuery } from "../../services/jikan";
-import { LazyMount } from "../../components/atoms/lazy-mount";
 import { HorizontalCarousel } from "../../components/widgets/horizontal-carousel";
 import Vernac from "../../services/vernac";
 import { formatThresholdNumber } from "../../shared/util";
@@ -40,36 +39,32 @@ function HomePage() {
                     favorites: formatThresholdNumber(manga.favorites)
                 }))}
             />
-            <LazyMount estimatedHeight={359}>
-                <HorizontalCarousel
-                    heading={Vernac.getVernac('HP_TOP_CHARACTER_TITLE')}
-                    useQueryHook={useGetTopCharactersQuery}
-                    options={{}}
-                    adapter={(data) => data.data.map((character) => ({
-                        key: character.mal_id.toString(),
-                        title: character.name,
-                        imageUrl: character.images.webp?.image_url ?? character.images.jpg.image_url,
-                        navigateTo: `/character/${character.mal_id}?`,
-                        alt: character.name,
-                        favorites: formatThresholdNumber(character.favorites)
-                    }))}
-                />
-            </LazyMount>
-            <LazyMount estimatedHeight={359}>
-                <HorizontalCarousel
-                    heading={Vernac.getVernac('HP_TOP_PEOPLE_TITLE')}
-                    useQueryHook={useGetTopPeopleQuery}
-                    options={{}}
-                    adapter={(data) => data.data.map((person) => ({
-                        key: person.mal_id.toString(),
-                        title: person.name,
-                        imageUrl: person.images.webp?.image_url ?? person.images.jpg.image_url,
-                        navigateTo: `/people/${person.mal_id}?`,
-                        alt: person.name,
-                        favorites: formatThresholdNumber(person.favorites)
-                    }))}
-                />
-            </LazyMount>
+            <HorizontalCarousel
+                heading={Vernac.getVernac('HP_TOP_CHARACTER_TITLE')}
+                useQueryHook={useGetTopCharactersQuery}
+                options={{}}
+                adapter={(data) => data.data.map((character) => ({
+                    key: character.mal_id.toString(),
+                    title: character.name,
+                    imageUrl: character.images.webp?.image_url ?? character.images.jpg.image_url,
+                    navigateTo: `/character/${character.mal_id}?`,
+                    alt: character.name,
+                    favorites: formatThresholdNumber(character.favorites)
+                }))}
+            />
+            <HorizontalCarousel
+                heading={Vernac.getVernac('HP_TOP_PEOPLE_TITLE')}
+                useQueryHook={useGetTopPeopleQuery}
+                options={{}}
+                adapter={(data) => data.data.map((person) => ({
+                    key: person.mal_id.toString(),
+                    title: person.name,
+                    imageUrl: person.images.webp?.image_url ?? person.images.jpg.image_url,
+                    navigateTo: `/people/${person.mal_id}?`,
+                    alt: person.name,
+                    favorites: formatThresholdNumber(person.favorites)
+                }))}
+            />
         </div>
     );
 }
