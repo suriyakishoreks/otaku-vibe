@@ -1,5 +1,4 @@
 import { useGetAnimeSearchQuery, useGetAnimeSeasonsNowQuery, useGetAnimeSeasonsUpcomingQuery } from "../../services/jikan";
-import { LazyMount } from "../../components/atoms/lazy-mount";
 import { HorizontalCarousel } from "../../components/widgets/horizontal-carousel";
 import Vernac from "../../services/vernac";
 import { filterDuplicates, formatThresholdNumber } from "../../shared/util";
@@ -40,22 +39,20 @@ function AnimeLandingPage() {
                     favorites: formatThresholdNumber(anime.favorites)
                 })), 'key')}
             />
-            <LazyMount estimatedHeight={359}>
-                <HorizontalCarousel
-                    heading={Vernac.getVernac('ALP_TOP_RATED_TITLE')}
-                    useQueryHook={useGetAnimeSearchQuery}
-                    options={{ limit: 15, order_by: 'score', sort: 'desc' }}
-                    adapter={(data) => filterDuplicates(data.data.map((anime) => ({
-                        key: anime.mal_id.toString(),
-                        title: anime.titles.find((title) => title.type === 'Default')?.title ?? anime.title,
-                        imageUrl: anime.images.jpg.image_url,
-                        navigateTo: `/anime/${anime.mal_id}?`,
-                        alt: anime.title,
-                        ratings: anime.score?.toString(),
-                        favorites: formatThresholdNumber(anime.favorites)
-                    })), 'key')}
-                />
-            </LazyMount>
+            <HorizontalCarousel
+                heading={Vernac.getVernac('ALP_TOP_RATED_TITLE')}
+                useQueryHook={useGetAnimeSearchQuery}
+                options={{ limit: 15, order_by: 'score', sort: 'desc' }}
+                adapter={(data) => filterDuplicates(data.data.map((anime) => ({
+                    key: anime.mal_id.toString(),
+                    title: anime.titles.find((title) => title.type === 'Default')?.title ?? anime.title,
+                    imageUrl: anime.images.jpg.image_url,
+                    navigateTo: `/anime/${anime.mal_id}?`,
+                    alt: anime.title,
+                    ratings: anime.score?.toString(),
+                    favorites: formatThresholdNumber(anime.favorites)
+                })), 'key')}
+            />
         </div>
     );
 }

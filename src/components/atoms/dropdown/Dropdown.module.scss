@@ -73,7 +73,7 @@
     transition: scale 0.2s ease;
 
     &--selected {
-      background-color: var(--s-color-bg-success);
+      background-color: var(--s-color-bg-info);
     }
 
     @include screen-mouse-first {
