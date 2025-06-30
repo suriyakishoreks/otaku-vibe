@@ -1,5 +1,5 @@
 import classNames from "classnames";
-import type { IconProps } from "../icons/icon.model";
+import type { IconProps } from "../ic/icon.model";
 import { Label } from "../label";
 import styles from "./Pill.module.scss";
 

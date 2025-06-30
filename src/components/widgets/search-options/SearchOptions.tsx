@@ -1,6 +1,6 @@
 import { useSearchParams } from 'react-router';
 import { Dropdown, type DropdownOption } from '../../atoms/dropdown';
-import SearchIcon from '../../atoms/icons/SearchIcon';
+import SearchIcon from '../../atoms/ic/SearchIcon';
 import styles from './SearchOptions.module.scss';
 import { SearchCategoryOptions } from '../../../services/jikan/constants';
 import { useEffect, useState } from 'react';

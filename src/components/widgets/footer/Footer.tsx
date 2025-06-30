@@ -1,9 +1,9 @@
 import styles from './Footer.module.scss';
 import { Label } from '../../atoms/label';
 import Vernac from '../../../services/vernac';
-import GithubIcon from '../../atoms/icons/GithubIcon';
+import GithubIcon from '../../atoms/ic/GithubIcon';
 import { Link } from 'react-router';
-import MailIcon from '../../atoms/icons/MailIcon';
+import MailIcon from '../../atoms/ic/MailIcon';
 
 function Footer() {
     return (
