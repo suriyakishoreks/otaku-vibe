@@ -5,8 +5,8 @@ import { Label } from "../../atoms/label";
 import styles from "./HorizontalCarousel.module.scss";
 import React from "react";
 import { type SwiperClass } from "swiper/react";
-import LeftChevron from "../../atoms/ic/LeftChevron";
-import RightChevron from "../../atoms/ic/RightChevron";
+import LeftChevron from "../../atoms/icons/LeftChevron";
+import RightChevron from "../../atoms/icons/RightChevron";
 import classNames from "classnames";
 import { MediaDetailCard, MediaDetailCardLoading } from "../../atoms/media-detail-card";
 

@@ -3,8 +3,8 @@ import { Image } from '../image';
 import { Label } from '../label';
 import styles from './MediaDetailCard.module.scss';
 import classNames from 'classnames';
-import StarIcon from '../ic/StarIcon';
-import HeartIcon from '../ic/HeartIcon';
+import StarIcon from '../icons/StarIcon';
+import HeartIcon from '../icons/HeartIcon';
 
 interface MediaDetailCardProps {
     src: string;

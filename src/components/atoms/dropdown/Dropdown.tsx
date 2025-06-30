@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import styles from './Dropdown.module.scss';
-import CloseIcon from '../ic/CloseIcon';
-import DownChevron from '../ic/DownChevron';
+import CloseIcon from '../icons/CloseIcon';
+import DownChevron from '../icons/DownChevron';
 import { useOutsideClick } from '../../../shared/hooks/useOutsideClick';
 import { Label } from '../label';
 

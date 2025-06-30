@@ -3,8 +3,8 @@ import { useAppSelector } from '../../../store';
 import { useDispatch } from 'react-redux';
 import { updateTheme } from '../../../store/slices/persistedAppContext';
 import { Label } from '../label';
-import MoonIcon from '../ic/MoonIcon';
-import SunIcon from '../ic/SunIcon';
+import MoonIcon from '../icons/MoonIcon';
+import SunIcon from '../icons/SunIcon';
 import classNames from 'classnames';
 
 function ThemeToggle() {

@@ -1,17 +1,17 @@
 import { useEffect, useRef, useState } from "react";
-import AnimeIcon from "../../atoms/ic/AnimeIcon";
-import HomeIcon from "../../atoms/ic/HomeIcon";
+import AnimeIcon from "../../atoms/icons/AnimeIcon";
+import HomeIcon from "../../atoms/icons/HomeIcon";
 import { Logo } from "../../atoms/logo";
-import MangaIcon from "../../atoms/ic/MangaIcon";
-import SearchIcon from "../../atoms/ic/SearchIcon";
-import SettingIcon from "../../atoms/ic/SettingIcon";
+import MangaIcon from "../../atoms/icons/MangaIcon";
+import SearchIcon from "../../atoms/icons/SearchIcon";
+import SettingIcon from "../../atoms/icons/SettingIcon";
 import { Pill } from "../../atoms/pill";
 import styles from "./Header.module.scss";
-import GithubIcon from "../../atoms/ic/GithubIcon";
+import GithubIcon from "../../atoms/icons/GithubIcon";
 import { Link, useLocation } from "react-router";
 import Vernac from "../../../services/vernac";
 import classNames from "classnames";
-import MenuIcon from "../../atoms/ic/MenuIcon";
+import MenuIcon from "../../atoms/icons/MenuIcon";
 import { useAppDispatch } from "../../../store";
 import { updateIsDrawerOpen, updateIsHeaderNavHidden } from "../../../store/slices/appContextSlice";
 

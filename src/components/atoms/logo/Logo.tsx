@@ -1,4 +1,4 @@
-import LogoIcon from "../ic/LogoIcon";
+import LogoIcon from "../icons/LogoIcon";
 import { Label } from "../label";
 import Vernac from "../../../services/vernac";
 import styles from './Logo.module.scss';
