@@ -1,0 +1,91 @@
+@use "/src/styles/tokens/semantics" as *;
+
+.dropdown {
+  position: relative;
+  width: 100%;
+  color: var(--s-color-fg-primary);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    padding: var(--s-spacing-3) var(--s-spacing-3);
+    border-radius: 12px;
+    cursor: pointer;
+    background-color: var(--s-color-bg-secondary);
+    min-height: 40px;
+    transition: scale 0.2s ease;
+
+    @include screen-mouse-first {
+      &:hover {
+        scale: 1.02;
+      }
+    }
+
+    @include screen-touch-first {
+      &:active {
+        scale: 1.02;
+      }
+    }
+  }
+
+  &__text {
+    @include number-of-lines(1);
+
+    flex-grow: 1;
+  }
+
+  &__down-chevron {
+    flex-shrink: 0;
+  }
+
+  &__clear-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--s-spacing-2);
+    cursor: pointer;
+    border-radius: 50%;
+    flex-shrink: 0;
+    background-color: var(--s-color-bg-base);
+    margin-right: var(--s-spacing-2);
+  }
+
+  &__list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 250px;
+    overflow-y: auto;
+    border-top: none;
+    border-radius: 12px;
+    z-index: 10;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: var(--s-color-bg-secondary);
+  }
+
+  &__list-item {
+    padding: var(--s-spacing-3) var(--s-spacing-3);
+    cursor: pointer;
+    text-transform: capitalize;
+    transition: scale 0.2s ease;
+
+    &--selected {
+      background-color: var(--s-color-bg-success);
+    }
+
+    @include screen-mouse-first {
+      &:hover {
+        scale: 1.02;
+      }
+    }
+
+    @include screen-touch-first {
+      &:active {
+        scale: 1.02;
+      }
+    }
+  }
+}

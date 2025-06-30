@@ -1,0 +1,65 @@
+@use "/src/styles/tokens/semantics" as *;
+
+.horizontal-carousel {
+  padding-top: var(--s-spacing-5);
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 var(--s-spacing-app-horizontal);
+  }
+
+  &__heading {
+    color: var(--s-color-fg-primary);
+  }
+
+  &__nav {
+    display: none;
+
+    @include screen-md {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+  }
+
+  &__nav-button {
+    height: 24px;
+    width: 24px;
+    border-width: 1px;
+    border-radius: 12px;
+    border-color: var(--s-color-fg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: scale 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
+
+    &:disabled {
+      opacity: 0.5;
+    }
+
+    @include screen-mouse-first {
+      &:hover {
+        scale: 1.05;
+      }
+    }
+
+    @include screen-touch-first {
+      &:active {
+        scale: 1.05;
+      }
+    }
+
+    &:active {
+      background-color: var(--s-color-fg-secondary);
+    }
+
+    &-left {
+      padding-right: var(--s-spacing-1);
+    }
+
+    &-right {
+      padding-left: var(--s-spacing-1);
+    }
+  }
+}

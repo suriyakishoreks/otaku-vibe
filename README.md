@@ -1,87 +1,101 @@
-# Anime List App with React.js
-This Project is an anime listing app for searching animes with modern UI. 
-## Figma Design :
-### https://www.figma.com/file/bsu0cCVDdxXMoNBj3zhcAw/Anime-List?node-id=0%3A1 
-## API:
-Jikan Unofficial MyAnimeList API (Open Source Public API). \
-Documentation: 
-### https://jikan.docs.apiary.io/#
+# Otaku Vibe
 
-## Technologies Used:
-HTML \
-SCSS \
-JavaScript \
-React.js (UI Library) \
-Redux (State Management Library) \
-React Router (Client Side Routing Library)
+**Otaku Vibe** is a modern anime and manga discovery platform, rebuilt from the ground up with a focus on performance, scalability, and developer experience. This Version 2.0 release showcases my expertise in React, TypeScript, state management, and UI/UX best practices.
 
-# Create React App
+**Hosted at https://suriyakishoreks.github.io/otaku-vibe/**
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+---
 
-## Available Scripts
+## 🚀 Tech Stack
 
-In the project directory, you can run:
+- **React** (Vite-powered)
+- **TypeScript** (strictly typed)
+- **Redux Toolkit** (RTK Query & Redux Persist)
+- **React Router**
+- **SCSS** (modular, themeable)
+- **motion** (Animation framework)
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## ✨ Features
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **Landing Page and curated widgets** for quick discovery of anime, manga, manhwa, manhua.
+- **Detail Page** for in depth information on the content
+- **Smooth Animations** (page transitions, micro-interactions)
+- **Advanced Data Layer**
+  - RTK Query for efficient API data fetching/caching
+  - Redux Persist for seamless session continuity
+- **Custom UI Components**
+  - Atomic design: Atoms, Molecules, Organisms
+  - Reusable components (Label, Box, Image, etc.)
+- **Design System**
+  - Light/Dark theme toggle (SCSS variables & tokens)
+  - Responsive layouts, semantic HTML
+- **Localization** (vernac-powered, multi-language ready)
+- **Robust Error Handling** (error boundaries, loading states)
+- **Modern Tooling**
+  - ESLint & Stylelint for code quality
+  - Vite for blazing-fast builds
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 🛠️ Implementation Highlights
 
-### `npm run build`
+- **Scalable Project Structure**
+  - `atoms`, `molecules`, `organisms`: Atomic design for reusable UI
+  - `pages`, `layouts`: Clear separation of concerns
+  - `services`: API abstraction (Jikan API)
+  - `shared`: Utilities, hooks, models
+  - `store`: Centralized Redux state
+  - `styles`: Modular SCSS, design tokens
+- **Modern React Patterns**
+  - Functional components, hooks, custom hooks (e.g., `useIntersectionObserver`)
+  - Strict TypeScript for maintainability
+- **UI/UX Excellence**
+  - Smooth transitions, responsive design, accessibility
+  - Theme toggle, localization, polished micro-animations
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 🏆 Milestones
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### ✅ Milestone 1 (Completed)
 
-### `npm run eject`
+- Core setup & project structure
+- Jikan API integration
+- Home, Anime, Manga landing pages
+- Search & Detail pages
+- Theme & localization support
+- Loading states
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 🔜 Milestone 2 (Backlog)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- PWA support
+- Infinite feed
+- Custom Scroll restoration
+- Optimization - lazy loading, SEO, etc
+- Simple Analytics service
+- Relative units for spacing, font
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+---
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## 🚩 Getting Started
 
-## Learn More
+```bash
+# Install dependencies
+npm install
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+# Start the development server
+npm run dev
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+App runs at [http://localhost:5173](http://localhost:5173)
 
-### Code Splitting
+```bash
+# Build for production
+npm run build
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Production files in the `dist` directory.
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+---

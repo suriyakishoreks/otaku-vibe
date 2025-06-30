@@ -1,0 +1,26 @@
+.theme-toggle {
+  display: flex;
+  gap: var(--s-spacing-4);
+  align-items: center;
+  color: var(--s-color-fg-primary);
+
+  &__button {
+    background-color: var(--s-color-bg-secondary);
+    height: 24px;
+    border-radius: 12px;
+    width: 42px;
+    padding: 3px;
+  }
+
+  &__circle {
+    height: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background-color: var(--s-color-fg-primary);
+    transition: transform 0.2s ease;
+
+    &--light {
+      transform: translateX(100%);
+    }
+  }
+}

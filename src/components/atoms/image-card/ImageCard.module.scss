@@ -1,0 +1,86 @@
+@use "/src/styles/tokens/semantics" as *;
+
+.image-card {
+  height: 275px;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+
+  &--grid {
+    height: auto;
+  }
+
+  &--loading {
+    background-color: var(--s-color-bg-secondary);
+  }
+
+  &__image {
+    height: 100%;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+
+    &--grid {
+      height: auto;
+      width: 100%;
+    }
+  }
+
+  &__top-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--s-color-bg-secondary);
+    padding: var(--s-spacing-3);
+    border-bottom-left-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--s-spacing-3);
+  }
+
+  &__rating {
+    color: var(--s-color-fg-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--s-spacing-3);
+  }
+
+  &__favorite {
+    color: var(--s-color-fg-primary);
+    display: flex;
+    align-items: center;
+    gap: var(--s-spacing-3);
+  }
+
+  &__bottom-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: var(--s-color-fg-primary);
+    background: linear-gradient(to top, var(--s-color-bg-base) 2%, #0000);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--s-spacing-4);
+  }
+
+  &__title {
+    @include number-of-lines(2);
+  }
+
+  &__clickable {
+    transition: scale 0.2s ease;
+
+    @include screen-mouse-first {
+      &:hover {
+        scale: 1.05;
+      }
+    }
+
+    @include screen-touch-first {
+      &:active {
+        scale: 1.05;
+      }
+    }
+  }
+}

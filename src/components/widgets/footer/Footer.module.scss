@@ -1,0 +1,53 @@
+@use "/src/styles/tokens/semantics" as *;
+
+.footer {
+  border-top: 1px solid var(--s-color-bg-secondary);
+  padding: var(--s-spacing-5) var(--s-spacing-app-horizontal);
+  width: 100%;
+
+  &__copy-right {
+    margin-top: var(--s-spacing-4);
+    text-align: center;
+    color: var(--s-color-fg-secondary);
+  }
+
+  &__content {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: var(--s-spacing-12);
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--s-spacing-6);
+  }
+
+  &__description {
+    max-width: 300px;
+    color: var(--s-color-fg-secondary);
+  }
+
+  &__socials {
+    display: flex;
+    gap: var(--s-spacing-6);
+  }
+
+  &__actions {
+    transition: scale 0.2s ease;
+
+    @include screen-sm {
+      height: 28px;
+      width: 28px;
+    }
+
+    @include screen-mouse-first {
+      &:hover {
+        scale: 1.1;
+      }
+    }
+
+    @include screen-touch-first {
+      &:active {
+        scale: 1.1;
+      }
+    }
+  }
+}

@@ -1,0 +1,330 @@
+@use "/src/styles/tokens/semantics" as *;
+
+.media-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: var(--s-color-fg-primary);
+  padding-left: 0 var(--s-spacing-app-horizontal);
+  gap: var(--s-spacing-6);
+
+  @include screen-sm {
+    flex-direction: row;
+    align-items: flex-start;
+    padding: var(--s-spacing-5) var(--s-spacing-app-horizontal);
+  }
+
+  &__primary-content {
+    display: flex;
+    flex-direction: column;
+    width: clamp(320px, 100%, 450px);
+
+    @include screen-sm {
+      width: clamp(200px, 35vw, 320px);
+      flex-shrink: 0;
+      position: sticky;
+      top: var(--s-header-height);
+    }
+  }
+
+  .image-card {
+    position: relative;
+
+    &__image {
+      width: 100%;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+    }
+
+    &__gradient {
+      position: absolute;
+      height: 15%;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, var(--s-color-bg-primary) 2%, #0000);
+    }
+
+    &__overlay-title {
+      position: absolute;
+      bottom: var(--s-spacing-6);
+      left: var(--s-spacing-app-horizontal);
+      right: var(--s-spacing-app-horizontal);
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-spacing-4);
+
+      @include screen-sm {
+        left: var(--s-spacing-6);
+        right: var(--s-spacing-6);
+        display: none;
+      }
+
+      &-english {
+        color: var(--s-color-fg-secondary);
+      }
+    }
+
+    &__content-type {
+      position: absolute;
+      top: var(--s-spacing-3);
+      right: 0;
+      background-color: var(--s-color-bg-base);
+      padding: var(--s-spacing-3) var(--s-spacing-4);
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+  }
+
+  .media-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--s-spacing-5);
+    padding: var(--s-spacing-4) var(--s-spacing-app-horizontal);
+
+    @include screen-sm {
+      padding: var(--s-spacing-4) 0;
+    }
+
+    &__stat {
+      padding: var(--s-spacing-3) var(--s-spacing-4);
+      border-radius: 8px;
+      white-space: nowrap;
+      flex-grow: 2;
+      text-align: center;
+
+      &--rank {
+        background-color: var(--s-color-bg-warning);
+      }
+
+      &--popularity {
+        background-color: var(--s-color-bg-success);
+      }
+
+      &--rating {
+        background-color: var(--s-color-bg-info);
+      }
+
+      &--favorite {
+        background-color: var(--s-color-bg-error);
+      }
+
+      &--listed {
+        background-color: var(--s-color-bg-secondary);
+      }
+    }
+  }
+
+  &__secondary-content {
+    display: flex;
+    flex-direction: column;
+    padding: 0 var(--s-spacing-app-horizontal);
+    width: 100%;
+
+    @include screen-sm {
+      padding: 0;
+      min-width: 0;
+    }
+  }
+
+  .title {
+    display: none;
+
+    @include screen-sm {
+      display: flex;
+      flex-direction: column;
+      gap: var(--s-spacing-4);
+      padding-bottom: var(--s-spacing-5);
+    }
+
+    &--english {
+      color: var(--s-color-fg-secondary);
+    }
+  }
+
+  .youtube {
+    padding-top: var(--s-spacing-7);
+    aspect-ratio: 16 / 9;
+    width: 100%;
+
+    @include screen-md {
+      width: min(600px, 100%);
+    }
+  }
+}
+
+.string-group {
+  padding-top: var(--s-spacing-5);
+
+  &__group {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: var(--s-spacing-3);
+    gap: var(--s-spacing-5);
+  }
+
+  &__item {
+    padding: var(--s-spacing-3) var(--s-spacing-4);
+    border-radius: 8px;
+    white-space: nowrap;
+
+    &--primary {
+      background-color: var(--s-color-bg-warning);
+    }
+
+    &--secondary {
+      background-color: var(--s-color-bg-info);
+    }
+
+    &--tertiary {
+      background-color: var(--s-color-bg-success);
+    }
+
+    &--info {
+      background-color: var(--s-color-bg-secondary);
+    }
+
+    &--clickable {
+      transition: scale 0.2s ease;
+
+      @include screen-mouse-first {
+        &:hover {
+          scale: 1.05;
+        }
+      }
+
+      @include screen-touch-first {
+        &:active {
+          scale: 1.05;
+        }
+      }
+    }
+  }
+}
+
+.content-group {
+  padding-top: var(--s-spacing-5);
+
+  &__group {
+    display: grid;
+    grid-template-rows: auto auto;
+    grid-auto-columns: max-content;
+    grid-auto-flow: column;
+    margin-top: var(--s-spacing-3);
+    gap: var(--s-spacing-5);
+  }
+
+  &__title {
+    @include number-of-lines(2);
+  }
+
+  &__desc {
+    @include number-of-lines(1);
+
+    padding-top: var(--s-spacing-2);
+    color: var(--s-color-fg-secondary);
+  }
+
+  &__image {
+    height: 100px;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+
+  &__text {
+    padding: var(--s-spacing-3) var(--s-spacing-4);
+  }
+
+  &__scroll {
+    overflow-x: scroll;
+    scrollbar-width: none; /* Hide scrollbar in Firefox */
+
+    /* --- For Internet Explorer and Edge (older versions) --- */
+    -ms-overflow-style: none; /* Hide scrollbar in IE and old Edge */
+
+    /* --- For Webkit browsers (Chrome, Safari, new Edge, Opera) --- */
+    &::-webkit-scrollbar {
+      display: none; /* Hide scrollbar in Webkit browsers */
+      width: 0; /* Optional: explicitly set width to 0 for a cleaner hide */
+      height: 0; /* Optional: for horizontal scrollbar */
+    }
+  }
+
+  &__item {
+    display: flex;
+    border-radius: 8px;
+    width: 250px;
+    overflow: hidden;
+    background-color: var(--s-color-bg-secondary);
+
+    &--clickable {
+      transition: scale 0.2s ease;
+
+      @include screen-mouse-first {
+        &:hover {
+          scale: 1.02;
+        }
+      }
+
+      @include screen-touch-first {
+        &:active {
+          scale: 1.02;
+        }
+      }
+    }
+  }
+}
+
+.loading {
+  @mixin common {
+    background-color: var(--s-color-bg-secondary);
+    border-radius: 16px;
+  }
+
+  &__image {
+    @include common();
+  }
+
+  &__media-stats {
+    height: 150px;
+    margin-top: var(--s-spacing-6);
+
+    @include common();
+  }
+
+  &__title {
+    width: 75%;
+    height: 50px;
+
+    @include common();
+  }
+
+  &__summary {
+    height: 250px;
+    margin-top: var(--s-spacing-6);
+
+    @include common();
+  }
+
+  &__text-group {
+    height: 100px;
+    margin-top: var(--s-spacing-6);
+    width: 80%;
+
+    @include common();
+  }
+
+  &__youtube {
+    margin-top: var(--s-spacing-6);
+
+    @include common();
+  }
+
+  &__content-group {
+    height: 250px;
+    margin-top: var(--s-spacing-6);
+
+    @include common();
+  }
+}

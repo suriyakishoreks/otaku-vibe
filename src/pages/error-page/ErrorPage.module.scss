@@ -1,0 +1,44 @@
+@use "/src/styles/tokens/semantics" as *;
+
+.error {
+  padding-top: var(--s-spacing-6);
+  justify-self: center;
+  width: clamp(288px, calc(100vw - 32px), 400px);
+  color: var(--s-color-fg-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-spacing-4);
+  align-items: center;
+
+  &--root {
+    padding-top: var(--s-spacing-12);
+  }
+
+  img {
+    width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+
+  button {
+    margin-top: var(--s-spacing-7);
+    padding: var(--s-spacing-4) var(--s-spacing-6);
+    background-color: var(--s-color-bg-secondary);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: scale 0.2s ease;
+
+    @include screen-mouse-first {
+      &:hover {
+        scale: 1.05;
+      }
+    }
+
+    @include screen-touch-first {
+      &:active {
+        scale: 1.05;
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+@use "../primitives" as *;
+
+:root {
+  --s-color-bg-primary: #{$p-color-grey-900};
+  --s-color-bg-secondary: #{$p-color-grey-800};
+  --s-color-bg-success: #{$p-color-green-800};
+  --s-color-bg-warning: #{$p-color-yellow-800};
+  --s-color-bg-error: #{$p-color-red-800};
+  --s-color-bg-info: #{$p-color-blue-800};
+  --s-color-fg-primary: #{$p-color-grey-100};
+  --s-color-fg-secondary: #{$p-color-grey-300};
+  --s-color-fg-success: #{$p-color-green-100};
+  --s-color-fg-warning: #{$p-color-yellow-100};
+  --s-color-fg-error: #{$p-color-red-100};
+  --s-color-fg-info: #{$p-color-blue-100};
+  --s-color-bg-placeholder: #{$p-color-grey-600};
+  --s-color-bg-base: #{$p-color-common-black};
+  --s-color-fg-base: #{$p-color-common-white};
+}
+
+.light-theme {
+  --s-color-bg-primary: #{$p-color-grey-100};
+  --s-color-bg-secondary: #{$p-color-grey-200};
+  --s-color-bg-success: #{$p-color-green-300};
+  --s-color-bg-warning: #{$p-color-yellow-300};
+  --s-color-bg-error: #{$p-color-red-300};
+  --s-color-bg-info: #{$p-color-blue-300};
+  --s-color-fg-primary: #{$p-color-grey-900};
+  --s-color-fg-secondary: #{$p-color-grey-700};
+  --s-color-fg-success: #{$p-color-green-700};
+  --s-color-fg-warning: #{$p-color-yellow-700};
+  --s-color-fg-error: #{$p-color-red-700};
+  --s-color-fg-info: #{$p-color-blue-700};
+  --s-color-bg-placeholder: #{$p-color-grey-400};
+  --s-color-bg-base: #{$p-color-common-white};
+  --s-color-fg-base: #{$p-color-common-black};
+}

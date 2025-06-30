@@ -1,3 +1,0 @@
-# Allowing all crawlers to access any route.
-User-agent: *
-Disallow:

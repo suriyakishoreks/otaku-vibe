@@ -1,0 +1,78 @@
+@use "/src/styles/tokens/semantics" as *;
+
+.search {
+  padding: var(--s-spacing-5) var(--s-spacing-app-horizontal);
+
+  &__top-container {
+    display: flex;
+    border-radius: 16px;
+    gap: var(--s-spacing-5);
+    margin-bottom: var(--s-spacing-6);
+
+    @include screen-sm {
+      gap: var(--s-spacing-6);
+    }
+  }
+
+  &__category {
+    width: 110px;
+    flex-shrink: 0;
+
+    @include screen-xs {
+      width: 120px;
+    }
+
+    @include screen-sm {
+      width: 150px;
+    }
+
+    @include screen-md {
+      width: 200px;
+    }
+  }
+
+  &__bar {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    gap: var(--s-spacing-2);
+    padding: var(--s-spacing-2) var(--s-spacing-3);
+    background-color: var(--s-color-bg-secondary);
+    border-radius: 12px;
+    overflow: hidden;
+
+    input {
+      width: 100%;
+      border: none;
+      background: transparent;
+      color: var(--s-color-fg-primary);
+      outline: none;
+    }
+  }
+
+  &__bottom-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--s-spacing-5);
+    margin-bottom: var(--s-spacing-6);
+  }
+
+  &__button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__button {
+    color: var(--s-color-fg-primary);
+    background-color: var(--s-color-bg-info);
+    padding: var(--s-spacing-3) var(--s-spacing-5);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--s-spacing-3);
+    width: 100%;
+    max-width: 400px;
+  }
+}

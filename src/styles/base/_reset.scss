@@ -1,0 +1,162 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+figure,
+ol,
+ul,
+dl,
+dd,
+fieldset,
+legend,
+textarea,
+pre,
+iframe {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  line-height: 1.15; /* Corrects `line-height` in all browsers. */
+  text-size-adjust: 100%; /* Prevent font scaling in landscape while in mobile Safari. */
+}
+
+html,
+body,
+#root {
+  min-height: 100vh;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+body {
+  text-rendering: optimizelegibility; /* Improves font rendering */
+  -webkit-font-smoothing: antialiased; /* Smoothes fonts on macOS/iOS */
+  -moz-osx-font-smoothing: grayscale; /* Smoothes fonts on macOS (Firefox) */
+}
+
+// 6. Form element reset for consistency
+//    Removes many default browser styles that make forms inconsistent.
+input,
+button,
+textarea,
+select {
+  font: inherit; /* Inherit font styles from parent for consistency */
+  color: inherit; /* Inherit color from parent */
+  padding: 0; /* Reset default padding */
+  margin: 0; /* Reset default margin */
+  border-width: 0; /* Remove default border */
+  border-style: solid;
+  background-color: transparent; /* Remove default background */
+}
+
+button {
+  cursor: pointer;
+}
+
+img,
+svg {
+  display: block;
+}
+
+// Ensure button and input types are displayed correctly
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  appearance: auto;
+}
+
+// Hide the overflow in IE.
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  overflow: visible;
+}
+
+// Remove the default `border-style` for Safari.
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+// Restore the focus styles unset by the previous rule.
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+// Correct the cursor style of increment and decrement buttons in Chrome.
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+// Correct the outline style in Safari.
+[type="search"] {
+  appearance: textfield;
+  outline-offset: -2px; /* Corrects `box-sizing` and `border` in Firefox and IE. */
+}
+
+// Remove the inner padding in Chrome and Safari on macOS.
+[type="search"]::-webkit-search-decoration {
+  appearance: none;
+}
+
+// Remove the default vertical scrollbar in IE.
+textarea {
+  overflow: auto;
+  resize: vertical; /* Allow vertical resizing by default */
+}
+
+// 7. Text-level semantics
+//    Standardize font properties of `code`, `kbd`, `samp`.
+code,
+kbd,
+samp {
+  /* stylelint-disable-next-line property-disallowed-list */
+  font-family: monospace;
+  /* stylelint-disable-next-line property-disallowed-list */
+  font-size: 1em; /* Correct the inheritance and scaling of font size in all browsers. */
+}
+
+// 8. HTML5 display-role reset for older browsers (no longer strictly needed for modern browsers but harmless)
+article,
+aside,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section {
+  display: block;
+}
+
+// 9. Links reset
+a {
+  text-decoration: none; // Remove underline
+  color: inherit; // Inherit color from parent, you'll apply semantic link colors later
+}
