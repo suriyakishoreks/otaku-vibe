@@ -1,8 +1,14 @@
 $minScreenWidth: 320px;
 $maxScreenWidth: 1920px;
 
-@mixin screen-xs {
+@mixin screen-xxs {
   @media (width >= 0) {
+    @content;
+  }
+}
+
+@mixin screen-xs {
+  @media (width >= 340px) {
     @content;
   }
 }
