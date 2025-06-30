@@ -6,6 +6,7 @@ import { ImageCardLoading } from "../../atoms/image-card/ImageCard";
 import type { JikanPagination } from "../../../services/jikan/models";
 import { useSearchParams } from "react-router";
 import { Label } from "../../atoms/label";
+import classNames from "classnames";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type UseQuery = TypedUseQuery<any, any, any>;
@@ -49,7 +50,7 @@ function SearchResult<TQueryHook extends UseQuery>({
     adapter,
 }: SearchResultProps<TQueryHook>) {
     const [searchParams, setSearchParams] = useSearchParams();
-    const { data } = useQueryHook(options);
+    const { data, isFetching } = useQueryHook(options);
 
     const adaptedData = data ? adapter(data) : undefined;
 
@@ -61,9 +62,15 @@ function SearchResult<TQueryHook extends UseQuery>({
         }, { replace: true });
     };
 
-    const getContent = (): React.ReactNode[] => {
-        if (!adaptedData || !adaptedData.data) {
+    const getContent = (): React.ReactNode => {
+        if (!adaptedData || !adaptedData.data || isFetching) {
             return Array.from({ length: 25 }, (_, idx) => <ImageCardLoading key={idx} grid />);
+        }
+
+        if (adaptedData.data.length === 0) {
+            return (
+                <Label as="p" font="typo-primary-xl-medium" className={styles['no-result']}>No results found</Label>
+            );
         }
 
         return (adaptedData.data).map((data) => (
@@ -84,7 +91,7 @@ function SearchResult<TQueryHook extends UseQuery>({
 
     return (
         <div className={styles['search-result']}>
-            <div className={styles['search-result__grid']}>
+            <div className={classNames(styles['search-result__grid'])}>
                 {getContent()}
             </div>
             {adaptedData?.pagination && adaptedData.pagination.last_visible_page > 1 && (

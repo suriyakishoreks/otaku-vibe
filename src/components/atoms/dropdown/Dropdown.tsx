@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from './Dropdown.module.scss';
 import CloseIcon from '../icons/CloseIcon';
 import DownChevron from '../icons/DownChevron';
@@ -13,12 +13,14 @@ export interface DropdownOption {
 interface DropdownProps {
     options: DropdownOption[];
     selectedOptions: DropdownOption[];
-    onSelect: (option?: DropdownOption) => void;
+    onSelect: (option: DropdownOption) => void;
+    onClear?: () => void;
     placeholder?: string;
+    defaultOption?: string;
     isMulti?: boolean;
 }
 
-function Dropdown({ options, selectedOptions, onSelect, placeholder, isMulti = false }: DropdownProps) {
+function Dropdown({ options, selectedOptions, onSelect, placeholder, isMulti = false, onClear, defaultOption }: DropdownProps) {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -28,6 +30,15 @@ function Dropdown({ options, selectedOptions, onSelect, placeholder, isMulti = f
         }
     });
 
+    useEffect(() => {
+        if (selectedOptions.length === 0 && defaultOption) {
+            const foundOption = options.find(option => option.id === defaultOption);
+            if (foundOption) {
+                onSelect(foundOption);
+            }
+        }
+    }, [selectedOptions, defaultOption, onSelect, options]);
+
     const handleSelect = (option: DropdownOption) => {
         onSelect(option);
         if (!isMulti) {
@@ -35,24 +46,31 @@ function Dropdown({ options, selectedOptions, onSelect, placeholder, isMulti = f
         }
     };
 
-    const handleClearSingle = (e: React.MouseEvent) => {
+    const handleClear = (e: React.MouseEvent) => {
         e.stopPropagation();
-        onSelect();
+        e.preventDefault();
+        onClear?.();
     };
 
     const isSelected = (option: DropdownOption) => {
         return selectedOptions.some(selected => selected.id === option.id);
     };
 
-    const dropDownText = `${placeholder ? placeholder : ''}${placeholder && selectedOptions.length > 0 ? ': ' : ''}${selectedOptions.length > 0 ? selectedOptions[0].title : ''}`;
+    const dropDownText = `${placeholder ? placeholder : ''}${placeholder && selectedOptions.length > 0 ? ': ' : ''}${selectedOptions.length > 0 ? selectedOptions.reduce((accumulator, currentValue, index) => {
+        if (index === 0) {
+            return currentValue.title;
+        } else {
+            return accumulator + ", " + currentValue.title;
+        }
+    }, "") : ''}`;
 
     return (
         <div className={styles.dropdown} ref={dropdownRef}>
             <div className={styles['dropdown__header']} onClick={() => setIsOpen(!isOpen)}>
                 <Label as='p' font='typo-primary-m-medium' className={styles['dropdown__text']} >{dropDownText}</Label>
-                <button className={styles['dropdown__clear-btn']} onClick={handleClearSingle}>
+                {!!onClear && selectedOptions.length > 0 && <button className={styles['dropdown__clear-btn']} onClick={handleClear}>
                     <CloseIcon size={16} color="s-color-fg-primary" />
-                </button>
+                </button>}
                 <DownChevron size={20} color="s-color-fg-primary" className={styles['dropdown__down-chevron']} />
             </div>
             {isOpen && (

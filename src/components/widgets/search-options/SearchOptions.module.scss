@@ -56,4 +56,23 @@
     gap: var(--s-spacing-5);
     margin-bottom: var(--s-spacing-6);
   }
+
+  &__button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__button {
+    color: var(--s-color-fg-primary);
+    background-color: var(--s-color-bg-info);
+    padding: var(--s-spacing-3) var(--s-spacing-5);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--s-spacing-3);
+    width: 100%;
+    max-width: 400px;
+  }
 }
