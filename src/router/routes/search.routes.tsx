@@ -1,6 +1,9 @@
 import { type RouteObject } from 'react-router';
-import { SearchPage } from '../../pages/search-page';
 import { ErrorPage } from '../../pages/error-page';
+import React from 'react';
+
+const SearchPage = React.lazy(() => import('../../pages/search-page'));
+
 
 export const searchRoutes: RouteObject = {
     path: 'search',

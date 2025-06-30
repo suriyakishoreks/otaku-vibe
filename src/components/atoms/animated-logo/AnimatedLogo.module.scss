@@ -1,0 +1,50 @@
+@use "/src/styles/tokens/semantics" as *;
+
+@keyframes fillIn {
+  0% {
+    fill: var(--s-color-bg-primary);
+    opacity: 0;
+  }
+  100% {
+    fill: var(--s-color-bg-info);
+    opacity: 1;
+  }
+}
+
+.animated-logo-svg {
+  transform-origin: center center;
+
+  height: 200px;
+  width: 200px;
+
+  @include screen-sm {
+    height: 300px;
+    width: 300px;
+  }
+}
+
+.animated-logo-svg .logo-path {
+  fill: var(--s-color-bg-primary);
+  opacity: 0;
+
+  animation: fillIn 1s ease-out infinite alternate-reverse forwards;
+}
+
+.animated-logo-svg .logo-path:nth-of-type(1) {
+  animation-delay: 0s;
+}
+.animated-logo-svg .logo-path:nth-of-type(2) {
+  animation-delay: 0.2s;
+}
+.animated-logo-svg .logo-path:nth-of-type(3) {
+  animation-delay: 0.4s;
+}
+.animated-logo-svg .logo-path:nth-of-type(4) {
+  animation-delay: 0.6s;
+}
+.animated-logo-svg .logo-path:nth-of-type(5) {
+  animation-delay: 0.8s;
+}
+.animated-logo-svg .logo-path:nth-of-type(6) {
+  animation-delay: 1s;
+}

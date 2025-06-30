@@ -1,3 +1,3 @@
 import MangaLandingPage from "./MangaLandingPage";
 
-export { MangaLandingPage };
+export default MangaLandingPage;

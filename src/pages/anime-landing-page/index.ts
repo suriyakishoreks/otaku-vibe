@@ -1,3 +1,3 @@
 import AnimeLandingPage from "./AnimeLandingPage";
 
-export { AnimeLandingPage };
+export default AnimeLandingPage;

@@ -1,7 +1,9 @@
 import type { RouteObject } from 'react-router';
-import MangaPage from '../../pages/manga-page/MangaPage';
-import { MangaLandingPage } from '../../pages/manga-landing-page';
 import { ErrorPage } from '../../pages/error-page';
+import React from 'react';
+
+const MangaPage = React.lazy(() => import('../../pages/manga-page'));
+const MangaLandingPage = React.lazy(() => import('../../pages/manga-landing-page'));
 
 export const mangaRoutes: RouteObject = {
     path: 'manga',

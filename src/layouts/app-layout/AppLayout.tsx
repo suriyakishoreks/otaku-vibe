@@ -4,6 +4,8 @@ import styles from './AppLayout.module.scss';
 import { Footer } from "../../components/widgets/footer";
 import { Drawer } from "../../components/widgets/drawer";
 import { AnimatePresence, motion, type Variants } from "motion/react";
+import { Suspense } from "react";
+import { Loader } from "../loader";
 
 const pageVariants: Variants = {
     initial: {
@@ -33,10 +35,10 @@ function AppLayout() {
     return (
         <div className={styles['app-layout']}>
             <Drawer />
-            <div>
-                <Header />
-                <main className={styles['app-layout__content']}>
-                    <AnimatePresence mode="sync">
+            <Header />
+            <main className={styles['app-layout__content']}>
+                <AnimatePresence mode="sync">
+                    <Suspense fallback={<Loader />}>
                         <motion.div
                             key={location.pathname}
                             variants={pageVariants}
@@ -47,9 +49,9 @@ function AppLayout() {
                             <ScrollRestoration />
                             {outlet}
                         </motion.div>
-                    </AnimatePresence>
-                </main>
-            </div>
+                    </Suspense>
+                </AnimatePresence>
+            </main>
             <Footer />
         </div>
     );
