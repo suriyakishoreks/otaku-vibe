@@ -1,55 +1,77 @@
-import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router';
-import styles from './SearchPage.module.scss';
 import { useGetAnimeSearchQuery, useGetCharacterSearchQuery, useGetMangaSearchQuery, useGetPeopleSearchQuery } from '../../services/jikan';
 import { SearchOptions, type SearchOption } from '../../components/widgets/search-options';
-import { animeGenres, animeOrder, animeRating, animeStatus, animeType, characterOrder, mangaGenres, mangaOrder, mangaStatus, mangaType, peopleOrder, sortOption } from '../../services/jikan/constants';
+import { animeGenres, animeOrder, animeRating, animeStatus, animeType, characterOrder, mangaGenres, mangaOrder, mangaStatus, mangaType, peopleOrder, sortOption, type SearchCategory } from '../../services/jikan/constants';
 import { SearchResult } from '../../components/widgets/search-result';
 import { formatThresholdNumber } from '../../shared/util';
-
-type SearchCategory = 'anime' | 'manga' | 'people' | 'characters';
 
 function getSearchOptions(category: SearchCategory): SearchOption[] {
     switch (category) {
         case 'anime':
             return [
-                { queryKey: 'type', options: animeType },
-                { queryKey: 'rating', options: animeRating },
-                { queryKey: 'status', options: animeStatus },
-                { queryKey: 'genres', options: animeGenres },
-                { queryKey: 'order_by', options: animeOrder },
-                { queryKey: 'sort', options: sortOption }
+                { queryKey: 'type', options: animeType, placeholder: 'Type' },
+                { queryKey: 'rating', options: animeRating, placeholder: 'Rating' },
+                { queryKey: 'status', options: animeStatus, placeholder: 'Status' },
+                { queryKey: 'genres', options: animeGenres, type: 'multi', placeholder: 'Genres' },
+                { queryKey: 'genres_exclude', options: animeGenres, type: 'multi', placeholder: 'Exclude Genres' },
+                { queryKey: 'order_by', options: animeOrder, placeholder: 'Order By' },
+                { queryKey: 'sort', options: sortOption, placeholder: 'Sort' }
             ];
         case 'manga':
             return [
-                { queryKey: 'type', options: mangaType },
-                { queryKey: 'status', options: mangaStatus },
-                { queryKey: 'genres', options: mangaGenres },
-                { queryKey: 'order_by', options: mangaOrder },
-                { queryKey: 'sort', options: sortOption }
+                { queryKey: 'type', options: mangaType, placeholder: 'Type' },
+                { queryKey: 'status', options: mangaStatus, placeholder: 'Status' },
+                { queryKey: 'genres', options: mangaGenres, type: 'multi', placeholder: 'Genres' },
+                { queryKey: 'genres_exclude', options: mangaGenres, type: 'multi', placeholder: 'Exclude Genres' },
+                { queryKey: 'order_by', options: mangaOrder, placeholder: 'Order By' },
+                { queryKey: 'sort', options: sortOption, placeholder: 'Sort' }
             ];
         case 'characters':
             return [
-                { queryKey: 'order_by', options: characterOrder },
-                { queryKey: 'sort', options: sortOption }
+                { queryKey: 'order_by', options: characterOrder, placeholder: 'Order By' },
+                { queryKey: 'sort', options: sortOption, placeholder: 'Sort' }
             ];
         case 'people':
             return [
-                { queryKey: 'order_by', options: peopleOrder },
-                { queryKey: 'sort', options: sortOption }
+                { queryKey: 'order_by', options: peopleOrder, placeholder: 'Order By' },
+                { queryKey: 'sort', options: sortOption, placeholder: 'Sort' }
             ];
         default:
             return [];
     }
 }
 
-function getSearchResults(category: SearchCategory) {
+function getSearchResults(category: SearchCategory, params: URLSearchParams) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const queryOptions: any = {
+        q: params.get('q') ?? undefined,
+        page: Number(params.get('page') ?? '1'),
+        order_by: params.get('order_by') ?? undefined,
+        sort: params.get('sort') ?? undefined,
+    };
+
+    if (category === 'anime') {
+        queryOptions.type = params.get('type') ?? undefined;
+        queryOptions.rating = params.get('rating') ?? undefined;
+        queryOptions.status = params.get('status') ?? undefined;
+        queryOptions.genres = params.get('genres') ?? undefined;
+        queryOptions.genres_exclude = params.get('genres_exclude') ?? undefined;
+    }
+
+    if (category === 'manga') {
+        queryOptions.type = params.get('type') ?? undefined;
+        queryOptions.status = params.get('status') ?? undefined;
+        queryOptions.genres = params.get('genres') ?? undefined;
+        queryOptions.genres_exclude = params.get('genres_exclude') ?? undefined;
+    }
+
+
     switch (category) {
         case 'anime':
             return (
                 <SearchResult
                     useQueryHook={useGetAnimeSearchQuery}
-                    options={{}}
+                    options={queryOptions}
                     adapter={(data) => {
                         return {
                             pagination: data.pagination,
@@ -57,7 +79,7 @@ function getSearchResults(category: SearchCategory) {
                                 key: anime.mal_id.toString(),
                                 title: anime.titles.find((title) => title.type === 'Default')?.title ?? anime.title,
                                 imageUrl: anime.images.jpg.image_url,
-                                navigateTo: `/anime/${anime.mal_id}?`,
+                                navigateTo: `/anime/${anime.mal_id}`,
                                 alt: anime.title,
                                 ratings: anime.score?.toString(),
                                 favorites: formatThresholdNumber(anime.favorites)
@@ -70,7 +92,7 @@ function getSearchResults(category: SearchCategory) {
             return (
                 <SearchResult
                     useQueryHook={useGetMangaSearchQuery}
-                    options={{}}
+                    options={queryOptions}
                     adapter={(data) => {
                         return {
                             pagination: data.pagination,
@@ -78,7 +100,7 @@ function getSearchResults(category: SearchCategory) {
                                 key: manga.mal_id.toString(),
                                 title: manga.titles.find((title) => title.type === 'Default')?.title ?? manga.title,
                                 imageUrl: manga.images.jpg.image_url,
-                                navigateTo: `/manga/${manga.mal_id}?`,
+                                navigateTo: `/manga/${manga.mal_id}`,
                                 alt: manga.title,
                                 ratings: manga.score?.toString(),
                                 favorites: formatThresholdNumber(manga.favorites)
@@ -91,7 +113,7 @@ function getSearchResults(category: SearchCategory) {
             return (
                 <SearchResult
                     useQueryHook={useGetCharacterSearchQuery}
-                    options={{}}
+                    options={queryOptions}
                     adapter={(data) => {
                         return {
                             pagination: data.pagination,
@@ -99,7 +121,7 @@ function getSearchResults(category: SearchCategory) {
                                 key: character.mal_id.toString(),
                                 title: character.name,
                                 imageUrl: character.images.webp?.image_url ?? character.images.jpg.image_url,
-                                navigateTo: `/character/${character.mal_id}?`,
+                                navigateTo: `/character/${character.mal_id}`,
                                 alt: character.name,
                                 favorites: formatThresholdNumber(character.favorites)
                             }))
@@ -111,7 +133,7 @@ function getSearchResults(category: SearchCategory) {
             return (
                 <SearchResult
                     useQueryHook={useGetPeopleSearchQuery}
-                    options={{}}
+                    options={queryOptions}
                     adapter={(data) => {
                         return {
                             pagination: data.pagination,
@@ -119,7 +141,7 @@ function getSearchResults(category: SearchCategory) {
                                 key: person.mal_id.toString(),
                                 title: person.name,
                                 imageUrl: person.images.webp?.image_url ?? person.images.jpg.image_url,
-                                navigateTo: `/people/${person.mal_id}?`,
+                                navigateTo: `/people/${person.mal_id}`,
                                 alt: person.name,
                                 favorites: formatThresholdNumber(person.favorites)
                             }))
@@ -134,29 +156,17 @@ function getSearchResults(category: SearchCategory) {
 
 
 function SearchPage() {
-    const [searchParams, setSearchParams] = useSearchParams();
-
-    const [category, setCategory] = useState<SearchCategory>((searchParams.get('category') as SearchCategory) ?? 'anime');
-
-    useEffect(() => {
-        setSearchParams(prevSearchParams => {
-            const newSearchParams = new URLSearchParams(prevSearchParams);
-            newSearchParams.set('category', category);
-            return newSearchParams;
-        }, { replace: true });
-
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [category]);
+    const [searchParams] = useSearchParams();
+    const category = (searchParams.get('category') as SearchCategory) ?? 'anime';
 
     return (
-        <div className={styles.searchPage}>
+        <div>
             <SearchOptions
                 options={getSearchOptions(category)}
                 searchQueryKey={'q'}
+                searchCategory={category}
             />
-
-            {getSearchResults(category)}
-
+            {getSearchResults(category, searchParams)}
         </div>
     );
 }
