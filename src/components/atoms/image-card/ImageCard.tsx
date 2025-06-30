@@ -13,12 +13,13 @@ interface ImageCardProps {
     title?: string;
     ratings?: string;
     favorites?: string;
+    grid?: boolean;
 }
 
-function ImageCard({ src, alt, navigateTo, title, ratings, favorites }: ImageCardProps) {
+function ImageCard({ src, alt, navigateTo, title, ratings, favorites, grid }: ImageCardProps) {
     const content = (
-        <div className={classNames({ [styles['image-card']]: true, [styles['image-card__clickable']]: navigateTo, 'no-text-select': true })}>
-            <Image src={src} alt={alt} className={styles['image-card__image']} />
+        <div className={classNames({ [styles['image-card']]: true, [styles['image-card__clickable']]: navigateTo, 'no-text-select': true, [styles['image-card--grid']]: grid })}>
+            <Image src={src} alt={alt} className={classNames(styles['image-card__image'], { [styles['image-card__image--grid']]: grid })} />
             {(!!ratings || !!favorites) && <div className={styles['image-card__top-overlay']}>
                 {!!ratings && <div className={styles['image-card__rating']}>
                     <StarIcon color='s-color-fg-primary' size={16} />
@@ -42,10 +43,10 @@ function ImageCard({ src, alt, navigateTo, title, ratings, favorites }: ImageCar
     );
 }
 
-export function ImageCardLoading() {
+export function ImageCardLoading({ grid }: { grid?: boolean; }) {
     return (
-        <div className={classNames(styles['image-card'], styles['image-card--loading'])}>
-            <div className={styles['image-card__image']} />
+        <div className={classNames(styles['image-card'], styles['image-card--loading'], { [styles['image-card--grid']]: grid })}>
+            <div className={classNames(styles['image-card__image'], { [styles['image-card__image--grid']]: grid })} />
         </div>
     );
 }
