@@ -37,6 +37,7 @@ function AppLayout() {
             <Drawer />
             <Header />
             <main className={styles['app-layout__content']}>
+                <ScrollRestoration />
                 <AnimatePresence mode="sync">
                     <Suspense fallback={<Loader />}>
                         <motion.div
@@ -46,7 +47,6 @@ function AppLayout() {
                             animate="in"
                             exit="out"
                         >
-                            <ScrollRestoration />
                             {outlet}
                         </motion.div>
                     </Suspense>
