@@ -17,5 +17,34 @@ export default defineConfig({
       cache: true,
       failOnError: false
     }),
-  ]
+  ],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules/swiper')) {
+            return 'swiper';
+          }
+
+          if (id.includes('node_modules/motion')) {
+            return 'motion-core';
+          }
+
+          if (
+            id.includes('node_modules/localforage') ||
+            id.includes('node_modules/classnames') ||
+            id.includes('node_modules/react-remove-scroll') ||
+            id.includes('node_modules/react-transition-state') ||
+            id.includes('node_modules/redux-persist')
+          ) {
+            return 'utility-vendor';
+          }
+
+          if (id.includes('node_modules')) {
+            return 'default-vendor';
+          }
+        },
+      },
+    },
+  },
 });

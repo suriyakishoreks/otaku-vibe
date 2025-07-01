@@ -1,3 +1,3 @@
 import PersonPage from "./PersonPage";
 
-export { PersonPage };
+export default PersonPage;

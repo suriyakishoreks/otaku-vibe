@@ -1,3 +1,3 @@
 import AnimePage from "./AnimePage";
 
-export { AnimePage };
+export default AnimePage;
