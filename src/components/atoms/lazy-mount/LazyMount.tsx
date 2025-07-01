@@ -1,5 +1,5 @@
 import React from 'react';
-import useIntersectionObserver from '../../../shared/hooks/useIntersectionObserver';
+import { useIntersectionObserver } from '../../../shared/hooks/useIntersectionObserver';
 
 interface LazyMountProps {
     children: React.ReactNode;
@@ -20,19 +20,12 @@ const LazyMount = ({
         root: null,
         rootMargin,
         threshold,
+        freezeOnceVisible: true
     });
 
-    const [hasMounted, setHasMounted] = React.useState(false);
-
-    React.useEffect(() => {
-        if (isIntersecting && !hasMounted) {
-            setHasMounted(true);
-        }
-    }, [isIntersecting, hasMounted]);
-
     return (
-        <div ref={wrapperRef} style={!hasMounted ? { height: estimatedHeight } : undefined} className={wrapperClassName}>
-            {hasMounted ? children : null}
+        <div ref={wrapperRef} style={!isIntersecting ? { height: estimatedHeight } : undefined} className={wrapperClassName}>
+            {isIntersecting ? children : null}
         </div>
     );
 };

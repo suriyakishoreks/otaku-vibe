@@ -1,4 +1,4 @@
-import { useSearchParams } from 'react-router';
+import { useLocation, useSearchParams } from 'react-router';
 import { Dropdown, type DropdownOption } from '../../atoms/dropdown';
 import SearchIcon from '../../atoms/icons/SearchIcon';
 import styles from './SearchOptions.module.scss';
@@ -23,6 +23,7 @@ interface SearchOptionsProps {
 
 function SearchOptions({ options, searchQueryKey, searchCategory }: SearchOptionsProps) {
     const [searchParams, setSearchParams] = useSearchParams();
+    const location = useLocation();
     const [internalSearchParams, setInternalSearchParams] = useState(new URLSearchParams(searchParams));
 
     useEffect(() => {
@@ -75,6 +76,9 @@ function SearchOptions({ options, searchQueryKey, searchCategory }: SearchOption
     };
 
     const handleCategoryChange = (newCategory: DropdownOption) => {
+        if (location.pathname !== '/search') {
+            return;
+        }
         setSearchParams((prev: URLSearchParams) => {
             const newParams = new URLSearchParams();
             newParams.set('category', newCategory?.id ?? searchCategory);
@@ -97,6 +101,9 @@ function SearchOptions({ options, searchQueryKey, searchCategory }: SearchOption
     };
 
     const handleSearch = () => {
+        if (location.pathname !== '/search') {
+            return;
+        }
         setSearchParams(new URLSearchParams(internalSearchParams), { replace: true });
     };
 
