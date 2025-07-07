@@ -39,7 +39,7 @@ function AppLayout() {
             <main className={styles['app-layout__content']}>
                 <ScrollRestoration />
                 <AnimatePresence mode="sync">
-                    <Suspense fallback={<Loader />}>
+                    <Suspense key={location.key} fallback={<Loader />}>
                         <motion.div
                             key={location.pathname}
                             variants={pageVariants}
