@@ -7,7 +7,13 @@ import eslint from 'vite-plugin-eslint';
 export default defineConfig({
   base: '/otaku-vibe/',
   plugins: [
-    react(),
+    react({
+      babel: {
+        plugins: [
+          ['babel-plugin-react-compiler'],
+        ],
+      },
+    }),
     stylelint({
       files: ['**/*.{css,scss,html}'],
       cache: true,
