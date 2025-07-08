@@ -36,18 +36,28 @@ export default defineConfig({
             return 'motion-core';
           }
 
+          if (id.includes('node_modules/@reduxjs/toolkit') ||
+            id.includes('node_modules/react-redux') ||
+            id.includes('node_modules/redux-persist')
+          ) {
+            return 'redux-core';
+          }
+
           if (
             id.includes('node_modules/localforage') ||
             id.includes('node_modules/classnames') ||
             id.includes('node_modules/react-remove-scroll') ||
-            id.includes('node_modules/react-transition-state') ||
-            id.includes('node_modules/redux-persist')
+            id.includes('node_modules/react-transition-state')
           ) {
             return 'utility-vendor';
           }
 
+          if (id.includes('node_modules/react-router')) {
+            return 'react-router-core';
+          }
+
           if (id.includes('node_modules')) {
-            return 'default-vendor';
+            return 'core';
           }
         },
       },
