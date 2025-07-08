@@ -10,7 +10,8 @@ export type SemanticColors =
     | 's-color-fg-success'
     | 's-color-fg-warning'
     | 's-color-fg-error'
-    | 's-color-fg-info';
+    | 's-color-fg-info'
+    | 's-color-fg-logo';
 
 export type Spacing =
     | 's-spacing-0'
