@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/otaku-vibe/sw.js', { scope: '/otaku-vibe/' })})}
