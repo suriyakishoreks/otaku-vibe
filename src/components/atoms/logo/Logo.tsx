@@ -10,7 +10,7 @@ interface LogoProps {
 function Logo({ hideName }: LogoProps) {
     return (
         <div className={styles.logo}>
-            <LogoIcon size={48} color={'s-color-fg-primary'} />
+            <LogoIcon size={48} color={'s-color-fg-logo'} />
             {!hideName && <Label as='h1' font='typo-primary-xl-medium' className={styles['logo__title']} >
                 {Vernac.getVernac('APP_NAME')}
             </Label>}
