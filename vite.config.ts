@@ -54,6 +54,22 @@ export default defineConfig({
             purpose: "maskable"
           }
         ],
+        screenshots: [
+          {
+            src: BASE_PATH + 'screenshot-wide.png',
+            sizes: '1280x720',
+            type: 'image/png',
+            form_factor: 'wide',
+            label: 'OtakuVibe',
+          },
+          {
+            src: BASE_PATH + 'screenshot-narrow.png',
+            sizes: '720x1280',
+            type: 'image/png',
+            form_factor: 'narrow',
+            label: 'OtakuVibe',
+          }
+        ],
         display: "standalone",
         background_color: "#7d0808",
         theme_color: "#7d0808",
