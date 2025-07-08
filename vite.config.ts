@@ -55,8 +55,8 @@ export default defineConfig({
           }
         ],
         display: "standalone",
-        background_color: "#000000",
-        theme_color: "#FFFFFF",
+        background_color: "#7d0808",
+        theme_color: "#7d0808",
         description: "A unified platform to explore the world of anime, manga, manhwa and manhua."
       }
     }),
